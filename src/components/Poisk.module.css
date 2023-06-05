@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+.containerForDivOfPlayer {
+  /* background-color: wheat; */
+  display: flex;
+  flex-direction: column;
+}
+
+.divOfPlayer {
+  background-color: rgb(183, 189, 189);
+  display: flex;
+  width: 400px;
+  margin: auto;
+  font-family: 'Raleway', sans-serif;
+  height: 35px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.divOfPlayer:hover {
+  background-color: rgb(136, 141, 141);
+}

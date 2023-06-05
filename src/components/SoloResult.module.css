@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+.divOuter {
+  display: flex;
+  flex-direction: column;
+}
+
+.divOuterTable {
+  display: flex;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.spanName {
+}
+
+.tdFio {
+  width: 350px;
+  height: 35px;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tdDr {
+  width: 70px;
+  /* background-color: rgb(124, 94, 94); */
+}
+
+.tdSr {
+  width: 90px;
+  /* background-color: rgb(158, 97, 97); */
+}
+
+.tdCity {
+  width: 100px;
+  /* background-color: rgb(189, 38, 38); */
+}
+
+.tdOrg {
+  width: 100px;
+  /* background-color: rgb(57, 181, 219); */
+}
+
+.tdO {
+  width: 70px;
+  /* background-color: rgb(58, 97, 109); */
+}
+
+.tdGr {
+  width: 70px;
+  /* background-color: rgb(84, 97, 219); */
+}
+
+.tdRa {
+  width: 70px;
+  /* background-color: rgb(124, 56, 133); */
+}
+
+.tdPlace {
+  width: 50px;
+  /* background-color: rgb(165, 165, 165); */
+}
+
+.trr {
+  background-color: rgb(230, 231, 231);
+}

@@ -1,3 +1,9 @@
 .App {
   text-align: center;
 }
+
+/* Навигация  */
+.active {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
