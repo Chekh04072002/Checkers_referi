@@ -72,3 +72,21 @@ form input {
 .labelText {
   font-size: 18px;
 }
+
+.push {
+  background-color: rgb(164, 224, 184);
+  width: 300px;
+  height: 30px;
+  margin: auto;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.error {
+  background-color: rgb(228, 88, 83);
+  width: 300px;
+  height: 30px;
+  margin: auto;
+  font-weight: bold;
+  border-radius: 5px;
+}

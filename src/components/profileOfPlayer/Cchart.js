@@ -22,7 +22,7 @@ ChartJS.register(
   Legend
 );
 
-const Cchart = ({ arr }) => {
+const Cchart = ({ arr, adamovich }) => {
   // console.log(arr);
   const lineChartData = {
     labels: arr,
@@ -36,7 +36,8 @@ const Cchart = ({ arr }) => {
     // ],
     datasets: [
       {
-        data: [121, 256, 456, 345, 234, 564],
+        // data: [121, 256, 456, 345, 234, 564],
+        data: adamovich,
         label: 'Рейтинг Адамовича',
         borderColor: '#3333ff',
         // hoverBackgroundColor: '#3333ff',

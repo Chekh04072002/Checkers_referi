@@ -2,6 +2,7 @@ import SelectedPlayers from './SelectedPlayers';
 import { useState, useEffect } from 'react';
 import Poisk from './Poisk';
 import styles from './styles/CreateTournament.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const CreateTournament = () => {
   const [arrayOfPlay, setArrayOfPlay] = useState([]);
@@ -30,6 +31,16 @@ const CreateTournament = () => {
   });
   const [player, setPlayer] = useState('');
   const [playersssss, setPlayersssss] = useState(''); // Массив id игроков в турнире
+  const [created, setCreated] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  function createdchtoto() {
+    setCreated(true);
+    setTimeout(() => {
+      setCreated(false);
+    }, 5000);
+  }
+
   console.log(arrayOfPlay);
 
   function handleFormSubmit(event) {
@@ -47,13 +58,53 @@ const CreateTournament = () => {
       .then((response) =>
         response.ok ? response.json() : Promise.reject(response)
       )
-      .then((data) => console.log(data))
+      .then((data) => {
+        createdchtoto();
+        console.log(data);
+        navigate(`../Tournament/${data?.['_id']}`);
+      })
+      .then((_) => {
+        setData({
+          title: '',
+          mainReferee: '',
+          mainSecretary: '',
+          country: '',
+          region: '',
+          city: '',
+          tournamentSystem: '',
+          startDate: '',
+          endDate: '',
+          playersIDs: [],
+          referees: [],
+        });
+      })
       .catch((error) =>
-        error.json().then((errorData) => console.error(errorData))
+        error.json().then((errorData) => {
+          setError(errorData.name);
+          setCreated('error');
+          setTimeout(() => {
+            setCreated(false);
+          }, 5000);
+          console.error(errorData);
+        })
       );
   }
   return (
     <div className="qwert">
+      {created === true ? (
+        <div>
+          <div className={styles.push}>Турнир успешно зарегистрирован</div>
+        </div>
+      ) : (
+        ''
+      )}
+      {created === 'error' ? (
+        <div>
+          <div className={styles.error}>{error}</div>
+        </div>
+      ) : (
+        ''
+      )}
       <h1>Создать турнир</h1>
       <form className="blockInput" onSubmit={handleFormSubmit}>
         <label className={styles.labelText} htmlFor="username">

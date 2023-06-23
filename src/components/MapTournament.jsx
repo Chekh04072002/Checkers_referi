@@ -1,4 +1,9 @@
-import { MdLocationOn, MdAccessTime, MdPerson } from 'react-icons/md';
+import {
+  MdLocationOn,
+  MdAccessTime,
+  MdPerson,
+  MdDeleteForever,
+} from 'react-icons/md';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import picture from '../pictures/shashki.jpeg';
@@ -6,15 +11,41 @@ import styles from './Tournament.module.css';
 
 const MapTournament = ({ data }) => {
   const [arrayTournaments, setArrayTournaments] = useState([]);
-  //   console.log(data);
+  const [hover, setHover] = useState(false);
+  console.log('data', data);
 
   return (
     <Link
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
       className={styles.link}
       to={`Tournament/${data['_id']}`} // либо просто {data['_id']}
       key={data['_id']}
+      style={{ position: 'relative' }}
     >
       <div className={styles.outer}>
+        {hover ? (
+          <MdDeleteForever
+            style={{
+              position: 'absolute',
+              right: '0',
+              top: '0',
+              display: 'block',
+              width: '35px',
+              height: '35px',
+            }}
+            onClick={() => {
+              fetch(`http://localhost:5000/api/tournaments/${data?.['_id']}`, {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json;charset=utf-8',
+                },
+              }).catch((error) => console.error(error));
+            }}
+          />
+        ) : (
+          ''
+        )}
         <div className={styles.innerMain}>
           <img className={styles.image} src={picture}></img>
           <div>

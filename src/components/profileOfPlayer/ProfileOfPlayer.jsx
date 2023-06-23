@@ -8,6 +8,7 @@ import Cchart from './Cchart';
 const ProfileOfPlayer = () => {
   const [profileData, setProfileData] = useState({});
   const [tournamentStringData, setTournamentStringData] = useState([]);
+  const [adamovich, setAdamovich] = useState([]);
   const params = useParams();
   // console.log(params);
   useEffect(() => {
@@ -30,25 +31,49 @@ const ProfileOfPlayer = () => {
   //   currentAdamovichRank: '785', //Текущий рейтинг Адамовича
   //   previousAdamovichRank: '700', //Предыдущий рейтинг Адамовича
   // };
-  useEffect(() => {
-    if (profileData) {
-      if (profileData['playerStatsIDs']) {
-        profileData['playerStatsIDs'].map((id) => {
-          fetch(`http://localhost:5000/api/player-stats/${id}`)
-            .then((response) => response.json())
-            .then((data) =>
-              setTournamentStringData([
-                ...tournamentStringData,
-                `${data['place']} место`,
-              ])
-            );
-          return;
-        });
-      }
-    }
-  }, []);
 
-  console.log('TournamentStringData', tournamentStringData);
+  useEffect(() => {
+    fetch(
+      `http://localhost:5000/api/player-stats?playerID=${params['playerSlug']}`
+    )
+      .then((response) => response.json())
+
+      // .then(async (data) => {
+      //   const resp = await fetch(
+      //     `http://localhost:5000/api/tournaments/${data['tournamentID']}`
+      //   );
+      //   const dataOfTournament = await resp.json();
+      //   console.log(dataOfTournament);
+      //   setTournamentStringData(
+      //     data.map((stat) => {
+      //       return `${stat['place']} место, очков: ${stat['score']}`;
+      //     })
+      //   );
+      //   setAdamovich(
+      //     data.map((stat) => {
+      //       return stat['lastAdamovichRank'];
+      //     })
+      //   );
+      // });
+
+      .then((data) => {
+        setTournamentStringData(
+          data.map((stat) => {
+            return `${stat['place']} место,  очков: ${stat['score']},  рейтинг Горина: ${stat['gorinRank']}`;
+          })
+        );
+        setAdamovich(
+          data.map((stat) => {
+            return stat['lastAdamovichRank'];
+          })
+        );
+      });
+    // .then((data) => setTournamentStringData(data));
+  }, []);
+  console.log('setTournamentStringData', tournamentStringData);
+  console.log('setAdamovichRank', adamovich);
+
+  console.log('TournamentData', profileData);
   const arr = [
     '05.05.2022 1 место',
     '07.05.2022 1 место',
@@ -61,7 +86,8 @@ const ProfileOfPlayer = () => {
     <div className={styles.outer}>
       <ImageProfile />
       <AllData dataPlayer={profileData} />
-      <Cchart arr={arr} />
+      {/* <Cchart arr={arr} /> */}
+      <Cchart arr={tournamentStringData} adamovich={adamovich} />
     </div>
   );
 };

@@ -22,6 +22,7 @@ function TBody(props) {
             customRenderer={props.customRenderer}
             columns={props.columns}
             row={row}
+            ids={props.ids}
           ></TRow>
         )
       )}

@@ -108,6 +108,7 @@ function Table(props) {
           columns={columns}
           // rows={sampleData}
           rows={finalData} // попробовать преобразовать новые данные в старый, нужный вид
+          ids={data}
         ></TBody>
       </table>
     </>

@@ -11,22 +11,35 @@ const TournamentGames = ({ data }) => {
   const [arrayOfGamesFirst, setArrayOfGamesFirst] = useState([]);
   const [page, setPage] = useState(0);
   const [tourArray, setTourArray] = useState([]);
+  const [rechange, setRechange] = useState(false); // Нужно для того, в useEffect заново отправлять запрос на тур при изменение результата игры
   const params = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/api/tournaments/${params['tournamentSlug']}`) // получаю
+    fetch(`http://localhost:5000/api/tournaments/${params['tournamentSlug']}`) // получаю данные турнира
       .then((response) => response.json())
       .then((data) => setObjTournament(data));
     // .then(() => console.log('arrayTournaments', arrayTournaments));
   }, []);
 
+  useEffect(() => {
+    // Если есть id турнира
+    if (objTournament?._id) {
+      fetch(
+        `http://localhost:5000/api/games?tournamentID=${objTournament['_id']}` // Запрос на получение всех туров, внутри которых игры
+      )
+        .then((response) => response.json())
+        .then((games) => setTourArray(games))
+        .catch((error) => console.log(error));
+    }
+  }, [page, rechange]);
+
   async function startTournament() {
     try {
       await fetch(
-        `http://localhost:5000/api/tournaments/start/${objTournament['_id']}`,
+        `http://localhost:5000/api/tournaments/start/${objTournament['_id']}`, // Запрос на старт турнира
         { method: 'PUT' }
       );
       const gamesResponse = await fetch(
-        `http://localhost:5000/api/games?tournamentID=${objTournament['_id']}`
+        `http://localhost:5000/api/games?tournamentID=${objTournament['_id']}` // Запрос на получение всех туров, внутри которых игры
       );
       const games = await gamesResponse.json();
 
@@ -37,10 +50,57 @@ const TournamentGames = ({ data }) => {
     }
   }
 
+  async function resumeTournament() {
+    try {
+      const gamesResponse = await fetch(
+        `http://localhost:5000/api/games?tournamentID=${objTournament['_id']}` // Запрос на получение всех туров, внутри которых игры
+      );
+      const games = await gamesResponse.json();
+
+      setTourArray(games);
+      console.log('games', games);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function finishTour() {
+    try {
+      await fetch(
+        `http://localhost:5000/api/tournaments/finish-tour/${objTournament['_id']}`, // Запрос на окончание тура
+        { method: 'PUT' }
+      );
+      const gamesResponse = await fetch(
+        `http://localhost:5000/api/games?tournamentID=${objTournament['_id']}` // Запрос на получение всех туров, внутри которых игры. Но тут туры добавляются по мере завершения предыдущего тура. Короче, просто обычно получаю массив туров и все, там уже будет следуюий тур.
+      );
+      const games = await gamesResponse.json();
+
+      setTourArray(games);
+      console.log('games', games);
+      // const serverResponse = await fetch(
+      //   `http://localhost:5000/api/tournaments/finish-tour/${objTournament['_id']}`,
+      //   { method: 'PUT' }
+      // );
+      // const nextTour = await serverResponse.json();
+      // console.log(
+      //   'nextTour proverka na mass',
+      //   nextTour['gamesIDs'][nextTour['gamesIDs'].length - 1]
+      // );
+      // setTourArray([
+      //   ...tourArray,
+      //   nextTour['gamesIDs'][nextTour['gamesIDs'].length - 1],
+      // ]);
+      // console.log('Тур завершен');
+      // console.log('next-tour', nextTour);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function finishTournament() {
     try {
       await fetch(
-        `http://localhost:5000/api/tournaments/finish/${objTournament['_id']}`,
+        `http://localhost:5000/api/tournaments/finish/${objTournament['_id']}`, // Запрос на окончание турнира
         { method: 'PUT' }
       );
     } catch (error) {
@@ -55,7 +115,7 @@ const TournamentGames = ({ data }) => {
         method: 'DELETE',
       });
 
-      let tournament = await await fetch(
+      let tournament = await fetch(
         `http://localhost:5000/api/tournaments/${params['tournamentSlug']}`,
         {
           method: 'PUT',
@@ -77,10 +137,21 @@ const TournamentGames = ({ data }) => {
 
   return (
     <div>
-      <button className={styles.butStart} onClick={startTournament}>
+      {tourArray.length > 0 ? (
+        ''
+      ) : objTournament['isStarted'] ? (
+        <button className={styles.butStart} onClick={resumeTournament}>
+          Возобновить турнир
+        </button>
+      ) : (
+        <button className={styles.butStart} onClick={startTournament}>
+          Старт турнира
+        </button>
+      )}
+      {/* <button className={styles.butStart} onClick={startTournament}>
         Старт турнира
-      </button>
-      {console.log('tourArray', tourArray)}
+      </button> */}
+      {/* {console.log('tourArray', tourArray)} */}
       {/* {tourArray.map((tour, index) => {
         return (
           <div className={stylesGame.outerDivGame} key={index}>
@@ -94,9 +165,23 @@ const TournamentGames = ({ data }) => {
         <>
           <span className={stylesGame.tour}>{`Тур ${page + 1}`}</span>
           <div className={stylesGame.outerDivGame}>
-            {<Tour games={tourArray[page]} />}
-            {console.log(tourArray)}
+            {
+              <Tour
+                games={tourArray[page]}
+                rechange={rechange}
+                setRechange={setRechange}
+              />
+            }
+            {/* {console.log(tourArray)} */}
           </div>
+          {console.log('objTournament', objTournament)}
+          {objTournament.tournamentSystem == 'Швейцарская' ? (
+            <button className={styles.butStart} onClick={finishTour}>
+              Завершить тур
+            </button>
+          ) : (
+            ''
+          )}
           <button
             className={stylesT.buttons}
             onClick={() => {

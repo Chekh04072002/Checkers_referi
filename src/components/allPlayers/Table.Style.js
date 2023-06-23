@@ -22,7 +22,7 @@ export const theme = {
   table: {
     border: '2px solid #f0f0f0',
     borderCollapse: 'collapse',
-    width: '90%',
+    width: '70%',
     height: '850px',
   },
   button: {

@@ -33,6 +33,10 @@
   background-color: rgb(201, 201, 202);
 }
 
+.clicked {
+  background-color: rgb(114, 113, 113);
+}
+
 .selec {
   height: 100%;
   border-radius: 5px;

@@ -105,9 +105,9 @@ const Tournament = ({ data }) => {
           <span className={styles.right}>{tournament['country']}</span>
         </div>
         <hr></hr>
-        <div className={styles.info}>
+        <div className={styles.infoPlayer}>
           <span className={styles.right}>Фамилии игроков:</span>{' '}
-          <span className={styles.right}>
+          <div className={styles.players}>
             {tournament['playersIDs']
               ? tournament['playersIDs'].length > 0
                 ? tournament['playersIDs'].map((id) => {
@@ -119,7 +119,7 @@ const Tournament = ({ data }) => {
             {/* {arrof.map((obj) => {
               return ;
             })} */}
-          </span>
+          </div>
         </div>
         {/* <hr></hr> */}
       </div>

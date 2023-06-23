@@ -132,6 +132,24 @@
   margin: 10px;
 }
 
+.infoPlayer {
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.players {
+  display: block;
+  margin: 0px 40px;
+  width: 50%;
+  justify-content: center;
+}
+
+.lastName {
+  display: inline;
+}
+
 .right,
 .left {
   display: inline-flex;

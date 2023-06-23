@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react';
 import styles from './styles/CreateTournament.module.css';
 
 const RegistrationPlayer = () => {
-  // const [userName, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-
   const [data, setData] = useState({
     firstName: '',
     middleName: '',
@@ -18,27 +15,27 @@ const RegistrationPlayer = () => {
   });
   const [player, setPlayer] = useState('');
   const [arrayOfCategories, setArrayOfCategories] = useState([]);
+  const [created, setCreated] = useState(false);
+
+  function createdchtoto() {
+    setCreated(true);
+    setTimeout(() => {
+      setCreated(false);
+    }, 5000);
+  }
 
   useEffect(() => {
     fetch('http://localhost:5000/api/sports-categories')
       .then((response) => response.json())
       .then((data) => setArrayOfCategories(data));
-    // .then(() => console.log(arrayOfCategories[1]['_id']));
   }, []);
-
-  // fetch('http://localhost:5000/api/sports-categories')
-  //   .then((response) => response.json())
-  //   .then((data) => setArrayOfCategories(data));
 
   function handleFormSubmit(event) {
     event.preventDefault();
-
-    // const userData = {
-    //   username: userName,
-    //   password: password,
-    // };
-    // console.log(userData);
     console.log(JSON.stringify(data));
+    if (data.currentAdamovichRank === '') {
+      data.currentAdamovichRank = undefined;
+    }
 
     fetch('http://localhost:5000/api/players', {
       method: 'POST',
@@ -50,13 +47,49 @@ const RegistrationPlayer = () => {
       .then((response) =>
         response.ok ? response.json() : Promise.reject(response)
       )
-      .then((data) => console.log(data))
+      .then((data) => {
+        createdchtoto();
+        console.log(data);
+      })
+      .then((_) => {
+        setData({
+          firstName: '',
+          middleName: '',
+          lastName: '',
+          region: '',
+          birthday: '',
+          sportsOrganization: '',
+          gender: '',
+          sportsCategoryID: '',
+          currentAdamovichRank: '',
+        });
+      })
       .catch((error) =>
-        error.json().then((errorData) => console.error(errorData))
+        error.json().then((errorData) => {
+          setCreated('error');
+          setTimeout(() => {
+            setCreated(false);
+          }, 5000);
+          console.error(errorData);
+        })
       );
   }
   return (
     <div className="qwert">
+      {created === true ? (
+        <div>
+          <div className={styles.push}>Игрок успешно зарегистрирован</div>
+        </div>
+      ) : (
+        ''
+      )}
+      {created === 'error' ? (
+        <div>
+          <div className={styles.error}>Ошибка при регистрации игрока</div>
+        </div>
+      ) : (
+        ''
+      )}
       <h1>Регистрация игрока</h1>
       <form className="blockInput" onSubmit={handleFormSubmit}>
         <label className={styles.labelText} htmlFor="firstName">
@@ -69,7 +102,6 @@ const RegistrationPlayer = () => {
           value={data.firstName}
           name="username"
           id="firstName"
-          // onChange={(e) => setUsername(e.target.value)}
           onChange={(e) => setData({ ...data, firstName: e.target.value })}
           className={styles.inputText}
         />
@@ -133,7 +165,6 @@ const RegistrationPlayer = () => {
           value={data.region}
           name="username"
           id="region"
-          // onChange={(e) => setUsername(e.target.value)}
           onChange={(e) => setData({ ...data, region: e.target.value })}
           className={styles.inputText}
         />
@@ -145,8 +176,6 @@ const RegistrationPlayer = () => {
         <br></br>
         <input
           type="date"
-          // value={password}
-          // name="password"
           id="birthday"
           onChange={(e) => setData({ ...data, birthday: e.target.value })}
           className={styles.inputText}
@@ -173,8 +202,6 @@ const RegistrationPlayer = () => {
               </option>
             );
           })}
-          {/* <option value="Мужской">Мужской</option>
-          <option value="Женский">Женский</option> */}
         </select>
         <br></br>
 
@@ -188,7 +215,6 @@ const RegistrationPlayer = () => {
           value={data.sportsOrganization}
           name="username"
           id="sportsOrganization"
-          // onChange={(e) => setUsername(e.target.value)}
           onChange={(e) =>
             setData({ ...data, sportsOrganization: e.target.value })
           }
@@ -205,7 +231,6 @@ const RegistrationPlayer = () => {
           value={data.currentAdamovichRank}
           name="username"
           id="currentAdamovichRank"
-          // onChange={(e) => setUsername(e.target.value)}
           onChange={(e) =>
             setData({ ...data, currentAdamovichRank: Number(e.target.value) })
           }
