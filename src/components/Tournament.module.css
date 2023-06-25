@@ -33,6 +33,15 @@
   background-color: rgb(240, 240, 240);
 }
 
+.deleteButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 35px;
+  height: 35px;
+}
+
 .innerMain {
   display: flex;
   flex-direction: row;

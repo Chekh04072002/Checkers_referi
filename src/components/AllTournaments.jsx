@@ -24,7 +24,7 @@ const AllTournaments = () => {
   }, []);
 
 
-  function deleteTournament(event, tournament) {
+  const deleteTournament = (event, tournament) =>{
     event.preventDefault();
     fetch(`http://localhost:5000/api/tournaments/${tournament?._id}`, {
       method: 'DELETE',

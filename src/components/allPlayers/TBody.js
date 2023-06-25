@@ -22,6 +22,7 @@ function TBody(props) {
             customRenderer={props.customRenderer}
             columns={props.columns}
             row={row}
+            deletePlayer={props.deletePlayer}
             ids={props.ids}
           ></TRow>
         )

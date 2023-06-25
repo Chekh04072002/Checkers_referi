@@ -1,10 +1,9 @@
 import {
   MdLocationOn,
-  MdAccessTime,
   MdPerson,
   MdDeleteForever,
 } from 'react-icons/md';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import picture from '../pictures/shashki.jpeg';
 import styles from './Tournament.module.css';
@@ -26,14 +25,7 @@ const MapTournament = ({ tournament, deleteTournament }) => {
         {hover ? 
         (
           <MdDeleteForever
-            style={{
-              position: 'absolute',
-              right: '0',
-              top: '0',
-              display: 'block',
-              width: '35px',
-              height: '35px',
-            }}
+            className={styles.deleteButton}
             onClick={(e) => deleteTournament(e, tournament)}
           />
         ) : (

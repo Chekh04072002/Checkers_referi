@@ -3,7 +3,6 @@ import { MdDeleteForever } from 'react-icons/md';
 import styles from './AllPlayer.module.css';
 
 function TRow(props) {
-  // console.log('props', props['ids'][props.rowIndex - 1]?.['_id']);
   const [hover, setHover] = useState(false);
   const onHover = () => {
     setHover(!hover);
@@ -22,12 +21,6 @@ function TRow(props) {
     >
       <div
         className={styles.outerDiv} // Если что, то тут я сделал, чтобы высота строк была бОльшей, можно полностью див убрать.
-        // style={{
-        //   height: '8vh',
-        //   display: 'flex',
-        //   flexDirection: 'column',
-        //   justifyContent: 'center',
-        // }}
       >
         <td key={0} style={props.theme.cell}>
           {props.rowIndex + 1}
@@ -42,13 +35,7 @@ function TRow(props) {
             </td>
           );
         } else if (props.columns[ndx + 1].type === 'id') {
-          //Проверку на id добавил
-          return (
-            // <td key={ndx + 1} style={props.theme.cell}>
-            //   {props.row[cell]}
-            // </td>
-            ''
-          );
+          return '';
         } else {
           return (
             <td key={ndx + 1} style={props.theme.cell}>
@@ -58,19 +45,8 @@ function TRow(props) {
         }
       })}
       <MdDeleteForever
-        onClick={() => {
-          fetch(
-            `http://localhost:5000/api/players/${
-              props['ids'][props.rowIndex]?.['_id']
-            }`,
-            {
-              method: 'DELETE',
-              headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-              },
-            }
-          ).catch((error) => console.error(error));
-        }}
+        className={styles.deleteButton}
+        onClick={() => props.deletePlayer(props.ids[props.rowIndex]._id)}
       />
     </tr>
   );
