@@ -90,3 +90,11 @@ form input {
   font-weight: bold;
   border-radius: 5px;
 }
+
+.formInputItem {
+  margin-bottom: 12px;
+}
+
+.formInput {
+  padding: 2px 4px;
+}

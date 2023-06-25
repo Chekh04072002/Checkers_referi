@@ -1,0 +1,17 @@
+.labelText {
+    font-size: 18px;
+}
+
+.inputText {
+    width: 400px;
+    font-size: 16px;
+}
+
+.formInputItem {
+    margin-bottom: 12px;
+}
+  
+.formInput {
+    padding: 2px 4px;
+}
+  

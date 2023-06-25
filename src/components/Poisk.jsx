@@ -1,23 +1,27 @@
 import { useEffect, useState } from 'react';
 import styles from './Poisk.module.css';
 
-const filterPlayers = (searchText, listOfPlayers) => {
-  if (!searchText || searchText.length < 2) {
-    return [];
-  }
-  if (listOfPlayers) {
-    if (listOfPlayers.length > 0) {
-      return listOfPlayers.filter(({ lastName }) => {
-        // console.log(lastName);
-        return lastName.toLowerCase().includes(searchText.toLowerCase());
-      });
-    }
-  }
-};
 
 const Poisk = ({ arrayOfPlay, data, setData }) => {
   const [playerList, setPlayerList] = useState([]);
   const [searchItem, setSearchItem] = useState('');
+
+  
+  const filterPlayers = (searchText, listOfPlayers) => {
+    if (!searchText || searchText.length < 2) {
+      return [];
+    }
+    if (listOfPlayers) {
+      if (listOfPlayers.length > 0) {
+        return listOfPlayers.filter(({ lastName }) => {
+          // console.log(lastName);
+          return lastName.toLowerCase().includes(searchText.toLowerCase());
+        });
+      }
+    }
+    return [];
+  };
+
 
   useEffect(() => {
     const Debounce = setTimeout(() => {

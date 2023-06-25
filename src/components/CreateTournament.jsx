@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react';
 import Poisk from './Poisk';
 import styles from './styles/CreateTournament.module.css';
 import { useNavigate } from 'react-router-dom';
+import TextInput from './form/TextInput';
+import Select from './form/Select';
+import DateInput from './form/DateInput';
+import PlayerList from './form/PlayerList';
 
 const CreateTournament = () => {
   const [arrayOfPlay, setArrayOfPlay] = useState([]);
@@ -17,7 +21,10 @@ const CreateTournament = () => {
   // const [password, setPassword] = useState('');
 
   const [data, setData] = useState({
+    cp: '',
     title: '',
+    sportsDescipline: '',
+    groups: [],
     mainReferee: '',
     mainSecretary: '',
     country: '',
@@ -28,6 +35,8 @@ const CreateTournament = () => {
     endDate: '',
     playersIDs: [],
     referees: [],
+    coaches: [],
+    sportsFaciliy: '',
   });
   const [player, setPlayer] = useState('');
   const [playersssss, setPlayersssss] = useState(''); // Массив id игроков в турнире
@@ -65,7 +74,10 @@ const CreateTournament = () => {
       })
       .then((_) => {
         setData({
+          cp: '',
           title: '',
+          sportsDescipline: '',
+          groups: [],
           mainReferee: '',
           mainSecretary: '',
           country: '',
@@ -76,6 +88,8 @@ const CreateTournament = () => {
           endDate: '',
           playersIDs: [],
           referees: [],
+          coaches: [],
+          sportsFaciliy: '',
         });
       })
       .catch((error) =>
@@ -107,234 +121,106 @@ const CreateTournament = () => {
       )}
       <h1>Создать турнир</h1>
       <form className="blockInput" onSubmit={handleFormSubmit}>
-        <label className={styles.labelText} htmlFor="username">
-          Введите название турнира:
-        </label>
-        <br></br>
-        <input
+        <TextInput 
+          label="Введите номер КП турнира:"
+          placeholder="КП"
+          value={data.cp}
+          onChange={(e) => setData({ ...data, cp: e.target.value })}
+        />
+        <TextInput 
+          label="Введите название турнира:"
           placeholder="Весенние игры"
-          type="text"
           value={data.title}
-          name="username"
-          id="username"
-          // onChange={(e) => setUsername(e.target.value)}
           onChange={(e) => setData({ ...data, title: e.target.value })}
-          className={styles.inputText}
         />
-        <br></br>
-        <label className={styles.labelText} htmlFor="referi">
-          Введите ФИО судьи турнира:
-        </label>
-        <br></br>
-        <input
+        <Select 
+          label="Введите название спортивной десциплины:"
+          onChange={(e) => setData({ ...data, sportsDescipline: e.target.value})}
+          options={[
+            {value: "русские шашки", text: "русские шашки"},
+            {value: "русские шашки - быстрая игра", text: "русские шашки - быстрая игра"},
+            {value: "русские шашки - командные соревнования", text: "русские шашки - командные соревнования"},
+            {value: "русские шашки - молниеносная игра", text: "русские шашки - молниеносная игра"},
+            {value: "русские шашки - молниеносная игра - командные соревнования", text: "русские шашки - молниеносная игра - командные соревнования"},
+            {value: "стоклеточные шашки", text: "стоклеточные шашки"},
+            {value: "стоклеточные шашки - быстрая игра", text: "стоклеточные шашки - быстрая игра"},
+            {value: "стоклеточные шашки - быстрая игра - командные соревнования", text: "стоклеточные шашки - быстрая игра - командные соревнования"},
+            {value: "стоклеточные шашки - командные соревнования", text: "стоклеточные шашки - командные соревнования"},
+            {value: "стоклеточные шашки - молниеносная игра - командные соревнования", text: "стоклеточные шашки - молниеносная игра - командные соревнования"},
+            {value: "игра по переписке", text: "игра по переписке"},
+            {value: "обратная игра в шашки (поддавки)", text: "обратная игра в шашки (поддавки)"},
+            {value: "шашечная композиция", text: "шашечная композиция"},
+            {value: "рэндзю", text: "рэндзю"},
+          ]}
+        />
+        <TextInput 
+          label="Введите названия групп через запятую:"
+          placeholder="юноши и девушки до 17 лет,юноши и девушки до 14 лет"
+          value={data.groups.join(',')}
+          onChange={(e) => setData({ ...data, groups: e.target.value.split(',') })}
+        />
+        <TextInput 
+          label="Введите ФИО судьи турнира:"
           placeholder="Иванов Петр Сергеевич"
-          type="text"
           value={data.mainReferee}
-          name="password"
-          id="referi"
           onChange={(e) => setData({ ...data, mainReferee: e.target.value })}
-          className={styles.inputText}
         />
-        <br></br>
-        <label className={styles.labelText} htmlFor="secretary">
-          Введите ФИО секретаря турнира:
-        </label>
-        <br></br>
-        <input
+        <TextInput 
+          label="Введите ФИО секретаря турнира:"
           placeholder="Сергеев Иван Петрович"
-          type="text"
           value={data.mainSecretary}
-          name="password"
-          id="secretary"
           onChange={(e) => setData({ ...data, mainSecretary: e.target.value })}
-          className={styles.inputText}
         />
-        <br></br>
-        <label className={styles.labelText} htmlFor="country">
-          Введите название страны:
-        </label>
-        <br></br>
-        <input
+        <TextInput 
+          label="Введите название страны:"
           placeholder="Россия"
-          type="text"
           value={data.country}
-          name="username"
-          id="country"
-          // onChange={(e) => setUsername(e.target.value)}
           onChange={(e) => setData({ ...data, country: e.target.value })}
-          className={styles.inputText}
         />
-        <br></br>
-        <label className={styles.labelText} htmlFor="region">
-          Введите название региона:
-        </label>
-        <br></br>
-        <input
+        <TextInput 
+          label="Введите название региона:"
           placeholder="Крым"
-          type="text"
           value={data.region}
-          name="username"
-          id="region"
-          // onChange={(e) => setUsername(e.target.value)}
           onChange={(e) => setData({ ...data, region: e.target.value })}
-          className={styles.inputText}
         />
-        <br></br>
-        <label className={styles.labelText} htmlFor="city">
-          Введите название города:
-        </label>
-        <br></br>
-        <input
+        <TextInput 
+          label="Введите название города:"
           placeholder="Севастополь"
-          type="text"
           value={data.city}
-          name="username"
-          id="city"
-          // onChange={(e) => setUsername(e.target.value)}
           onChange={(e) => setData({ ...data, city: e.target.value })}
-          className={styles.inputText}
         />
-        <br></br>
-        <label className={styles.labelText} htmlFor="select">
-          Введите тип сетки:
-        </label>
-        <br></br>
-        <select
-          name="changeType"
-          id="select"
-          className={styles.inputText}
-          onChange={(e) =>
-            setData({ ...data, tournamentSystem: e.target.value })
-          }
-        >
-          <option value="">Выберите тип сетки</option>
-          <option value="Круговая">Круговая система</option>
-          <option value="Швейцарская">Швейцарская система</option>
-        </select>
-        <br></br>
-        {/* {data.tournamentSystem == 'swiss' ? (
-          <>
-            <label htmlFor="rounds" className={styles.labelText}>
-              Введите количество раундов
-            </label>
-            <br></br>
-            <input
-              placeholder="5"
-              type="number"
-              value={data.rounds}
-              name="username"
-              id="rounds"
-              // onChange={(e) => setUsername(e.target.value)}
-              onChange={(e) => setData({ ...data, rounds: e.target.value })}
-              className={styles.inputText}
-            />
-          </>
-        ) : (
-          ''
-        )} */}
-        <br></br>
-        <label className={styles.labelText} htmlFor="startDate">
-          Выберите дату начала турнира:
-        </label>
-        <br></br>
-        <input
-          type="date"
-          // value={password}
-          // name="password"
-          id="startDate"
+
+        <Select 
+          label="Выберите тип сетки:"
+          onChange={(e) => setData({ ...data, tournamentSystem: e.target.value })}
+          options={[
+            {value: "Круговая", text: "Круговая система"},
+            {value: "Швейцарская", text: "Швейцарская система"},
+          ]}
+        />
+        <DateInput 
+          label="Выберите дату начала турнира:"
           onChange={(e) => setData({ ...data, startDate: e.target.value })}
-          className={styles.inputText}
         />
-        <br></br>
-        <label className={styles.labelText} htmlFor="endDate">
-          Выберите дату окончания турнира:
-        </label>
-        <br></br>
-        <input
-          type="date"
-          // value={password}
-          // name="password"
-          id="endDate"
-          onChange={(e) => setData({ ...data, endDate: e.target.value })}
-          className={styles.inputText}
+        <DateInput 
+          label="Выберите дату окончания турнира:"
+          onChange={(e) =>  setData({ ...data, endDate: e.target.value })}
         />
-        <br></br>
-        {/* Старое добавление игроков */}
-        {/* <label className={styles.labelText} htmlFor="dateOfEnd">
-          Добавить игроков:
-        </label>
-        <br></br>
-        <input
-          placeholder="Введите id игрока и нажмите кнопку Добавить"
-          type="number"
-          value={player}
-          // name="password"
-          id="dateOfEnd"
-          onChange={(e) => setPlayer(e.target.value)}
-          className={styles.inputText}
-        /> */}
-        {/*  */}
-        {/* <label className={styles.labelText} htmlFor="playersssss">
-          Добавить игроков:
-        </label>
-        <br></br>
-        <select
-          name="changeType"
-          id="playersssss"
-          className={styles.inputText}
-          onChange={(e) =>
-            setData({
-              ...data,
-              playersIDs: [...data.playersIDs, e.target.value],
-            })
-          }
-        >
-          <option value="">Выберите игроков</option>
-          {arrayOfPlay.map((objOfPlay) => {
-            if (!data.playersIDs.includes(objOfPlay['_id'])) {
-              return (
-                <option key={objOfPlay['_id']} value={objOfPlay['_id']}>
-                  {`${objOfPlay['lastName']} ${objOfPlay['firstName']} ${objOfPlay['middleName']}, ${objOfPlay['sportsCategoryAbbr']}`}
-                </option>
-              );
-            }
-          })}
-        </select> */}
-        {/*  */}
-        {/* Новый поиск */}
+        <TextInput 
+          label="Укажите служебное помещение:"
+          placeholder="Служебное помещение"
+          value={data.sportsFaciliy}
+          onChange={(e) => setData({ ...data, sportsFaciliy: e.target.value })}
+        />
+        
         <Poisk arrayOfPlay={arrayOfPlay} data={data} setData={setData} />{' '}
         <br></br>
         {/* Вывожу список зареганных на турнир игроков */}
-        {data.playersIDs.length > 0 ? 'Участники:' : ''}
-        <br></br>
-        {data.playersIDs.length > 0
-          ? data.playersIDs.map((id, index) => {
-              let searchObj = arrayOfPlay.find((play) => play['_id'] === id);
-              return (
-                <div
-                  key={id}
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                >
-                  <div
-                    style={{
-                      backgroundColor: 'rgb(230, 231, 231)',
-                      // display: 'block',
-                      padding: '5px',
-                      borderRadius: '5px',
-                      fontFamily: 'Raleway',
-                      margin: '5px',
-                      // width: '400px',
-                    }}
-                    // key={id}
-                  >{`${index + 1}. ${searchObj['lastName']} ${
-                    searchObj['firstName']
-                  } ${searchObj['middleName']}, ${
-                    searchObj['sportsCategoryAbbr']
-                  }`}</div>
-                </div>
-              );
-            })
-          : ''}
+        <PlayerList 
+          tournament={data}
+          players={arrayOfPlay}
+        />
+        
         <button className={styles.createButton} type="submit">
           Создать Турнир
         </button>
@@ -344,294 +230,3 @@ const CreateTournament = () => {
 };
 
 export default CreateTournament;
-
-// import SelectedPlayers from './SelectedPlayers';
-// import { useState, useEffect } from 'react';
-// import styles from './styles/CreateTournament.module.css';
-
-// const CreateTournament = () => {
-//   const [arrayOfPlay, setArrayOfPlay] = useState([]);
-//   useEffect(() => {
-//     fetch('http://localhost:5000/api/players')
-//       .then((response) => response.json())
-//       .then((data) => setArrayOfPlay(data))
-//       .then(() => console.log(arrayOfPlay));
-//   }, []);
-//   // const [userName, setUsername] = useState('');
-//   // const [password, setPassword] = useState('');
-
-//   const [data, setData] = useState({
-//     nameOfTournament: '',
-//     referiFio: '',
-//     secretaryFio: '',
-//     country: '',
-//     region: '',
-//     city: '',
-//     typeOfBracket: '',
-//     dateOfStart: '',
-//     dateOfEnd: '',
-//     arrayOfPlayers: [],
-//     rounds: '',
-//   });
-//   const [player, setPlayer] = useState('');
-
-//   function handleFormSubmit(event) {
-//     event.preventDefault();
-
-//     // const userData = {
-//     //   username: userName,
-//     //   password: password,
-//     // };
-//     // console.log(userData);
-//     console.log(JSON.stringify(data));
-
-//     //   fetch('http://localhost:5000/tournaments', {
-//     //   method: 'POST',
-//     //   headers: {
-//     //     'Content-Type': 'application/json;charset=utf-8',
-//     //   },
-//     //   body: JSON.stringify(data),
-//     // })
-//     //   .then((response) =>
-//     //     response.ok ? response.json() : Promise.reject(response)
-//     //   )
-//     //   .then((data) => console.log(data))
-//     //   .catch((error) =>
-//     //     error.json().then((errorData) => console.error(errorData))
-//     //   );
-//   }
-//   return (
-//     <div className="qwert">
-//       <h1>Создать турнир</h1>
-//       <form className="blockInput" onSubmit={handleFormSubmit}>
-//         <label className={styles.labelText} htmlFor="username">
-//           Введите название турнира:
-//         </label>
-//         <br></br>
-//         <input
-//           placeholder="Весенние игры"
-//           type="text"
-//           value={data.nameOfTournament}
-//           name="username"
-//           id="username"
-//           // onChange={(e) => setUsername(e.target.value)}
-//           onChange={(e) =>
-//             setData({ ...data, nameOfTournament: e.target.value })
-//           }
-//           className={styles.inputText}
-//         />
-//         <br></br>
-
-//         <label className={styles.labelText} htmlFor="referi">
-//           Введите ФИО судьи турнира:
-//         </label>
-//         <br></br>
-
-//         <input
-//           placeholder="Иванов Петр Сергеевич"
-//           type="text"
-//           value={data.referiFio}
-//           name="password"
-//           id="referi"
-//           onChange={(e) => setData({ ...data, referiFio: e.target.value })}
-//           className={styles.inputText}
-//         />
-//         <br></br>
-
-//         <label className={styles.labelText} htmlFor="secretary">
-//           Введите ФИО секретаря турнира:
-//         </label>
-//         <br></br>
-
-//         <input
-//           placeholder="Сергеев Иван Петрович"
-//           type="text"
-//           value={data.secretaryFio}
-//           name="password"
-//           id="secretary"
-//           onChange={(e) => setData({ ...data, secretaryFio: e.target.value })}
-//           className={styles.inputText}
-//         />
-//         <br></br>
-
-//         <label className={styles.labelText} htmlFor="country">
-//           Введите название страны:
-//         </label>
-//         <br></br>
-//         <input
-//           placeholder="Россия"
-//           type="text"
-//           value={data.country}
-//           name="username"
-//           id="country"
-//           // onChange={(e) => setUsername(e.target.value)}
-//           onChange={(e) => setData({ ...data, country: e.target.value })}
-//           className={styles.inputText}
-//         />
-//         <br></br>
-
-//         <label className={styles.labelText} htmlFor="region">
-//           Введите название региона:
-//         </label>
-//         <br></br>
-//         <input
-//           placeholder="Крым"
-//           type="text"
-//           value={data.region}
-//           name="username"
-//           id="region"
-//           // onChange={(e) => setUsername(e.target.value)}
-//           onChange={(e) => setData({ ...data, region: e.target.value })}
-//           className={styles.inputText}
-//         />
-//         <br></br>
-
-//         <label className={styles.labelText} htmlFor="city">
-//           Введите название города:
-//         </label>
-//         <br></br>
-//         <input
-//           placeholder="Севастополь"
-//           type="text"
-//           value={data.city}
-//           name="username"
-//           id="city"
-//           // onChange={(e) => setUsername(e.target.value)}
-//           onChange={(e) => setData({ ...data, city: e.target.value })}
-//           className={styles.inputText}
-//         />
-//         <br></br>
-
-//         <label className={styles.labelText} htmlFor="select">
-//           Введите тип сетки:
-//         </label>
-//         <br></br>
-//         <select
-//           name="changeType"
-//           id="select"
-//           className={styles.inputText}
-//           onChange={(e) => setData({ ...data, typeOfBracket: e.target.value })}
-//         >
-//           <option value="">Выберите тип сетки</option>
-//           <option value="round">Круговая система</option>
-//           <option value="swiss">Швейцарская система</option>
-//         </select>
-//         <br></br>
-//         {data.typeOfBracket == 'swiss' ? (
-//           <>
-//             <label htmlFor="rounds" className={styles.labelText}>
-//               Введите количество раундов
-//             </label>
-//             <br></br>
-//             <input
-//               placeholder="5"
-//               type="number"
-//               value={data.rounds}
-//               name="username"
-//               id="rounds"
-//               // onChange={(e) => setUsername(e.target.value)}
-//               onChange={(e) => setData({ ...data, rounds: e.target.value })}
-//               className={styles.inputText}
-//             />
-//           </>
-//         ) : (
-//           ''
-//         )}
-//         <br></br>
-
-//         <label className={styles.labelText} htmlFor="dateOfStart">
-//           Выберите дату начала турнира:
-//         </label>
-//         <br></br>
-//         <input
-//           type="date"
-//           // value={password}
-//           // name="password"
-//           id="dateOfStart"
-//           onChange={(e) => setData({ ...data, dateOfStart: e.target.value })}
-//           className={styles.inputText}
-//         />
-//         <br></br>
-
-//         <label className={styles.labelText} htmlFor="dateOfEnd">
-//           Выберите дату окончания турнира:
-//         </label>
-//         <br></br>
-//         <input
-//           type="date"
-//           // value={password}
-//           // name="password"
-//           id="dateOfEnd"
-//           onChange={(e) => setData({ ...data, dateOfEnd: e.target.value })}
-//           className={styles.inputText}
-//         />
-//         <br></br>
-
-//         <label className={styles.labelText} htmlFor="dateOfEnd">
-//           Добавить игроков:
-//         </label>
-//         <br></br>
-//         <input
-//           placeholder="Введите id игрока и нажмите кнопку Добавить"
-//           type="number"
-//           value={player}
-//           // name="password"
-//           id="dateOfEnd"
-//           onChange={(e) => setPlayer(e.target.value)}
-//           className={styles.inputText}
-//         />
-//         <br></br>
-
-//         <div
-//           onClick={() => {
-//             setData({
-//               ...data,
-//               arrayOfPlayers: [...data.arrayOfPlayers, player],
-//             });
-//             setPlayer('');
-//           }}
-//           className={styles.divOfPlayer}
-//         >
-//           Добавить
-//         </div>
-//         <br></br>
-
-//         {data.arrayOfPlayers.map((id) => {
-//           return <div key={id}>{id}</div>;
-//         })}
-
-//         {/* <SelectedPlayers array={data.arrayOfPlayers} /> */}
-//         <br></br>
-//         <label className={styles.labelText} htmlFor="play">
-//           Выберите игроков:
-//         </label>
-//         <br></br>
-//         <select
-//           name="changeType"
-//           id="play"
-//           className={styles.inputText}
-//           onChange={(e) => setData({ ...data, play: e.target.value })}
-//         >
-//           <option value="">Выберите тип сетки</option>
-//           {arrayOfPlay.map((objOfPlay) => {
-//             return (
-//               <option key={objOfPlay['_id']} value={objOfPlay['_id']}>
-//                 {`${objOfPlay['lastName']} ${objOfPlay['firstName']} ${objOfPlay['middleName']}`}
-//               </option>
-//             );
-//           })}
-
-//           <option value="round">Круговая система</option>
-//           <option value="swiss">Швейцарская система</option>
-//         </select>
-//         <br></br>
-
-//         <button className={styles.createButton} type="submit">
-//           Создать Турнир
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default CreateTournament;
