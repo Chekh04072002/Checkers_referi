@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import picture from '../pictures/shashki.jpeg';
 import styles from './Tournament.module.css';
+import { formatDate } from '../utils/utils';
 
 const MapTournament = ({ tournament, deleteTournament }) => {
   const [hover, setHover] = useState(false);
@@ -53,7 +54,7 @@ const MapTournament = ({ tournament, deleteTournament }) => {
         </div>
         <div className={styles.innerEnd}>
           <span className={styles.more}>
-            C {tournament?.startDate} по {tournament?.endDate}
+            C {formatDate(tournament?.startDate)} по {formatDate(tournament?.endDate)}
           </span>
           <span className={styles.more}>{tournament?.tournamentSystem} система</span>
         </div>

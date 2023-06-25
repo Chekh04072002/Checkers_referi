@@ -1,5 +1,6 @@
 import PieceOfData from './PieceOfData';
 import styles from './AllData.module.css';
+import { formatDate } from '../../utils/utils';
 
 function AllData({ dataPlayer }) {
   //   const arrayOfData = [
@@ -20,7 +21,7 @@ function AllData({ dataPlayer }) {
         value={`${dataPlayer['lastName']} ${dataPlayer['firstName']} ${dataPlayer['middleName']}`}
       />
       <PieceOfData keyy="Пол" value={dataPlayer['gender']} />
-      <PieceOfData keyy="Дата Рождения" value={dataPlayer['birthday']} />
+      <PieceOfData keyy="Дата Рождения" value={formatDate(dataPlayer['birthday'])} />
       <PieceOfData keyy="Регион" value={dataPlayer['region']} />
       <PieceOfData keyy="Разряд" value={dataPlayer['sportsCategoryAbbr']} />
       <PieceOfData

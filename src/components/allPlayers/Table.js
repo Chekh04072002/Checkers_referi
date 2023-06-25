@@ -4,6 +4,7 @@ import TBody from './TBody';
 import { columns, sampleData } from './SampleData';
 import { theme } from './Table.Style';
 import { Link } from 'react-router-dom';
+import { formatDate } from '../../utils/utils';
 
 function Table(props) {
   useEffect(() => {
@@ -86,7 +87,7 @@ function Table(props) {
     return {
       ФИО: `${obj['lastName']} ${obj['firstName']} ${obj['middleName']}`,
       Регион: `${obj['region']}`,
-      Дата_рождения: `${obj['birthday']}`,
+      Дата_рождения: `${formatDate(obj['birthday'])}`,
       Разряд: `${obj['sportsCategoryAbbr']}`,
       Рейтинг: `${Math.ceil(obj['currentAdamovichRank'])}`,
       Подробнее: `${obj['_id']}`,

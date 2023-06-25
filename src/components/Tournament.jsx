@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import picture from '../pictures/shashki.jpeg';
 import styles from './Tournament.module.css';
 import TournamentPlayers from './TournamentPlayers';
+import { formatDate } from '../utils/utils';
 
 const Tournament = ({ data }) => {
   const [tournament, setTournament] = useState({});
@@ -61,8 +62,8 @@ const Tournament = ({ data }) => {
             {tournament['referees']
               ? tournament['referees'].length > 0
                 ? tournament['referees'].map((referi) => `${referi}, `)
-                : 'Идет загрузка...'
-              : 'Идет загрузка...'}
+                : 'Судьи не указаны'
+              : 'Судьи не указаны'}
 
             {/* {tournament['referees']
               ? tournament['referees'].map((referi) => `${referi}, `)
@@ -92,12 +93,12 @@ const Tournament = ({ data }) => {
         <hr></hr>
         <div className={styles.info}>
           <span className={styles.right}>Дата начала:</span>{' '}
-          <span className={styles.right}>{tournament['startDate']}</span>
+          <span className={styles.right}>{formatDate(tournament?.startDate)}</span>
         </div>
         <hr></hr>
         <div className={styles.info}>
           <span className={styles.right}>Дата окончания:</span>{' '}
-          <span className={styles.right}>{tournament['endDate']}</span>
+          <span className={styles.right}>{formatDate(tournament?.endDate)}</span>
         </div>
         <hr></hr>
         <div className={styles.info}>
