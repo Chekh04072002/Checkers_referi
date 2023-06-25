@@ -22,13 +22,25 @@ const AllTournaments = () => {
       .then((data) => data.json())
       .then((data) => setTotalPage(Math.ceil(data.length / 8)));
   }, []);
-  // console.log(totalPage);
+
+
+  function deleteTournament(event, tournament) {
+    event.preventDefault();
+    fetch(`http://localhost:5000/api/tournaments/${tournament?._id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+    .then(() => setArrayTournaments(arrayTournaments.filter(t => t._id !== tournament._id)))
+    .catch((error) => console.error(error));
+  }
+
 
   return (
     <div
       style={{
         display: 'flex',
-        // justifyContent: 'center',
         flexDirection: 'column',
       }}
     >
@@ -36,20 +48,19 @@ const AllTournaments = () => {
         style={{
           display: 'flex',
           justifyContent: 'center',
-          // flexDirection: 'column',
         }}
       >
         <div className={styles.mainDiv}>
           {arrayTournaments.map((obj, index) => {
             return (
-              <MapTournament key={obj['_id']} data={arrayTournaments[index]} />
-              // <Link to={obj['_id']} key={obj['_id']}>
-              //   {obj.title}
-              // </Link>
+              <MapTournament 
+                key={obj['_id']} 
+                tournament={arrayTournaments[index]} 
+                deleteTournament={deleteTournament}
+              />
             );
           })}
         </div>
-        {/* <div style={{ display: 'inline' }}>afafaf</div> */}
       </div>
       <div>
         <button
@@ -88,18 +99,10 @@ const AllTournaments = () => {
         >
           <MdOutlineArrowForwardIos />
         </button>
-        {/* <MdOutlineArrowForwardIos
-          style={{ fontSize: '25px' }}
-          onClick={() => {
-            console.log(currentPage);
-            return setCurrentPage(currentPage + 1);
-          }}
-        /> */}
       </div>
     </div>
   );
 
-  // return <h1>AllTournaments</h1>;
 };
 
 export default AllTournaments;
