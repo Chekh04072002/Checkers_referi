@@ -23,7 +23,7 @@ export const theme = {
     border: '2px solid #f0f0f0',
     borderCollapse: 'collapse',
     width: '70%',
-    height: '850px',
+    /* height: '850px', */
   },
   button: {
     display: 'inline-block',
