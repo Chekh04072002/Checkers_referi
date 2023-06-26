@@ -18,6 +18,7 @@ export const theme = {
     textAlign: 'left',
     fontSize: '1rem',
     padding: '5px',
+    maxWidth: '200px'
   },
   table: {
     border: '2px solid #f0f0f0',
@@ -32,4 +33,7 @@ export const theme = {
     border: '2px solid #c0c0c0',
     fontWeight: 'bold',
   },
+  profileLink: {
+    fontWeight: "normal"
+  }
 };
