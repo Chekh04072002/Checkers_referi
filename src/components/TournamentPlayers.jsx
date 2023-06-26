@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Tournament.module.css';
+import { API_URL } from '../config';
 
 function TournamentPlayers({ id }) {
   const [player, setPlayer] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/api/players/${id}`)
+    fetch(`${API_URL}players/${id}`)
       .then((response) => response.json())
       .then((data) => setPlayer(data));
   }, []);

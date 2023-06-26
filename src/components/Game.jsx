@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Game.module.css';
+import { API_URL } from '../config';
 
 function Game({ game, rechange, setRechange }) {
   console.log('game', game);
@@ -24,7 +25,7 @@ function Game({ game, rechange, setRechange }) {
     // e.target.className += ` ${styles.clicked}`;
     // console.log(e.target.className);
     const gameData = await (
-      await fetch(`http://localhost:5000/api/games/${game._id}`, {
+      await fetch(`${API_URL}games/${game._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',

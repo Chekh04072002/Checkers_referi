@@ -4,6 +4,7 @@ import picture from '../pictures/shashki.jpeg';
 import styles from './Tournament.module.css';
 import TournamentPlayers from './TournamentPlayers';
 import { formatDate } from '../utils/utils';
+import { API_URL } from '../config';
 
 const Tournament = ({ data }) => {
   const [tournament, setTournament] = useState({});
@@ -11,7 +12,7 @@ const Tournament = ({ data }) => {
   let arrof = [];
   const params = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/api/tournaments/${params['tournamentSlug']}`)
+    fetch(`${API_URL}tournaments/${params['tournamentSlug']}`)
       .then((response) => response.json())
       .then((data) => setTournament(data));
   }, []);
@@ -22,7 +23,7 @@ const Tournament = ({ data }) => {
     if (tournament['playersIDs']) {
       for (let i = 0; i < tournament['playersIDs'].length; i++) {
         fetch(
-          `http://localhost:5000/api/players/${tournament['playersIDs'][i]}`
+          `${API_URL}players/${tournament['playersIDs'][i]}`
         )
           .then((response) => response.json())
           .then(

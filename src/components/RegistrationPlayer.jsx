@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './styles/CreateTournament.module.css';
+import { API_URL } from '../config';
 
 const RegistrationPlayer = () => {
   const [data, setData] = useState({
@@ -25,7 +26,7 @@ const RegistrationPlayer = () => {
   }
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/sports-categories')
+    fetch(`${API_URL}sports-categories`)
       .then((response) => response.json())
       .then((data) => setArrayOfCategories(data));
   }, []);
@@ -37,7 +38,7 @@ const RegistrationPlayer = () => {
       data.currentAdamovichRank = undefined;
     }
 
-    fetch('http://localhost:5000/api/players', {
+    fetch(`${API_URL}players`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

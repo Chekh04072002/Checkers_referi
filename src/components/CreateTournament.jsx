@@ -7,12 +7,13 @@ import TextInput from './form/TextInput';
 import Select from './form/Select';
 import DateInput from './form/DateInput';
 import PlayerList from './form/PlayerList';
+import {API_URL} from '../config';
 
 const CreateTournament = () => {
   const [arrayOfPlay, setArrayOfPlay] = useState([]);
   useEffect(() => {
     // fetch('http://localhost:5000/api/players') // Работало
-    fetch('http://localhost:5000/api/players?page=1&limit=100')
+    fetch(`${API_URL}players?page=1&limit=100`)
       .then((response) => response.json())
       .then((data) => setArrayOfPlay(data))
       .then(() => console.log(arrayOfPlay));
@@ -57,7 +58,7 @@ const CreateTournament = () => {
     console.log(data.playersIDs);
     console.log(JSON.stringify(data));
 
-    fetch('http://localhost:5000/api/tournaments', {
+    fetch(`${API_URL}tournaments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

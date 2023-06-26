@@ -6,19 +6,21 @@ import {
 import { Link } from 'react-router-dom';
 import styles from './Tournament.module.css';
 import MapTournament from './MapTournament';
+import { API_URL } from "../config";
+
 
 const AllTournaments = () => {
   const [arrayTournaments, setArrayTournaments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/tournaments?page=${currentPage}&limit=8`)
+    fetch(`${API_URL}tournaments?page=${currentPage}&limit=8`)
       .then((data) => data.json())
       .then((data) => setArrayTournaments(data));
   }, [currentPage]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/tournaments?page=1&limit=1000000`)
+    fetch(`${API_URL}tournaments?page=1&limit=1000000`)
       .then((data) => data.json())
       .then((data) => setTotalPage(Math.ceil(data.length / 8)));
   }, []);
@@ -26,7 +28,7 @@ const AllTournaments = () => {
 
   const deleteTournament = (event, tournament) =>{
     event.preventDefault();
-    fetch(`http://localhost:5000/api/tournaments/${tournament?._id}`, {
+    fetch(`${API_URL}tournaments/${tournament?._id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

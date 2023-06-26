@@ -5,6 +5,7 @@ import { columns, sampleData } from './SampleData';
 import { theme } from './Table.Style';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../utils/utils';
+import { API_URL } from '../../config';
 
 function Table() {
 
@@ -16,7 +17,7 @@ function Table() {
 
   useEffect(() => {
     // Чтобы найти число игроков зареганных
-    fetch(`http://localhost:5000/api/players?page=${1}&limit=150000`)
+    fetch(`${API_URL}players?page=${1}&limit=150000`)
       .then((data) => data.json())
       .then((data) => setTotalCount(data.length));
   }, []);
@@ -30,7 +31,7 @@ function Table() {
   useEffect(() => {
     if (fetching) {
       console.log('data is ', data);
-      fetch(`http://localhost:5000/api/players?page=${currentPage}&limit=15`) // Финальная пагинация Вписать адрес
+      fetch(`${API_URL}players?page=${currentPage}&limit=15`) // Финальная пагинация Вписать адрес
         .then((response) => response.json())
         .then((response) => {
           if (response) {
@@ -71,7 +72,7 @@ function Table() {
 
   const deletePlayer = (id) => {
     fetch(
-      `http://localhost:5000/api/players/${id}`,
+      `${API_URL}players/${id}`,
       {
         method: 'DELETE',
         headers: {

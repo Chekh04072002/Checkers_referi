@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './SoloResult.module.css';
+import { API_URL } from '../config';
 
 const SoloResult = ({ id }) => {
   const [objectStats, setObjectStats] = useState({});
   const [loadingIsComplete, setLoadingIsComplete] = useState(false); // добавил состояние загрузки страницы, после отработки первого useEffect меняется состояние, от которого зависит второй useEffect и второй useEffect отрабатывается повторно и данные получаются
   const [player, setPlayer] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/api/player-stats/${id}`) // получаю
+    fetch(`${API_URL}player-stats/${id}`) // получаю
       .then((response) => response.json())
       .then((data) => setObjectStats(data))
       .then((_) => setLoadingIsComplete(true)); // меняю состояние загрузки
@@ -16,7 +17,7 @@ const SoloResult = ({ id }) => {
   useEffect(() => {
     if (objectStats) {
       if (objectStats['playerID']) {
-        fetch(`http://localhost:5000/api/players/${objectStats['playerID']}`) // получаю
+        fetch(`${API_URL}players/${objectStats['playerID']}`) // получаю
           .then((response) => response.json())
           .then((data) => setPlayer(data));
       }

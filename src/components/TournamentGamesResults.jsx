@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SoloResult from './SoloResult';
 import styles from './SoloResult.module.css';
+import { API_URL } from '../config';
 
 const TournamentGamesResult = ({ game }) => {
   const [playersStatsIDs, setPlayersStatsIDs] = useState([]);
   const params = useParams();
   console.log(params);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/tournaments/${params['tournamentSlug']}`) // получаю
+    fetch(`${API_URL}tournaments/${params['tournamentSlug']}`) // получаю
       .then((response) => response.json())
       .then((data) => setPlayersStatsIDs(data['playersStatsIDs']));
   }, []);
