@@ -4,6 +4,7 @@ import ImageProfile from './ImageProfile';
 import AllData from './AllData';
 import styles from './CardOfPlayer.module.css';
 import Cchart from './Cchart';
+import { API_URL } from '../../config';
 
 const ProfileOfPlayer = () => {
   const [profileData, setProfileData] = useState({});
@@ -12,7 +13,7 @@ const ProfileOfPlayer = () => {
   const params = useParams();
   // console.log(params);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/players/${params['playerSlug']}`)
+    fetch(`${API_URL}players/${params['playerSlug']}`)
       .then((response) => response.json())
       .then((data) => setProfileData(data));
   }, []);
@@ -34,7 +35,7 @@ const ProfileOfPlayer = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/api/player-stats?playerID=${params['playerSlug']}`
+      `${API_URL}player-stats?playerID=${params['playerSlug']}`
     )
       .then((response) => response.json())
 
