@@ -1,0 +1,36 @@
+.tdScoreContainer {
+    border: none;
+}
+
+.fullWidthElement {
+    width: 100%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.bigFontSize {
+    font-size: 22px;
+}
+
+.td40 {
+    min-width: 40px;
+    max-width: 40px; 
+}
+
+.td20 {
+    min-width: 20px;
+    max-width: 20px;
+}
+
+.tdScore:first-of-type {
+    border-left: none;
+}
+.tdScore:last-of-type {
+    border-right: none;
+}
+
+.draughtsImage {
+    width: 30px;
+}

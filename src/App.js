@@ -10,6 +10,7 @@ import TournamentLayout from './components/layouts/TournamentLayout';
 import TournamentGames from './components/TournamentGames';
 import TournamentGamesResults from './components/TournamentGamesResults';
 import './App.css';
+import TournamentTable from './components/tournamentTable/TournamentTable';
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
               ></Route>
               <Route
                 path="TournamentGamesResults"
-                element={<TournamentGamesResults />}
+                //element={<TournamentGamesResults />}
+                element={<TournamentTable />}
               ></Route>
             </Route>
             <Route path="all-players" element={<AllPlayers />}></Route>

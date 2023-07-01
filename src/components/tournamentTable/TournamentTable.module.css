@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+
+.tableContainer {
+    display: flex;
+    justify-content: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+.table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table th {
+    font-weight: normal;
+}
+
+.tableHeader {
+    background-color: rgb(230, 231, 231);
+}
+
+.tdNumber {
+    width: 40px;
+}
+
+.tdName {
+    width: 350px;
+    height: 35px;
+}
+
+.tdBirthday {
+    width: 70px;
+}
+
+.tdSportsCategory {
+    width: 90px;
+}
+
+.tdCity {
+    width: 100px;
+}
+
+.tdSportsOrganization {
+    width: 100px;
+}
+
+.tdCompetitors {
+    border-bottom: none;
+}
+
+.tdCompetitorsTitle{
+    border: none;
+    padding-bottom: 1px;
+}
+
+.tdCompetitorNumber {
+    width: 40px;
+}
+
+.tdCompetitorNumber:first-of-type {
+    border-left: none;
+}
+  .tdCompetitorNumber:last-of-type {
+    border-right: none;
+}
+
+.tdScore {
+    width: 70px;
+}
+
+.tdGorinRank {
+    width: 70px;
+}
+
+.tdAdamovichRank {
+    width: 70px;
+}
+
+.tdPlace {
+    width: 50px;
+}

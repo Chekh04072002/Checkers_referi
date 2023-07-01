@@ -13,17 +13,33 @@
   font-family: 'Raleway', sans-serif;
 }
 
+.table {
+  
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* td {
+
+  border: 1px solid black;
+}
+ */
 .spanName {
+}
+
+.tdNumber {
+  width: 40px;
 }
 
 .tdFio {
   width: 350px;
   height: 35px;
   /* background-color: aqua; */
-  display: flex;
+/*   display: flex;
   justify-content: left;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .tdDr {
@@ -44,6 +60,26 @@
 .tdOrg {
   width: 100px;
   /* background-color: rgb(57, 181, 219); */
+}
+
+.tdCompetitors {
+  border-bottom: none;
+}
+
+.tdCompetitorsTitle {
+  border: none;
+  padding-bottom: 1px;
+}
+
+.tdCompetitorNumber {
+  width: 40px;
+}
+
+.tdCompetitorNumber:first-of-type {
+  border-left: none;
+}
+.tdCompetitorNumber:last-of-type {
+  border-right: none;
 }
 
 .tdO {
