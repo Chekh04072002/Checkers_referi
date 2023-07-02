@@ -11,6 +11,7 @@ import TournamentGames from './components/TournamentGames';
 import TournamentGamesResults from './components/TournamentGamesResults';
 import './App.css';
 import TournamentTable from './components/tournamentTable/TournamentTable';
+import ToursPage from './components/tours/ToursPage';
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
               <Route index={true} element={<Tournament />}></Route>
               <Route
                 path="TournamentGames"
-                element={<TournamentGames />}
+                //element={<TournamentGames />}
+                element={<ToursPage />}
               ></Route>
               <Route
                 path="TournamentGamesResults"

@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from '../GamesResult.module.css';
 
-const SwissGamesResult = ({index, currentPlayer, allPlayers, tours}) => {
+const SwissGamesResult = ({currentPlayer, allPlayers, tours}) => {
     const getGameResultCell = (tour) => {
         let gameResult = getPlayerScore(tour[0], currentPlayer);
         let competitorNum = getCompetitorNumber(tour[0], currentPlayer, allPlayers);
 
-        return <td className={styles.td40} colSpan={2}>
+        return <td key={`${currentPlayer._id}:${tour}`} className={styles.td40} colSpan={2}>
                     <table className={styles.fullWidthElement}>
                         <tbody>
                             <tr>
@@ -25,7 +25,7 @@ const SwissGamesResult = ({index, currentPlayer, allPlayers, tours}) => {
             return game.player1Score;
         }
         else {
-        return game.player2Score;
+            return game.player2Score;
         }
     }
 
@@ -36,7 +36,7 @@ const SwissGamesResult = ({index, currentPlayer, allPlayers, tours}) => {
         const competitor = players.find(player => player._id === competitorID);
 
         if(competitor) {
-            return players.indexOf(competitor)
+            return players.indexOf(competitor) + 1;
         }
 
         return 0;

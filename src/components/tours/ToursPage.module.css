@@ -1,0 +1,10 @@
+.gamesContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.navigationContainer {
+    display: flex;
+    justify-content: center;
+}
+  

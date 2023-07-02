@@ -8,8 +8,8 @@ const TournamentMenu = () => {
         <NavLink to="." end>
           Информация о турнире
         </NavLink>
-        <NavLink to="TournamentGames">Перейти к турам</NavLink>
-        <NavLink to="TournamentGamesResults">Итоги</NavLink>
+        <NavLink to="TournamentGames">Туры</NavLink>
+        <NavLink to="TournamentGamesResults">Турнирная таблица</NavLink>
       </div>
     </nav>
   );

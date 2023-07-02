@@ -23,6 +23,16 @@
     background-color: rgb(230, 231, 231);
 }
 
+.td40 {
+    min-width: 40px;
+    max-width: 40px; 
+}
+
+.td20 {
+    min-width: 20px;
+    max-width: 20px;
+}
+
 .tdNumber {
     width: 40px;
 }
@@ -50,6 +60,7 @@
 
 .tdCompetitors {
     border-bottom: none;
+    width: 20px;
 }
 
 .tdCompetitorsTitle{

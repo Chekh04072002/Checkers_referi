@@ -24,6 +24,10 @@
     max-width: 20px;
 }
 
+.tdScore {
+    min-width: 20px;
+}
+
 .tdScore:first-of-type {
     border-left: none;
 }

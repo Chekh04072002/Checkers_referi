@@ -28,7 +28,7 @@ const SwissTournamentTable = ({playersStats, tours}) => {
             <th className={styles.tdSportsCategory}>Спорт. разряд</th>
             <th className={styles.tdCity}>Город</th>
             <th className={styles.tdSportsOrganization}>Спорт. организ.</th>
-            <th className={styles.tdCompetitors} colSpan={tours.length * 2}>
+            <th className={`${styles.tdCompetitors}`} colSpan={tours.length * 2}>
               <table>
                 <tbody>
                   <tr><th className={styles.tdCompetitorsTitle} colSpan={tours.length * 2}>Движение по турам</th></tr>

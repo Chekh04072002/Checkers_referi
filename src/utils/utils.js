@@ -15,8 +15,10 @@ export function dateAddZero(number) {
     return number;
 }
 
-export async function  fetchHandler(path, succesFunction, errorFunction, options) {
+export async function  fetchHandler(path, succesFunction, loadingFunction, errorFunction, options) {
     try {
+        loadingFunction();
+        
         const response = await fetch(`${API_URL}${path}`, options);
         const data = await response.json();
 

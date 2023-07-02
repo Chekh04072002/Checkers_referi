@@ -12,7 +12,6 @@ const SwissPlayerStats = ({index, playerStats, allPlayers, playerGames}) => {
       <td>{playerStats.region}</td>
       <td>ФШ</td>
       <SwissGamesResult
-        index={index}
         currentPlayer={playerStats}
         allPlayers={allPlayers}
         tours={playerGames}
