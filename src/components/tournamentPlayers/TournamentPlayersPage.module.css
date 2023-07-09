@@ -1,0 +1,17 @@
+.playersListContainer {
+    width: 900px;
+    margin: 40px auto 0px auto;
+}
+
+.playersListHeader {
+    width: 100%;
+    margin-bottom: 16px;
+    text-align: center;
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: center; */
+}
+
+.playersListTitle {
+    text-align: left;
+}

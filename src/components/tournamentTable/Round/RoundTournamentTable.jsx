@@ -40,8 +40,8 @@ const RoundTournamentTable = ({playersStats, games}) => {
                       playerStats={playerStats}
                       allPlayers={playersStats}
                       playerGames={games.filter(game => {
-                        return game.player1StatsID === playerStats._id || 
-                                game.player2StatsID === playerStats._id
+                        return game?.player1StatsID === playerStats._id || 
+                                game?.player2StatsID === playerStats._id
                       })}
                     />
           })}

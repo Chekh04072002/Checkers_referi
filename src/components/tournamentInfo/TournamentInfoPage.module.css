@@ -1,0 +1,90 @@
+.tournamentInfoPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 24px auto 0 auto;
+    width: 900px;
+}
+
+.infoHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 24px;
+    width: 100%;
+}
+
+.infoContainer {
+    width: 100%;
+    padding: 12px;
+    margin-top: 18px;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #5b8cff;
+}
+
+
+
+.baseInfo {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 62px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #5b8cff;
+}
+
+.infoColumn {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.input {
+    font-size: 16px;
+    padding: 4px 6px;
+    border: 1px solid rgb(66, 66, 66);
+    border-radius: 4px;
+    outline: none;
+}
+
+.additionalInfo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.infoFooter {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 16px;
+    margin-top: 24px;
+
+}
+
+.saveBtn {
+
+}
+
+/* .playersList {
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid rgb(158, 158, 158);
+}
+
+.playersListHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.playersListTitle {
+    text-align: left;
+} */
+
+/* .right {
+    align-items: flex-end;
+} */

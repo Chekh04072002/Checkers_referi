@@ -1,0 +1,23 @@
+.statusIcon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    border-radius: 50%;
+}
+
+.notStarted {
+    background-color: rgb(240, 224, 51);
+    /* background-color: rgb(20, 101, 195); */
+    /* background-color: rgb(140, 140, 140); */
+}
+
+.started {
+    background-color: rgb(30, 146, 20);
+}
+
+.finished {
+    /* background-color: rgb(178, 25, 8); */
+    background-color: rgb(20, 101, 195);
+    /* background-color: rgb(120, 55, 211); */
+}

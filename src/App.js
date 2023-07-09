@@ -12,6 +12,8 @@ import TournamentGamesResults from './components/TournamentGamesResults';
 import './App.css';
 import TournamentTable from './components/tournamentTable/TournamentTable';
 import ToursPage from './components/tours/ToursPage';
+import TournamentInfoPage from './components/tournamentInfo/TournamentInfoPage';
+import TournamentPlayersPage from './components/tournamentPlayers/TournamentPlayersPage';
 
 function App() {
   return (
@@ -26,7 +28,8 @@ function App() {
               path="Tournament/:tournamentSlug"
               element={<TournamentLayout />}
             >
-              <Route index={true} element={<Tournament />}></Route>
+              <Route index={true} element={<TournamentInfoPage />}></Route>
+              <Route path="TournamentPlayers" element={<TournamentPlayersPage />}/>
               <Route
                 path="TournamentGames"
                 //element={<TournamentGames />}

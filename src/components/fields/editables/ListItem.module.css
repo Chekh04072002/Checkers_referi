@@ -1,0 +1,12 @@
+.item {
+    display: flex;
+    align-items: center;
+    column-gap: 2px;
+}
+
+.deleteButton {
+    color: rgb(158, 4, 4);
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+}

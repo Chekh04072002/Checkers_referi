@@ -81,6 +81,7 @@ const ToursPage = () => {
                     isStarted: false,
                     isFinished: false,
                     gamesIDs: [],
+                    playersStatsIDs: [],
                     currentTour: 1
                 }),
             })

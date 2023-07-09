@@ -1,0 +1,195 @@
+import React, {useState, useEffect, useContext} from 'react'
+import { useParams } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
+import { fetchHandler, formatDate } from '../../utils/utils';
+import styles from './TournamentInfoPage.module.css';
+import EditableField from '../fields/editables/EditableField';
+import LabeledField from '../fields/simple/LabeledField';
+import Select from '../form/Select';
+import TournamentSystemSelect from './TournamentSystemSelect';
+import SportsDesciplinesSelect from './SportsDesciplinesSelect';
+import ListField from '../fields/editables/ListField';
+import Input from '../UI/Input';
+import PlayersList from '../tournamentPlayers/PlayersList';
+import TournamentStatus from './TournamentStatus';
+import Button from '../UI/Button';
+import State from '../UI/State';
+
+const TournamentInfoPage = () => {
+    const {tournament, setTournament, fetchTournament, updateTournament} = useContext(AppContext);
+    const {tournamentSlug: tournamentID} = useParams();
+    /* const [error, setError] = useState(''); */
+    /* const [isLoading, setIsLoading] = useState(false); */
+
+    const save = () => {
+        updateTournament(tournamentID, tournament);
+    }
+
+
+    useEffect(() => {
+        fetchTournament(tournamentID);
+    }, []);
+
+
+    //TODO разобраться где какое поле должно быть
+
+    return (
+        <div className={styles.tournamentInfoPage}>
+            <div className={styles.infoHeader}>
+                <EditableField editComponent={
+                    <Input 
+                        className={styles.input} 
+                        onChange={(e) => setTournament({...tournament, title: e.target.value})} 
+                        value={tournament.title}
+                    />}
+                >
+                    <h2>{tournament.title}</h2>
+                </EditableField>
+                <TournamentStatus tournament={tournament}/>
+
+            </div>
+            <div className={styles.infoContainer}>
+                <div className={styles.baseInfo}>
+                    <div className={styles.infoColumn}>
+                        <EditableField editComponent={
+                            <Input 
+                                className={styles.input} 
+                                onChange={(e) => setTournament({...tournament, cp: e.target.value})} 
+                                value={tournament.cp}
+                            />}
+                        >
+                            <LabeledField label="КП №">{tournament.cp}</LabeledField>
+                        </EditableField>
+                        <EditableField editComponent={
+                            <Input 
+                                className={styles.input} 
+                                value={tournament.country}
+                                onChange={(e) => setTournament({...tournament, country: e.target.value})}
+                            />}
+                        >
+                            <LabeledField label="Страна">{tournament.country}</LabeledField>
+                        </EditableField>
+                        <EditableField editComponent={
+                            <Input 
+                                className={styles.input} 
+                                value={tournament.region}
+                                onChange={(e) => setTournament({...tournament, region: e.target.value})}
+                            />}
+                        >
+                            <LabeledField label="Регион">{tournament.region}</LabeledField>
+                        </EditableField>
+                        <EditableField editComponent={
+                            <Input 
+                                className={styles.input} 
+                                value={tournament.city}
+                                onChange={(e) => setTournament({...tournament, city: e.target.value})}
+                            />}
+                        >
+                            <LabeledField label="Город">{tournament.city}</LabeledField>
+                        </EditableField>
+                        <EditableField editComponent={
+                            <Input 
+                                className={styles.input} 
+                                type="date" 
+                                value={tournament.startDate}
+                                onChange={(e) => setTournament({...tournament, startDate: e.target.value})}
+                            />}
+                        >
+                            <LabeledField label="Дата начала">{formatDate(tournament.startDate)}</LabeledField>
+                        </EditableField>
+                        <EditableField editComponent={
+                            <Input 
+                                className={styles.input} 
+                                type="date" 
+                                value={tournament.endDate}
+                                onChange={(e) => setTournament({...tournament, endDate: e.target.value})}
+                            />}
+                        >
+                            <LabeledField label="Дата окончания">{formatDate(tournament.endDate)}</LabeledField>
+                        </EditableField>
+                    </div>
+
+                    <div className={`${styles.infoColumn} ${styles.right}`}>
+                        <EditableField editComponent={
+                            <Input 
+                                className={styles.input} 
+                                onChange={(e) => setTournament({...tournament, mainReferee: e.target.value})} 
+                                value={tournament.mainReferee}
+                            />}
+                        >
+                            <LabeledField label="Главный судья">{tournament.mainReferee}</LabeledField>
+                        </EditableField>
+                        <EditableField editComponent={
+                            <Input 
+                                className={styles.input} 
+                                onChange={(e) => setTournament({...tournament, mainSecretary: e.target.value})} 
+                                value={tournament.mainSecretary}
+                            />}
+                        >
+                            <LabeledField label="Главный секретарь">{tournament.mainSecretary}</LabeledField>
+                        </EditableField>
+                        <EditableField editComponent={
+                            <Input 
+                                className={styles.input} 
+                                onChange={(e) => setTournament({...tournament, timeControl: e.target.value})} 
+                                value={tournament.timeControl}
+                            />}
+                        >
+                            <LabeledField label="Система контроля времени">{tournament.timeControl}</LabeledField>
+                        </EditableField>
+                        <EditableField editComponent={
+                            <TournamentSystemSelect 
+                                value={tournament.tournamentSystem}
+                                onChange={(e) => setTournament({...tournament, tournamentSystem: e.target.value})}
+                            />}
+                        >
+                            <LabeledField label="Система турнира">{tournament.tournamentSystem}</LabeledField>
+                        </EditableField>
+                        <EditableField editComponent={
+                            <Input 
+                                value={tournament.sportsFacility}
+                                onChange={(e) => setTournament({...tournament, sportsFacility: e.target.value})}
+                            />
+                        }
+                        >
+                            <LabeledField label="Служебное помещение">{tournament.sportsFacility}</LabeledField>
+                        </EditableField>              
+                    </div>
+                </div>
+                
+                <div className={styles.additionalInfo}>
+                    <EditableField editComponent={
+                            <SportsDesciplinesSelect
+                                value={tournament.sportsDescipline}
+                                onChange={(e) => setTournament({...tournament, sportsDescipline: e.target.value})}
+                            />}
+                        >
+                        <LabeledField label="Спортивная десциплина">{tournament.sportsDescipline}</LabeledField>
+                    </EditableField>
+                    <ListField  
+                        label="Группы" 
+                        defaultItems={tournament.groups} 
+                        onChange={(groups) => setTournament({...tournament, groups})}
+                    />
+                    <ListField 
+                        label="Судьи" 
+                        defaultItems={tournament.referees} 
+                        onChange={(referees) => setTournament({...tournament, referees})}
+                    />
+                    <ListField 
+                        label="Тренеры" 
+                        defaultItems={tournament.coaches} 
+                        onChange={(coaches) => setTournament({...tournament, coaches})}
+                    />
+                </div>
+                
+            </div>
+            <div className={styles.infoFooter}>
+                {/* <State isLoading={true}/> */}
+                <Button className={styles.saveBtn} onClick={save} color="green">Сохранить</Button>
+            </div>
+        </div>
+    )
+}
+
+export default TournamentInfoPage

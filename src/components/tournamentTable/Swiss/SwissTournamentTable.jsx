@@ -5,8 +5,8 @@ import SwissPlayerStats from './SwissPlayerStats';
 const SwissTournamentTable = ({playersStats, tours}) => {
   const getPlayerTours = (playerStats) => {
     return tours.map(games => games.filter(game => {
-      return game.player1StatsID === playerStats._id || 
-            game.player2StatsID === playerStats._id
+      return game?.player1StatsID === playerStats._id || 
+            game?.player2StatsID === playerStats._id
     }))
   }
 

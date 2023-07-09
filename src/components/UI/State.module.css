@@ -1,0 +1,21 @@
+.loader {
+    width: 30px;
+}
+
+.state {
+    background-color: transparent;
+    /* color: rgb(54, 54, 54); */
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+
+
+.success {
+    background-color: #3EB489;
+}
+
+.error {
+    background-color: #E4717A;
+}

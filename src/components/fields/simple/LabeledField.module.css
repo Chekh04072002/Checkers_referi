@@ -1,0 +1,17 @@
+.field {
+    display: flex;
+}
+
+.inlineField {
+    align-items: center;
+    column-gap: 8px;
+}
+
+.blockField {
+    flex-direction: column;
+    align-items:flex-start;
+}
+
+.value {
+    text-align: left;
+}

@@ -2,11 +2,13 @@ import React from 'react';
 import styles from '../GamesResult.module.css';
 
 const SwissGamesResult = ({currentPlayer, allPlayers, tours}) => {
-    const getGameResultCell = (tour) => {
+    const getGameResultCell = (tour, tourNumber) => {
+        if(tour.length === 0) return;
+
         let gameResult = getPlayerScore(tour[0], currentPlayer);
         let competitorNum = getCompetitorNumber(tour[0], currentPlayer, allPlayers);
 
-        return <td key={`${currentPlayer._id}:${tour}`} className={styles.td40} colSpan={2}>
+        return <td key={`${currentPlayer._id}:${tourNumber}`} className={styles.td40} colSpan={2}>
                     <table className={styles.fullWidthElement}>
                         <tbody>
                             <tr>
@@ -21,6 +23,7 @@ const SwissGamesResult = ({currentPlayer, allPlayers, tours}) => {
     }
 
     const getPlayerScore = (game, player) => {
+        if(!game) return;
         if(player._id === game.player1StatsID){
             return game.player1Score;
         }
@@ -41,13 +44,12 @@ const SwissGamesResult = ({currentPlayer, allPlayers, tours}) => {
 
         return 0;
     }
-
     return (
         <td colSpan={tours.length * 2}>
             <table className={`${styles.tdScoreContainer} ${styles.fullWidthElement}`}>
                 <tbody>
                     <tr>
-                        {tours.map(getGameResultCell)}
+                        {tours.map((tour, i) => getGameResultCell(tour, i))}
                     </tr>
                 </tbody>
             </table>

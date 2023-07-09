@@ -8,6 +8,7 @@ const defaultValue = {
     playersStats: [],
     setTournament: (tournament) => null,
     fetchTournament: (id) => null,
+    updateTournament: (id, newData) => null,
     fetchGames: (tournamentID) => [],
     setGames: (games) => [],
     updateGame: (gameID, result, succesFunction) => null,
@@ -28,6 +29,22 @@ const AppProvider = ({children}) => {
             () => console.log("Подождите..."),
             error => console.error(error)
         );
+    }
+
+    const updateTournament = (id, newData) => {
+        fetchHandler(
+            `tournaments/${id}`,
+            data => setTournament(data),
+            () => console.log("Подождите..."),
+            error => console.error(error),
+            {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json;charset=utf-8',
+                },
+                body: JSON.stringify(newData),
+            }
+        )
     }
 
     const fetchPlayersStats = (tournamentID) => {
@@ -75,6 +92,7 @@ const AppProvider = ({children}) => {
         playersStats,
         setTournament,
         fetchTournament,
+        updateTournament,
         fetchGames,
         setGames,
         updateGame,

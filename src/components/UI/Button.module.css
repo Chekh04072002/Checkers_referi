@@ -1,0 +1,33 @@
+.button {
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: color 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+.blue {
+    border: 2px solid #5b8cff;
+    color: #4874d9;
+}
+
+.blue:hover {
+    background-color: #5b8cff;
+    color: #fff;
+}
+
+.red {
+
+}
+
+.green {
+    border: 2px solid #3EB489;
+    color: #3EB489;
+}
+
+.green:hover {
+    background-color: #3EB489;
+    color: #fff;
+}

@@ -35,12 +35,6 @@ const Tournament = ({ data }) => {
   });
   console.log('arr', arrof);
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/api/players/${params['playerSlug']}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setProfileData(data));
-  // }, []);
-
   return (
     <div className={styles.AllOuter}>
       <div className={styles.outerOfTournament}>

@@ -1,0 +1,30 @@
+/* .fieldContainer {
+    display: flex;
+    column-gap: 6px;
+} */
+
+.listBlock {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 8px;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.itemsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
+}
+
+.actionsContainer {
+    padding-top: 3px;
+}
+
+.valueContainer {
+    text-align: left;
+}
+
+.labeledField {
+    align-items: flex-start;
+}
