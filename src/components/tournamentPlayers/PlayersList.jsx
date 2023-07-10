@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../config';
 
 
-const PlayersList = ({players, onDeletePlayer}) => {
+const PlayersList = ({players, actionLabel, actionButton}) => {
 
     return (
         <div className={styles.playersList}>
@@ -14,19 +14,23 @@ const PlayersList = ({players, onDeletePlayer}) => {
                 players.length > 0
                 ? (
                     <Fragment>
-                        <div className={`${styles.row} ${styles.header}`}>
+                    <div className={`${styles.row} ${styles.header}`}>
                         <div>Имя</div>
                         <div>Дата рождения</div>
                         <div>Регион</div>
                         <div>Разряд</div>
                         <div>Рейтинг Адамовича</div>
                         <div>Профиль</div>
-                        <div>Удалить</div>
+                        {actionLabel ? <div>{actionLabel}</div> : null}
                     </div>
                     {
                         players.map(player => {
                             return (
-                                <div className={`${styles.row} ${styles.playerItem}`}>
+                                <div 
+                                    key={player._id} 
+                                    className={`${styles.row} ${styles.playerItem}`}
+                                    data-id={player._id}
+                                >
                                     <div className={styles.playerName}>
                                         {player.lastName} {player.firstName} {player.middleName} 
                                     </div>
@@ -37,14 +41,15 @@ const PlayersList = ({players, onDeletePlayer}) => {
                                     <NavLink to={`/all-players/${player._id}`}>
                                         <BiIdCard className={styles.button}/>
                                     </NavLink>
-                                    <BiTrash onClick={() => onDeletePlayer(player._id)} className={styles.button}/>
+                                    {actionButton ? actionButton : null}
+                                    {/* <BiTrash onClick={onDeletePlayer} className={styles.button}/> */}
                                 </div>
                             )
                         })
                     }
                     </Fragment>
                 )
-                : <h2>Список участников пуст</h2>
+                : null
             }
             
         </div>

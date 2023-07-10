@@ -1,14 +1,15 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import { API_URL } from "../config";
 import { fetchHandler } from "../utils/utils";
 
 const defaultValue = {
     tournament: null,
+    players: [],
     games: [],
     playersStats: [],
     setTournament: (tournament) => null,
+    setPlayers: (players) => null,
     fetchTournament: (id) => null,
-    updateTournament: (id, newData) => null,
     fetchGames: (tournamentID) => [],
     setGames: (games) => [],
     updateGame: (gameID, result, succesFunction) => null,
@@ -19,6 +20,7 @@ export const AppContext = createContext(defaultValue);
 
 const AppProvider = ({children}) => {
     const [tournament, setTournament] = useState({});
+    const [players, setPlayers] = useState([]);
     const [games, setGames] = useState([]);
     const [playersStats, setPlayersStats] = useState([]);
     
@@ -31,7 +33,16 @@ const AppProvider = ({children}) => {
         );
     }
 
-    const updateTournament = (id, newData) => {
+    const fetchPlayers = () => {
+        fetchHandler(
+            `players?limit=100000`,
+            data => setPlayers(data),
+            () => null,
+            error => console.error(error),
+        )
+    }
+
+    /* const updateTournament = (id, newData) => {
         fetchHandler(
             `tournaments/${id}`,
             data => setTournament(data),
@@ -45,7 +56,7 @@ const AppProvider = ({children}) => {
                 body: JSON.stringify(newData),
             }
         )
-    }
+    } */
 
     const fetchPlayersStats = (tournamentID) => {
         fetchHandler(
@@ -86,13 +97,16 @@ const AppProvider = ({children}) => {
         )
     }
 
+    useEffect(fetchPlayers, []);
+
     const value = {
-        tournament, 
+        tournament,
+        players, 
         games,
         playersStats,
         setTournament,
+        setPlayers,
         fetchTournament,
-        updateTournament,
         fetchGames,
         setGames,
         updateGame,

@@ -16,13 +16,43 @@ import Button from '../UI/Button';
 import State from '../UI/State';
 
 const TournamentInfoPage = () => {
-    const {tournament, setTournament, fetchTournament, updateTournament} = useContext(AppContext);
+    const {tournament, setTournament, fetchTournament} = useContext(AppContext);
     const {tournamentSlug: tournamentID} = useParams();
-    /* const [error, setError] = useState(''); */
-    /* const [isLoading, setIsLoading] = useState(false); */
+    const [error, setError] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+    const [succesMessage, setSuccesMessage] = useState('');
+
+    const succesUpdating = (data) => {
+        setTournament(data);
+        setIsLoading(false);
+        setSuccesMessage("Данные турнира успешно изменены");
+        setTimeout(() => setSuccesMessage(""), 2000);
+    }
+
+    const errorUpdating = (error) => {
+        setIsLoading(false);
+        setError(error)
+    }
+
 
     const save = () => {
-        updateTournament(tournamentID, tournament);
+        setIsLoading(false);
+        setSuccesMessage("");
+        setError({});
+
+        fetchHandler(
+            `tournaments/${tournamentID}`,
+            succesUpdating,
+            () => setIsLoading(true),
+            errorUpdating,
+            {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json;charset=utf-8',
+                },
+                body: JSON.stringify(tournament),
+            }
+        );
     }
 
 
@@ -185,8 +215,8 @@ const TournamentInfoPage = () => {
                 
             </div>
             <div className={styles.infoFooter}>
-                {/* <State isLoading={true}/> */}
-                <Button className={styles.saveBtn} onClick={save} color="green">Сохранить</Button>
+                <State isLoading={isLoading} errorMessage={error.message} succesMessage={succesMessage}/>
+                <Button className={styles.saveBtn} onClick={save} color="blue">Сохранить</Button>
             </div>
         </div>
     )

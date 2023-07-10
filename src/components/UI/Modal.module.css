@@ -8,6 +8,25 @@
 }
 
 .contentContainer {
-    max-width: 900px;
+    display: flex;
+    justify-content: center;
     margin: 0 auto;
+    margin-top: 10%;
+    max-width: 900px;
+}
+
+.contentContainer > div, .contentContainer > form{
+    position: relative;
+}
+
+.closeButton {
+    position: absolute;
+    font-size: 48px;
+    color: #fff;
+    z-index: 2;
+    top: 9%;
+    right: 13%;
+    /* color: #fff; */
+    /* top: -10%;
+    right: -7%; */
 }

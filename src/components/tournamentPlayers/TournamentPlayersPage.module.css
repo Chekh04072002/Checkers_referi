@@ -4,14 +4,31 @@
 }
 
 .playersListHeader {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     margin-bottom: 16px;
-    text-align: center;
     /* display: flex;
     justify-content: flex-end;
     align-items: center; */
 }
 
-.playersListTitle {
+/* .playersListFooter {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 16px;
+    margin-top: 16px;
+} */
+
+.saveContainer {
+    display: flex;
+    column-gap: 16px;
+}
+
+/* .playersListTitle {
     text-align: left;
+} */
+
+.actionButton {
+    cursor: pointer;
 }
