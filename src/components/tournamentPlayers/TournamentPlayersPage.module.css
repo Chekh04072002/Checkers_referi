@@ -25,10 +25,10 @@
     column-gap: 16px;
 }
 
+.searchPlayersForm {
+    width: 100%;
+}
+
 /* .playersListTitle {
     text-align: left;
 } */
-
-.actionButton {
-    cursor: pointer;
-}

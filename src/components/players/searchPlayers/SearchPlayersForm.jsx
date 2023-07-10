@@ -6,7 +6,7 @@ import { BiAddToQueue} from 'react-icons/bi';
 import styles from './SearchPlayersForm.module.css';
 import stylesCommon from '../../styles/Common.module.css';
 
-const SearchPlayersForm = ({players, onAddPlayer}) => {
+const SearchPlayersForm = ({className, players, onAddPlayer}) => {
     const {tournament} = useContext(AppContext);
     const [filter, setFilter] = useState('');
     const [filteredPlayers, setFilteredPlayers] = useState(players);
@@ -25,7 +25,7 @@ const SearchPlayersForm = ({players, onAddPlayer}) => {
     useEffect(filteringPlayers, [filter, players, tournament]);
 
     return (
-        <form className={styles.form}>
+        <form className={`${styles.form} ${className}`}>
             <Input className={styles.input} value={filter} onChange={(e) => setFilter(e.target.value)}/>
             <div className={`${styles.playersListContainer} ${stylesCommon.scrollBarContainer}`}>
                 {
@@ -33,7 +33,7 @@ const SearchPlayersForm = ({players, onAddPlayer}) => {
                     ? <PlayersList 
                         players={filteredPlayers} 
                         actionLabel="Добавить"
-                        actionButton={<BiAddToQueue onClick={onAddPlayer}/>}
+                        actionButton={<BiAddToQueue className={stylesCommon.clickable} onClick={onAddPlayer}/>}
                     />
                     : <h3>По указанному фильтру игроки не найдены</h3>  
                 }

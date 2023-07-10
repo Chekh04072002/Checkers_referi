@@ -8,25 +8,24 @@
 }
 
 .contentContainer {
+    position: relative;
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    margin-top: 10%;
-    max-width: 900px;
+    margin-top: 9%;
+    width: 940px;
 }
 
-.contentContainer > div, .contentContainer > form{
+/* .contentContainer > div, .contentContainer > form{
     position: relative;
-}
+} */
 
 .closeButton {
     position: absolute;
-    font-size: 48px;
+    font-size: 56px;
     color: #fff;
     z-index: 2;
-    top: 9%;
-    right: 13%;
-    /* color: #fff; */
-    /* top: -10%;
-    right: -7%; */
+    top: 11%;
+    right: 23%;
+    cursor: pointer;
 }

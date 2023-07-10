@@ -90,3 +90,7 @@
     border-radius: 10px;
     background-color: #5b8cff;
 }
+
+.clickable {
+    cursor: pointer;
+}

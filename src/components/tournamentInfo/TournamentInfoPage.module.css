@@ -40,6 +40,11 @@
     row-gap: 12px;
 }
 
+.infoColumn:first-of-type {
+    min-width: 40%;
+}
+
+
 .input {
     font-size: 16px;
     padding: 4px 6px;

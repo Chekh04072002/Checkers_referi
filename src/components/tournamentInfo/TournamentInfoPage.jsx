@@ -14,36 +14,46 @@ import PlayersList from '../tournamentPlayers/PlayersList';
 import TournamentStatus from './TournamentStatus';
 import Button from '../UI/Button';
 import State from '../UI/State';
+import { NotificationContext } from '../../context/NotificationContext';
 
 const TournamentInfoPage = () => {
     const {tournament, setTournament, fetchTournament} = useContext(AppContext);
+    const {isLoading, showLoader, 
+            errorMessage, showErrorMessage, 
+            succesMessage, showSuccessMessage,
+            resetNotification
+        } = useContext(NotificationContext);
+        
     const {tournamentSlug: tournamentID} = useParams();
-    const [error, setError] = useState({});
+    /* const [error, setError] = useState({});
     const [isLoading, setIsLoading] = useState(false);
-    const [succesMessage, setSuccesMessage] = useState('');
+    const [succesMessage, setSuccesMessage] = useState(''); */
 
     const succesUpdating = (data) => {
         setTournament(data);
-        setIsLoading(false);
+        showSuccessMessage("Данные турнира успешно изменены");
+        /* setIsLoading(false);
         setSuccesMessage("Данные турнира успешно изменены");
-        setTimeout(() => setSuccesMessage(""), 2000);
+        setTimeout(() => setSuccesMessage(""), 2000); */
     }
 
     const errorUpdating = (error) => {
-        setIsLoading(false);
-        setError(error)
+        showErrorMessage(error.message);
+        /* setIsLoading(false);
+        setError(error) */
     }
 
 
     const save = () => {
-        setIsLoading(false);
+        /* setIsLoading(false);
         setSuccesMessage("");
-        setError({});
+        setError({}); */
 
         fetchHandler(
             `tournaments/${tournamentID}`,
             succesUpdating,
-            () => setIsLoading(true),
+            showLoader,
+            /* () => setIsLoading(true), */
             errorUpdating,
             {
                 method: 'PUT',
@@ -57,6 +67,7 @@ const TournamentInfoPage = () => {
 
 
     useEffect(() => {
+        resetNotification();
         fetchTournament(tournamentID);
     }, []);
 
@@ -215,8 +226,8 @@ const TournamentInfoPage = () => {
                 
             </div>
             <div className={styles.infoFooter}>
-                <State isLoading={isLoading} errorMessage={error.message} succesMessage={succesMessage}/>
-                <Button className={styles.saveBtn} onClick={save} color="blue">Сохранить</Button>
+                <State isLoading={isLoading} errorMessage={errorMessage} succesMessage={succesMessage}/>
+                <Button disabled={isLoading} className={styles.saveBtn} onClick={save} color="blue">Сохранить</Button>
             </div>
         </div>
     )

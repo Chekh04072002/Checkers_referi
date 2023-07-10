@@ -1,9 +1,11 @@
 .label {
+    text-align: left;
     font-weight: bold;
     color:rgb(54, 54, 54);
 }
 
 .actionButton {
+    min-width: 18px;
     cursor: pointer;
 }
 

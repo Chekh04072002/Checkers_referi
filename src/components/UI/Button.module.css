@@ -8,18 +8,23 @@
     cursor: pointer;
 }
 
+.button:disabled {
+    cursor: not-allowed;
+}
+
 .blue {
     border: 2px solid #5b8cff;
     color: #4874d9;
 }
 
-.blue:hover {
+.blue:hover:not(:disabled) {
     background-color: #5b8cff;
     color: #fff;
 }
 
-.red {
-
+.blue:disabled {
+    border: 2px solid #b7ccff;
+    color: #b7ccff;
 }
 
 .green {
@@ -27,7 +32,7 @@
     color: #3EB489;
 }
 
-.green:hover {
+.green:hover:not(:disabled) {
     background-color: #3EB489;
     color: #fff;
 }

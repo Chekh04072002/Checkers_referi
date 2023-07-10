@@ -14,39 +14,41 @@ const PlayersList = ({players, actionLabel, actionButton}) => {
                 players.length > 0
                 ? (
                     <Fragment>
-                    <div className={`${styles.row} ${styles.header}`}>
-                        <div>Имя</div>
-                        <div>Дата рождения</div>
-                        <div>Регион</div>
-                        <div>Разряд</div>
-                        <div>Рейтинг Адамовича</div>
-                        <div>Профиль</div>
-                        {actionLabel ? <div>{actionLabel}</div> : null}
-                    </div>
-                    {
-                        players.map(player => {
-                            return (
-                                <div 
-                                    key={player._id} 
-                                    className={`${styles.row} ${styles.playerItem}`}
-                                    data-id={player._id}
-                                >
-                                    <div className={styles.playerName}>
-                                        {player.lastName} {player.firstName} {player.middleName} 
-                                    </div>
-                                    <div>{formatDate(player.birthday)}</div>
-                                    <div>{player.region}</div>
-                                    <div>{player.sportsCategoryAbbr}</div>
-                                    <div>{player.currentAdamovichRank.toFixed(2)}</div>
-                                    <NavLink to={`/all-players/${player._id}`}>
-                                        <BiIdCard className={styles.button}/>
-                                    </NavLink>
-                                    {actionButton ? actionButton : null}
-                                    {/* <BiTrash onClick={onDeletePlayer} className={styles.button}/> */}
-                                </div>
-                            )
-                        })
-                    }
+                        <div className={`${styles.row} ${styles.header}`}>
+                            <div>Имя</div>
+                            <div>Дата рождения</div>
+                            <div>Регион</div>
+                            <div>Разряд</div>
+                            <div>Рейтинг Адамовича</div>
+                            <div>Профиль</div>
+                            {actionLabel ? <div>{actionLabel}</div> : null}
+                        </div>
+                        <div className={styles.playersContainer}>
+                            {
+                                players.map(player => {
+                                    return (
+                                        <div 
+                                            key={player._id} 
+                                            className={`${styles.row} ${styles.playerItem}`}
+                                            data-id={player._id}
+                                        >
+                                            <div className={styles.playerName}>
+                                                {player.lastName} {player.firstName} {player.middleName} 
+                                            </div>
+                                            <div>{formatDate(player.birthday)}</div>
+                                            <div>{player.region}</div>
+                                            <div>{player.sportsCategoryAbbr}</div>
+                                            <div>{player.currentAdamovichRank.toFixed(2)}</div>
+                                            <NavLink to={`/all-players/${player._id}`}>
+                                                <BiIdCard className={styles.button}/>
+                                            </NavLink>
+                                            {actionButton ? actionButton : null}
+                                            {/* <BiTrash onClick={onDeletePlayer} className={styles.button}/> */}
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                     </Fragment>
                 )
                 : null

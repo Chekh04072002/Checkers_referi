@@ -5,44 +5,41 @@ import { fetchHandler } from '../../utils/utils';
 import { AppContext } from '../../context/AppContext';
 import Button from '../UI/Button';
 import PlayersList from './PlayersList';
-import styles from './TournamentPlayersPage.module.css';
 import Modal from '../UI/Modal';
 import { BiTrash} from 'react-icons/bi';
 import SearchPlayersForm from '../players/searchPlayers/SearchPlayersForm';
 import State from '../UI/State';
+import { NotificationContext } from '../../context/NotificationContext';
+import styles from './TournamentPlayersPage.module.css';
+import stylesCommon from '../styles/Common.module.css';
 
 const TournamentPlayersPage = () => {
     const {tournament, players, setTournament, fetchTournament} = useContext(AppContext);
+    const {isLoading, showLoader, 
+            errorMessage, showErrorMessage, 
+            succesMessage, showSuccessMessage,
+            resetNotification
+        } = useContext(NotificationContext);
+
     const [tournamentPlayers, setTournamentPlayers] = useState([]);
     const [isShownModal, setIsShownModal] = useState(false);
     const {tournamentSlug: tournamentID} = useParams();
 
-    const [error, setError] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
-    const [succesMessage, setSuccesMessage] = useState('');
-
     const succesUpdating = (data) => {
         setTournament(data);
-        setIsLoading(false);
-        setSuccesMessage("Данные турнира успешно изменены");
-        setTimeout(() => setSuccesMessage(""), 2000);
+        showSuccessMessage("Данные турнира успешно изменены");
     }
 
     const errorUpdating = (error) => {
-        setIsLoading(false);
-        setError(error)
+        showErrorMessage(error.message)
     }
 
 
     const save = () => {
-        setIsLoading(false);
-        setSuccesMessage("");
-        setError({});
-
         fetchHandler(
             `tournaments/${tournamentID}`,
             succesUpdating,
-            () => setIsLoading(true),
+            showLoader,
             errorUpdating,
             {
                 method: 'PUT',
@@ -95,13 +92,14 @@ const TournamentPlayersPage = () => {
         setIsShownModal(true);
     }
 
-    const hideModal = (e) => {
+    /* const hideModal = (e) => {
         if(e.target.dataset.component === "modal") {
             setIsShownModal(false);
         }
-    }
+    } */
 
     useEffect(() => {
+        resetNotification();
         fetchTournament(tournamentID);
         fetchPlayers();
     }, []);
@@ -112,17 +110,10 @@ const TournamentPlayersPage = () => {
     <div className={styles.playersListContainer}>
         <div className={styles.playersListHeader}>
             <Button onClick={showModal} color="blue">Добавить участника</Button>
-            {
-                tournamentPlayers.length > 0
-                ? (
-                    <div className={styles.saveContainer}>
-                        <State isLoading={isLoading} succesMessage={succesMessage} errorMessage={error.message}/>
-                        <Button onClick={save} color="blue">Сохранить</Button>
-                    </div>
-                )
-                : null
-            }
-            
+            <div className={styles.saveContainer}>
+                <State isLoading={isLoading} succesMessage={succesMessage} errorMessage={errorMessage}/>
+                <Button disabled={isLoading} onClick={save} color="blue">Сохранить</Button>
+            </div>
         </div>
         <div>
             {
@@ -130,15 +121,19 @@ const TournamentPlayersPage = () => {
                 ?<PlayersList 
                     players={tournamentPlayers} 
                     actionLabel="Удалить" 
-                    actionButton={<BiTrash className={styles.actionButton} onClick={deletePlayer}/>}
+                    actionButton={<BiTrash className={stylesCommon.clickable} onClick={deletePlayer}/>}
                 />
                 : <h2>Список участников пуст</h2>
             }
             {
                 isShownModal
                 ? (
-                    <Modal onClose={hideModal}>
-                        <SearchPlayersForm players={players} onAddPlayer={addPlayer}/>
+                    <Modal setIsShownModal={setIsShownModal}>
+                        <SearchPlayersForm 
+                            className={styles.searchPlayersForm} 
+                            players={players} 
+                            onAddPlayer={addPlayer}
+                        />
                     </Modal>
                 )
                 : null

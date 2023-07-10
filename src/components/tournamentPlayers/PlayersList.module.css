@@ -1,7 +1,8 @@
 .playersList {
+    /* position: relative; */
     display: grid;
     row-gap: 12px;
-    width: 900px;
+    width: 100%;
     /* border: 2px solid rgb(93, 154, 238);
     border-radius: 4px; */
 }
@@ -19,13 +20,17 @@
 }
 
 .header {
+    /* position: fixed; */
+    width: 100%;
     font-weight: bold;
-    /* padding-right: 2px; */
-    
     background-color: rgb(231, 241, 255);
-    /* border-bottom: 1px solid rgb(158, 158, 158); */
 }
 
+.playersContainer {
+    display: grid;
+    row-gap: 12px;
+    /* margin-top: 72px; */
+}
 
 /* .playersListHeader{
     height: 36px;
