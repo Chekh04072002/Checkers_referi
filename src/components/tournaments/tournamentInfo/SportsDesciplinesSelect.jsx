@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from '../UI/Select'
+import Select from '../../UI/Select'
 
 const SportsDesciplinesSelect = ({value, onChange}) => {
   return (

@@ -1,23 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
-
-/*хз*/
 .outerDivGame {
   display: flex;
   justify-content: center;
 }
 
 .game {
-  background-color: rgb(246, 247, 247);
-  height: 30px;
+  /* background-color: rgb(246, 247, 247); */
+  /* height: 30px; */
   margin: 10px;
-  padding: 0px 8px;
+  padding: 8px;
   display: flex;
   justify-content: space-between;
   font-family: 'Raleway', sans-serif;
-  box-shadow: 0px -1px 11px 0px rgba(112, 112, 112, 1);
-  border-radius: 5px;
+  /* box-shadow: 0px -1px 8px 0px rgba(112, 112, 112, 1); */
+  border: 2px solid rgb(93, 154, 238);
+  border-radius: 4px;
   align-items: center;
 }
 
@@ -38,17 +35,17 @@
   border: 1px solid grey;
 }
 
-.but:hover {
+/* .but:hover {
   background-color: rgb(201, 201, 202);
 }
 
 .clicked {
   background-color: rgb(114, 113, 113);
-}
+} */
 
 .select {
   width: 50px;
-  height: 100%;
+  height: 25px;
   border-radius: 5px;
 }
 

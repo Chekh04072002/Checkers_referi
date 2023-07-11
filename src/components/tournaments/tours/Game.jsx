@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import whiteCheckers from "../../pictures/WhiteDraughts.png"
-import blackCheckers from "../../pictures/BlackDraughts.png"
+import whiteCheckers from "../../../pictures/WhiteDraughts.png"
+import blackCheckers from "../../../pictures/BlackDraughts.png"
 import styles from './Game.module.css';
 import {GrEdit} from "react-icons/gr";
 import {BiSave, BiEditAlt} from "react-icons/bi";
-import { AppContext } from '../../context/AppContext';
+import { AppContext } from '../../../context/AppContext';
 
 const Game = ({game}) => {
     const {updateGame, tournament} = useContext(AppContext);

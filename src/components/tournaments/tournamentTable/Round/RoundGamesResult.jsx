@@ -1,12 +1,14 @@
 import React from 'react'
-import draughts from '../../../pictures/Draughts.png';
-import styles from '../GamesResult.module.css';
+import draughts from '../../../../pictures/Draughts.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHockeyPuck } from '@fortawesome/free-solid-svg-icons';
+import styles from './RoundTable.module.css';
 
 const RoundGamesResult = ({index, currentPlayer, allPlayers, games}) => {
   const getGameResultCell = (player, i) => {
     if(index === i) {
         return <td key={i} className={`${styles.tdScore} ${styles.td40}`}>
-                    <img className={styles.draughtsImage} src={draughts} alt="" />
+                    <FontAwesomeIcon className={styles.draughtsImage} icon={faHockeyPuck}/>
                 </td>;
     }
 
@@ -28,8 +30,8 @@ const RoundGamesResult = ({index, currentPlayer, allPlayers, games}) => {
   }
 
   return (
-    <td colSpan={allPlayers.length}>
-      <table className={styles.tdScoreContainer}>
+    <td className={styles.noPaddings} colSpan={allPlayers.length}>
+      <table className={styles.tdToursContainer}>
         <tbody>
           <tr>
             {allPlayers.map(getGameResultCell)}

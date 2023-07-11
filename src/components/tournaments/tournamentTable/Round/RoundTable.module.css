@@ -1,0 +1,37 @@
+.noPaddings {
+    padding: 0px !important;
+}
+
+.tdTourNumber {
+    min-width: 25px;
+    max-width: 25px;
+    border-bottom: none !important;
+}
+
+.tdTourNumber:first-of-type {
+    border-left: none;
+}
+  .tdTourNumber:last-of-type {
+    border-right: none;
+}
+
+.tdToursContainer {
+    border: none;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.tdScore {
+    width: 25px;
+    border: none !important;
+    border-right: 1px solid #4268c0 !important;
+}
+
+.tdScore:last-of-type {
+    border-right: none !important;
+}
+
+.draughtsImage {
+    color: #9f9f9f;
+}

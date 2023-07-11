@@ -1,6 +1,7 @@
 import React from 'react'
-import styles from '../TournamentTable.module.css';
 import RoundPlayerStats from './RoundPlayerStats';
+import styles from '../TournamentTable.module.css';
+import stylesRound from './RoundTable.module.css';
 
 const RoundTournamentTable = ({playersStats, games}) => {
   return (
@@ -16,12 +17,12 @@ const RoundTournamentTable = ({playersStats, games}) => {
             <th className={styles.tdSportsCategory}>Спорт. разряд</th>
             <th className={styles.tdCity}>Город</th>
             <th className={styles.tdSportsOrganization}>Спорт. организ.</th>
-            <th className={styles.tdCompetitors} colSpan={playersStats.length}>
-              <table>
+            <th className={styles.tdTours} colSpan={playersStats.length}>
+              <table className={`${styles.table} ${styles.fullWidth}`}>
                 <tbody>
-                  <tr><th className={styles.tdCompetitorsTitle} colSpan={playersStats.length}>Номер соперника</th></tr>
+                  <tr><th className={styles.tdToursTitle} colSpan={playersStats.length}>Номер соперника</th></tr>
                   <tr>
-                    {playersStats.map((player, i) => <td key={i} className={styles.tdCompetitorNumber}>{i + 1}</td>)}
+                    {playersStats.map((player, i) => <td key={i} className={stylesRound.tdTourNumber}>{i + 1}</td>)}
                   </tr>
                 </tbody>
               </table>

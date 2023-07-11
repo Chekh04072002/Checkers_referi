@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { AppContext } from '../../context/AppContext';
+import { AppContext } from '../../../context/AppContext';
 import Game from './Game';
 import styles from './ToursPage.module.css';
-import commonStyles from '../styles/Common.module.css';
+import commonStyles from '../../styles/Common.module.css';
 import Tour from './Tour';
-import { API_URL } from '../../config';
+import { API_URL } from '../../../config';
 import {BiLeftArrowAlt, BiRightArrowAlt} from 'react-icons/bi';
-import { fetchHandler } from '../../utils/utils';
-import useFetch from '../../hooks/fetchHook';
+import { fetchHandler } from '../../../utils/utils';
+import Button from '../../UI/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight, faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 const ToursPage = () => {
-    const {fetchFunction, error, isLoading} = useFetch();
     const {tournament, games, setTournament, fetchTournament, fetchGames} = useContext(AppContext);
     const {tournamentSlug: tournamentID}= useParams();
     const [tour, setTour] = useState(0);
@@ -26,6 +27,10 @@ const ToursPage = () => {
 
     const nextTour = () => {
         setTour((t) => t + 1);
+    }
+
+    const playedAllGamesInTour = () => {
+        return !games[tour - 1].find(game => game.player1Score === 0 && game.player2Score === 0)
     }
 
     function startTournament() {
@@ -105,43 +110,41 @@ const ToursPage = () => {
     }, [tournament]);
 
 
-    console.log(tournamentID);
-    console.log(games);
-
     return (
         <div className={styles.gamesContainer}>
             {
                 tournament
                 ? !tournament.isStarted 
-                    ? <button className={commonStyles.buttonCute} onClick={startTournament}>Старт</button>
+                    /* ? <button className={commonStyles.buttonCute} onClick={startTournament}>Старт</button> */
+                    ? <Button color="green" className={styles.actionButton} onClick={startTournament}>Старт</Button>
                     : (
                         <div>
                             <Tour tour={tour} games={games[tour - 1] || []}/>
-                            {
-                                tournament.tournamentSystem === "Швейцарская" && 
-                                tour === tournament.currentTour && 
-                                tour !== tournament.toursCount
-                                ? <button onClick={finishTour} className={commonStyles.buttonCute}>Завершить тур</button>
-                                : null
-                            }
                             <div className={styles.navigationContainer}>
                                 {
                                     tour > 1
-                                    ? <BiLeftArrowAlt className={commonStyles.button} onClick={prevTour}>Предыдущий</BiLeftArrowAlt> 
+                                    ?<Button onClick={prevTour} color="blue"><FontAwesomeIcon icon={faChevronLeft} /></Button>
                                     : null
                                 }
                                 {
                                     tour < tournament.toursCount && games[tour]
-                                    ? <BiRightArrowAlt className={commonStyles.button} onClick={nextTour}>Следующий</BiRightArrowAlt> 
+                                    ?<Button onClick={nextTour} color="blue"><FontAwesomeIcon icon={faChevronRight} /></Button>
                                     :null
                                 }
                                 {
+                                    tournament.tournamentSystem === "Швейцарская" && 
+                                    tour === tournament.currentTour && 
+                                    tour !== tournament.toursCount
+                                    ?<Button color="green" className={styles.actionButton} onClick={finishTour}>Завершить тур</Button>
+                                    : null
+                                }
+                                {
                                     tour === tournament.toursCount && tournament.isStarted && !tournament.isFinished
-                                    ? <button onClick={finishTournament} className={commonStyles.buttonBlack}>Завершить турнир</button>
+                                    ? <Button color="red" onClick={finishTournament}>Завершить турнир</Button>
                                     : null
                                 }
                                 {/* TODO удалить */}
-                                <button className={commonStyles.buttonBlack} onClick={resetTournament}>Reset</button>
+                                {/* <button className={commonStyles.buttonBlack} onClick={resetTournament}>Reset</button> */}
                             </div>
                         </div>
                         

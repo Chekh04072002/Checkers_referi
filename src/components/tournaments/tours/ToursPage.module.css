@@ -1,0 +1,19 @@
+.gamesContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.navigationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 12px;
+    margin-top: 24px;
+}
+  
+.actionButton {
+    font-size: 16px !important;
+    font-weight: bold;
+    width: 240px;
+}

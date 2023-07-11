@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
-
+.fullWidth {
+    width: 100%;
+}
 
 .tableContainer {
     display: flex;
     justify-content: center;
+    margin: 0 auto;
+    margin-top: 32px;
     font-family: 'Raleway', sans-serif;
 }
 
@@ -15,15 +16,34 @@
     border-spacing: 0;
 }
 
+.table th, .table td {
+    border: 1px solid #4268c0;
+    padding: 4px;
+}
+
 .table th {
     font-weight: normal;
 }
 
-.tableHeader {
-    background-color: rgb(230, 231, 231);
+.noPaddings {
+    padding: 0px !important;
 }
 
-.td40 {
+
+.tableHeader {
+    background-color: rgb(231, 241, 255);
+}
+
+.tableHeader th:first-child {
+    /* padding-left: 8px; */
+    border-radius: 4px 0 0 4px;
+}
+.tableHeader th:last-child {
+    border-radius: 0px 4px 4px 0px;
+}
+
+
+/* .td40 {
     min-width: 40px;
     max-width: 40px; 
 }
@@ -31,7 +51,7 @@
 .td20 {
     min-width: 20px;
     max-width: 20px;
-}
+} */
 
 .tdNumber {
     width: 40px;
@@ -58,25 +78,18 @@
     width: 100px;
 }
 
-.tdCompetitors {
-    border-bottom: none;
+/* .tdCompetitors {
     width: 20px;
+} */
+.tdTours {
+    width: 20px;
+    padding: 0px !important;
 }
 
-.tdCompetitorsTitle{
-    border: none;
+.tdToursTitle {
+    border: none !important;
     padding-bottom: 1px;
-}
-
-.tdCompetitorNumber {
-    width: 40px;
-}
-
-.tdCompetitorNumber:first-of-type {
-    border-left: none;
-}
-  .tdCompetitorNumber:last-of-type {
-    border-right: none;
+    padding: 0px !important;
 }
 
 .tdScore {

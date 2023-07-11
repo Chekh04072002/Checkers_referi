@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Input from '../../UI/Input';
-import PlayersList from '../../tournamentPlayers/PlayersList';
+import PlayersList from '../playersList/PlayersList';
 import { AppContext } from '../../../context/AppContext';
 import { BiAddToQueue} from 'react-icons/bi';
 import styles from './SearchPlayersForm.module.css';

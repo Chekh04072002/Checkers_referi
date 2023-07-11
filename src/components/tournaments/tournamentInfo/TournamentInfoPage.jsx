@@ -1,20 +1,19 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { useParams } from 'react-router-dom';
-import { AppContext } from '../../context/AppContext';
-import { fetchHandler, formatDate } from '../../utils/utils';
+import { AppContext } from '../../../context/AppContext';
+import { fetchHandler, formatDate } from '../../../utils/utils';
 import styles from './TournamentInfoPage.module.css';
-import EditableField from '../fields/editables/EditableField';
-import LabeledField from '../fields/simple/LabeledField';
-import Select from '../form/Select';
+import EditableField from '../../fields/editables/EditableField';
+import LabeledField from '../../fields/simple/LabeledField';
+import Select from '../../form/Select';
 import TournamentSystemSelect from './TournamentSystemSelect';
 import SportsDesciplinesSelect from './SportsDesciplinesSelect';
-import ListField from '../fields/editables/ListField';
-import Input from '../UI/Input';
-import PlayersList from '../tournamentPlayers/PlayersList';
+import ListField from '../../fields/editables/ListField';
+import Input from '../../UI/Input';
 import TournamentStatus from './TournamentStatus';
-import Button from '../UI/Button';
-import State from '../UI/State';
-import { NotificationContext } from '../../context/NotificationContext';
+import Button from '../../UI/Button';
+import State from '../../UI/State';
+import { NotificationContext } from '../../../context/NotificationContext';
 
 const TournamentInfoPage = () => {
     const {tournament, setTournament, fetchTournament} = useContext(AppContext);

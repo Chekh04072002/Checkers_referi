@@ -1,17 +1,17 @@
 import React from 'react';
 import { useState, useContext, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchHandler } from '../../utils/utils';
-import { AppContext } from '../../context/AppContext';
-import Button from '../UI/Button';
-import PlayersList from './PlayersList';
-import Modal from '../UI/Modal';
+import { fetchHandler } from '../../../utils/utils';
+import { AppContext } from '../../../context/AppContext';
+import Button from '../../UI/Button';
+import Modal from '../../UI/Modal';
 import { BiTrash} from 'react-icons/bi';
-import SearchPlayersForm from '../players/searchPlayers/SearchPlayersForm';
-import State from '../UI/State';
-import { NotificationContext } from '../../context/NotificationContext';
+import State from '../../UI/State';
+import { NotificationContext } from '../../../context/NotificationContext';
+import PlayersList from '../../players/playersList/PlayersList';
+import SearchPlayersForm from '../../players/searchPlayers/SearchPlayersForm';
 import styles from './TournamentPlayersPage.module.css';
-import stylesCommon from '../styles/Common.module.css';
+import stylesCommon from '../../styles/Common.module.css';
 
 const TournamentPlayersPage = () => {
     const {tournament, players, setTournament, fetchTournament} = useContext(AppContext);
@@ -91,12 +91,6 @@ const TournamentPlayersPage = () => {
     const showModal = () => {
         setIsShownModal(true);
     }
-
-    /* const hideModal = (e) => {
-        if(e.target.dataset.component === "modal") {
-            setIsShownModal(false);
-        }
-    } */
 
     useEffect(() => {
         resetNotification();

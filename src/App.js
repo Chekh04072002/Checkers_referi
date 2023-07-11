@@ -10,10 +10,10 @@ import TournamentLayout from './components/layouts/TournamentLayout';
 import TournamentGames from './components/TournamentGames';
 import TournamentGamesResults from './components/TournamentGamesResults';
 import './App.css';
-import TournamentTable from './components/tournamentTable/TournamentTable';
-import ToursPage from './components/tours/ToursPage';
-import TournamentInfoPage from './components/tournamentInfo/TournamentInfoPage';
-import TournamentPlayersPage from './components/tournamentPlayers/TournamentPlayersPage';
+import TournamentTable from './components/tournaments/tournamentTable/TournamentTable';
+import ToursPage from './components/tournaments/tours/ToursPage';
+import TournamentInfoPage from './components/tournaments/tournamentInfo/TournamentInfoPage';
+import TournamentPlayersPage from './components/tournaments/tournamentPlayers/TournamentPlayersPage';
 
 function App() {
   return (
