@@ -4,10 +4,10 @@ import {
   MdOutlineArrowBackIos,
 } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import styles from './Tournament.module.css';
-import MapTournament from './MapTournament';
-import { API_URL } from "../config";
-import Button from './UI/Button';
+import styles from '../Tournament.module.css';
+import MapTournament from '../MapTournament';
+import { API_URL } from "../../config";
+import Button from '../UI/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 

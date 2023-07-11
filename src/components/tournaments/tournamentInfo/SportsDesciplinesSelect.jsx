@@ -1,12 +1,15 @@
 import React from 'react'
 import Select from '../../UI/Select'
 
-const SportsDesciplinesSelect = ({value, onChange}) => {
+const SportsDesciplinesSelect = ({value="", onChange, className}) => {
   return (
-    <Select 
+    <Select
+        required
+        className={className}
         onChange={onChange}
         defaultValue={value}
     >
+        <option disabled value="">Название дисциплины</option>
         <option value="русские шашки">русские шашки</option>
         <option value="русские шашки - быстрая игра">русские шашки - быстрая игра</option>
         <option value="русские шашки - командные соревнования">русские шашки - командные соревнования</option>

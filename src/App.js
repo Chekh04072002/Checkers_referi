@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/layouts/MainLayout';
-import AllTournaments from './components/AllTournaments';
-import CreateTournament from './components/CreateTournament';
+import AllTournaments from './components/tournaments/AllTournaments';
+import CreateTournament from './components/tournaments/CreateTournament';
 import AllPlayers from './components/allPlayers/AllPlayers';
 import ProfileOfPlayer from './components/profileOfPlayer/ProfileOfPlayer';
 import RegistrationPlayer from './components/RegistrationPlayer';

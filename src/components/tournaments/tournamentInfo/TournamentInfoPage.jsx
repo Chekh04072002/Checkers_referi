@@ -5,7 +5,7 @@ import { fetchHandler, formatDate } from '../../../utils/utils';
 import styles from './TournamentInfoPage.module.css';
 import EditableField from '../../fields/editables/EditableField';
 import LabeledField from '../../fields/simple/LabeledField';
-import Select from '../../form/Select';
+import Select from '../../forms/Select';
 import TournamentSystemSelect from './TournamentSystemSelect';
 import SportsDesciplinesSelect from './SportsDesciplinesSelect';
 import ListField from '../../fields/editables/ListField';
