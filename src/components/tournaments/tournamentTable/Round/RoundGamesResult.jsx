@@ -14,7 +14,7 @@ const RoundGamesResult = ({index, currentPlayer, allPlayers, games}) => {
 
     let gameResult = 0;
     const game = games.find((g) => player._id === g.player1StatsID || player._id === g.player2StatsID);
-
+    console.log(game);
     if(game) gameResult = getPlayerScore(game, currentPlayer);
 
     return <td key={i} className={`${styles.tdScore} ${styles.td40}`}>{gameResult}</td>;

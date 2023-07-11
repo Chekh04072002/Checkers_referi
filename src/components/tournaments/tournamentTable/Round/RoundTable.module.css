@@ -3,8 +3,8 @@
 }
 
 .tdTourNumber {
-    min-width: 25px;
-    max-width: 25px;
+    min-width: 30px;
+    max-width: 30px;
     border-bottom: none !important;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .tdScore {
-    width: 25px;
+    width: 30px;
     border: none !important;
     border-right: 1px solid #4268c0 !important;
 }

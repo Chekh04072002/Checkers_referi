@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import RoundTournamentTable from './Round/RoundTournamentTable';
 import SwissTournamentTable from './Swiss/SwissTournamentTable';
 import {AppContext} from '../../../context/AppContext';
-import {compareByScore} from '../../../utils/playerStatsComparator';
+import {compareByPlace, compareByScore} from '../../../utils/playerStatsComparator';
 
 const TournamentTable = () => {
   const {tournament, 
@@ -18,7 +18,7 @@ const TournamentTable = () => {
   const params = useParams();
 
   const sortingPlayersStats = (playersStats) => {
-    return playersStats.sort(compareByScore)
+    return playersStats.sort(compareByPlace)
   }
 
   useEffect(() => {

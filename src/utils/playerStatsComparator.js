@@ -1,3 +1,8 @@
+export function compareByPlace (player1, player2){
+    if(player1.place < player2.place) return -1;
+    if(player1.place > player2.place) return 1;
+    return compareByScore (player1, player2);
+}
 export function compareByScore (player1, player2){
     if(player1.score > player2.score) return -1;
     if(player1.score < player2.score) return 1;

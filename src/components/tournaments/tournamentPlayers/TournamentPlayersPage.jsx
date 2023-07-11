@@ -14,7 +14,7 @@ import styles from './TournamentPlayersPage.module.css';
 import stylesCommon from '../../styles/Common.module.css';
 
 const TournamentPlayersPage = () => {
-    const {tournament, players, setTournament, fetchTournament} = useContext(AppContext);
+    const {tournament, players, fetchPlayers, setTournament, fetchTournament} = useContext(AppContext);
     const {isLoading, showLoader, 
             errorMessage, showErrorMessage, 
             succesMessage, showSuccessMessage,
@@ -51,7 +51,7 @@ const TournamentPlayersPage = () => {
         );
     }
 
-    const fetchPlayers = async() => {
+    const fetchTournamentPlayers = async() => {
         fetchHandler(
             `players?tournamentID=${tournamentID}`,
             (players) => setTournamentPlayers(players),
@@ -95,6 +95,7 @@ const TournamentPlayersPage = () => {
     useEffect(() => {
         resetNotification();
         fetchTournament(tournamentID);
+        fetchTournamentPlayers(tournamentID);
         fetchPlayers();
     }, []);
 
