@@ -1,0 +1,8 @@
+.navLink {
+    background-color: transparent;
+}
+
+.navLinkActive {
+    text-decoration: underline !important;
+    font-weight: bold;
+}

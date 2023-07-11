@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 import styles from './Tournament.module.css';
 import MapTournament from './MapTournament';
 import { API_URL } from "../config";
+import Button from './UI/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 
 const AllTournaments = () => {
@@ -65,7 +68,23 @@ const AllTournaments = () => {
         </div>
       </div>
       <div>
-        <button
+        {
+            currentPage > 1
+            ?<Button 
+              onClick={() => setCurrentPage(currentPage - 1)} 
+              color="blue"
+            ><FontAwesomeIcon icon={faChevronLeft} /></Button>
+            : null
+        }
+        {
+            currentPage < totalPage
+            ?<Button 
+              onClick={() => setCurrentPage(currentPage + 1)} 
+              color="blue"
+            ><FontAwesomeIcon icon={faChevronRight} /></Button>
+            :null
+        }
+        {/* <button
           className={styles.buttons}
           onClick={() => {
             return setCurrentPage(1);
@@ -100,7 +119,7 @@ const AllTournaments = () => {
           }}
         >
           <MdOutlineArrowForwardIos />
-        </button>
+        </button> */}
       </div>
     </div>
   );

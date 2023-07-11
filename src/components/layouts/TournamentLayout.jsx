@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Menu from '../Menu';
-import TournamentMenu from '../TournamentMenu';
+import TournamentMenu from '../tournaments/TournamentMenu';
 
 const TournamentLayout = () => {
   return (

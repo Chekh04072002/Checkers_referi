@@ -14,6 +14,7 @@
     table-layout: fixed;
     border-collapse: collapse;
     border-spacing: 0;
+    
 }
 
 .table th, .table td {
@@ -67,7 +68,7 @@
 }
 
 .tdSportsCategory {
-    width: 90px;
+    width: 70px;
 }
 
 .tdCity {
@@ -93,11 +94,11 @@
 }
 
 .tdScore {
-    width: 70px;
+    width: 50px;
 }
 
 .tdGorinRank {
-    width: 70px;
+    width: 50px;
 }
 
 .tdAdamovichRank {
@@ -105,5 +106,5 @@
 }
 
 .tdPlace {
-    width: 50px;
+    width: 30px;
 }
