@@ -1,11 +1,11 @@
-import SelectedPlayers from '../SelectedPlayers';
+import SelectedPlayers from '../../SelectedPlayers';
 import { useState, useEffect, useContext } from 'react';
-import Poisk from '../Poisk';
+import Poisk from '../../Poisk';
 import { useNavigate } from 'react-router-dom';
-import CreateTournamentForm from '../forms/CreateTournamentForm';
-import { fetchHandler } from '../../utils/utils';
-import { NotificationContext } from '../../context/NotificationContext';
-import State from '../UI/State';
+import CreateTournamentForm from './CreateTournamentForm';
+import { fetchHandler } from '../../../utils/utils';
+import { NotificationContext } from '../../../context/NotificationContext';
+import State from '../../UI/State';
 import styles from './CreateTournament.module.css';
 
 const CreateTournament = () => {

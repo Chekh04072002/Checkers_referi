@@ -1,6 +1,6 @@
 import { createContext, useState } from "react"
 
-const messageTime = 2000;
+const messageTime = 4000;
 const defaultValue = {
     isLoading: false, 
     errorMessage: '',

@@ -1,11 +1,14 @@
 import React from 'react';
 import loader from '../../pictures/loader.gif';
 import styles from './State.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const State = ({isLoading, succesMessage, errorMessage}) => {
 
   if(isLoading) {
-    return <img className={styles.loader} src={loader} alt='Подождите...'/>;
+    return <FontAwesomeIcon className={styles.loader} icon={faCircleNotch} spin />
+    //return <img className={styles.loader} src={loader} alt='Подождите...'/>;
   }
 
   if(succesMessage) {

@@ -1,9 +1,10 @@
 .field {
     display: flex;
+    flex-direction: column;
 }
 
 .inlineField {
-    align-items: center;
+    /* align-items: center; */
     column-gap: 8px;
 }
 

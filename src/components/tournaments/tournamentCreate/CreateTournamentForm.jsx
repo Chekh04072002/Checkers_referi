@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import styles from './CreateTournamentForm.module.css';
-import LabeledInput from '../UI/LabeledInput';
-import LabeledSelect from '../UI/LabeledSelect';
-import SportsDesciplinesSelect from '../tournaments/tournamentInfo/SportsDesciplinesSelect';
-import LabeledComponent from '../UI/LabeledComponent';
-import Input from '../UI/Input';
-import Select from './Select';
-import TournamentSystemSelect from '../tournaments/tournamentInfo/TournamentSystemSelect';
-import Button from '../UI/Button';
-import State from '../UI/State';
+import LabeledInput from '../../UI/LabeledInput';
+import LabeledSelect from '../../UI/LabeledSelect';
+import SportsDesciplinesSelect from '../tournamentInfo/SportsDesciplinesSelect';
+import LabeledComponent from '../../UI/LabeledComponent';
+import Input from '../../UI/Input';
+import Select from '../../forms/Select';
+import TournamentSystemSelect from '../tournamentInfo/TournamentSystemSelect';
+import Button from '../../UI/Button';
+import State from '../../UI/State';
 
 const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, errorMessage}) => {
     const [data, setData] = useState({
@@ -29,7 +29,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
 
   return (
     <form className={`${styles.form} ${className}`} onSubmit={(e) => onSubmit(e, data)}>
-        <LabeledComponent label="Введите номер КП турнира:">
+        <LabeledComponent label="Номер КП:">
           <Input 
             placeholder="КП"
             required
@@ -38,7 +38,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Введите название турнира:">
+        <LabeledComponent label="Название:">
           <Input 
             required
             placeholder="Весенние игры"
@@ -47,21 +47,21 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Выберите систему турнира:">
+        <LabeledComponent label="Система:">
           <TournamentSystemSelect 
             value={data.tournamentSystem}
             onChange={(e) => setData({ ...data, tournamentSystem: e.target.value })}
           />
         </LabeledComponent>
         
-        <LabeledComponent label="Введите название спортивной десциплины:">
+        <LabeledComponent label="Дисциплина:">
           <SportsDesciplinesSelect 
             value={data.sportsDescipline}
             onChange={(e) => setData({ ...data, sportsDescipline: e.target.value})}
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Введите ФИО судьи турнира:">
+        <LabeledComponent label="Главный судья:">
           <Input 
             required
             placeholder="Иванов Петр Сергеевич"
@@ -70,7 +70,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Введите ФИО секретаря турнира:">
+        <LabeledComponent label="Главный секретарь:">
           <Input
             required 
             placeholder="Сергеев Иван Петрович"
@@ -79,7 +79,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Введите название страны:">
+        <LabeledComponent label="Страна:">
           <Input 
             required
             placeholder="Россия"
@@ -88,7 +88,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Введите название региона:">
+        <LabeledComponent label="Регион:">
           <Input 
             placeholder="Крым"
             value={data.region}
@@ -96,7 +96,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Введите название города:">
+        <LabeledComponent label="Город:">
           <Input 
             required
             placeholder="Севастополь"
@@ -105,7 +105,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Выберите дату начала турнира:">
+        <LabeledComponent label="Начало турнира:">
           <Input 
             type='date'
             value={data.startDate}
@@ -113,7 +113,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Выберите дату окончания турнира:">
+        <LabeledComponent label="Окончание турнира:">
           <Input 
             type='date'
             value={data.endDate}
@@ -121,9 +121,9 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
           />
         </LabeledComponent>
 
-        <LabeledComponent label="Укажите служебное помещение:">
+        <LabeledComponent label="Спортивное сооружение:">
           <Input 
-            placeholder="Служебное помещение"
+            placeholder="Спортивное сооружение"
             value={data.sportsFaciliy}
             onChange={(e) => setData({ ...data, sportsFaciliy: e.target.value })}
           />

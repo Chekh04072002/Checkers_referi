@@ -33,7 +33,7 @@
     margin-bottom: 24px;
     padding-bottom: 24px;
     /* border-bottom: 1px solid #5b8cff; */
-    border-bottom: 1px solid rgb(112, 112, 112);
+    border-bottom: 1px solid #5b8cff;
 }
 
 .infoColumn {
@@ -43,16 +43,13 @@
 }
 
 .infoColumn:first-of-type {
-    min-width: 40%;
+    min-width: 30%;
 }
 
 
 .input {
     font-size: 16px;
     padding: 4px 6px;
-    border: 1px solid rgb(66, 66, 66);
-    border-radius: 4px;
-    outline: none;
 }
 
 .additionalInfo {

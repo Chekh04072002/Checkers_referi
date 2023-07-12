@@ -36,7 +36,11 @@ const RegistrationPlayer = () => {
     console.log(JSON.stringify(data));
     if (data.currentAdamovichRank === '') {
       data.currentAdamovichRank = undefined;
+    } else {
+      data.currentAdamovichRank = +data.currentAdamovichRank;
     }
+
+    console.log(data);
 
     fetch(`${API_URL}players`, {
       method: 'POST',
@@ -233,7 +237,7 @@ const RegistrationPlayer = () => {
           name="username"
           id="currentAdamovichRank"
           onChange={(e) =>
-            setData({ ...data, currentAdamovichRank: Number(e.target.value) })
+            setData({ ...data, currentAdamovichRank: e.target.value})
           }
           className={styles.inputText}
         />

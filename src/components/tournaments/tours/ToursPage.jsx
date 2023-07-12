@@ -11,9 +11,12 @@ import { fetchHandler } from '../../../utils/utils';
 import Button from '../../UI/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faCoffee } from '@fortawesome/free-solid-svg-icons';
+import State from '../../UI/State';
+import { NotificationContext } from '../../../context/NotificationContext';
 
 const ToursPage = () => {
     const {tournament, games, setTournament, fetchTournament, fetchGames} = useContext(AppContext);
+    const {isLoading, showLoader, errorMessage, showErrorMessage} = useContext(NotificationContext);
     const {tournamentSlug: tournamentID}= useParams();
     const [tour, setTour] = useState(0);
 
@@ -40,8 +43,11 @@ const ToursPage = () => {
                 setTournament(data);
                 fetchGames(tournamentID);
             },
-            () => console.log("Подождите..."),
-            (error) => console.error(error),
+            showLoader,
+            (error) => {
+                console.error(error);
+                showErrorMessage(error.message);
+            },
             {method: 'PUT'}
         );
     }
@@ -115,8 +121,12 @@ const ToursPage = () => {
             {
                 tournament
                 ? !tournament.isStarted 
-                    /* ? <button className={commonStyles.buttonCute} onClick={startTournament}>Старт</button> */
-                    ? <Button color="green" className={styles.actionButton} onClick={startTournament}>Старт</Button>
+                    ? (
+                        <div className={styles.startContainer}>
+                            <Button disabled={isLoading} color="green" className={styles.actionButton} onClick={startTournament}>Старт</Button>
+                            <State isLoading={isLoading} errorMessage={errorMessage} />
+                        </div>
+                    )
                     : (
                         <div>
                             <Tour tour={tour} games={games[tour - 1] || []}/>

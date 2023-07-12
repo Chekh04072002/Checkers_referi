@@ -90,7 +90,7 @@ function Table() {
       Регион: `${obj['region']}`,
       Дата_рождения: `${formatDate(obj['birthday'])}`,
       Разряд: `${obj['sportsCategoryAbbr']}`,
-      Рейтинг: `${Math.ceil(obj['currentAdamovichRank'])}`,
+      Рейтинг: `${obj['currentAdamovichRank'].toFixed(2)}`,
       Подробнее: `${obj['_id']}`,
       id: `${obj['_id']}`,
     };

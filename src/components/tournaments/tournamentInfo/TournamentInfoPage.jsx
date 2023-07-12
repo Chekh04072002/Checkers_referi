@@ -175,7 +175,7 @@ const TournamentInfoPage = () => {
                                 value={tournament.timeControl}
                             />}
                         >
-                            <LabeledField label="Система контроля времени">{tournament.timeControl}</LabeledField>
+                            <LabeledField label="Контроль">{tournament.timeControl}</LabeledField>
                         </EditableField>
                         <EditableField editComponent={
                             <TournamentSystemSelect 
@@ -192,7 +192,7 @@ const TournamentInfoPage = () => {
                             />
                         }
                         >
-                            <LabeledField label="Служебное помещение">{tournament.sportsFacility}</LabeledField>
+                            <LabeledField label="Спортивное сооружение">{tournament.sportsFacility}</LabeledField>
                         </EditableField>              
                     </div>
                 </div>
@@ -206,11 +206,11 @@ const TournamentInfoPage = () => {
                         >
                         <LabeledField label="Спортивная десциплина">{tournament.sportsDescipline}</LabeledField>
                     </EditableField>
-                    <ListField  
+                    {/* <ListField  
                         label="Группы" 
                         defaultItems={tournament.groups} 
                         onChange={(groups) => setTournament({...tournament, groups})}
-                    />
+                    /> */}
                     <ListField 
                         label="Судьи" 
                         defaultItems={tournament.referees} 
