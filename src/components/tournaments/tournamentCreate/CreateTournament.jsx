@@ -9,7 +9,7 @@ import State from '../../UI/State';
 import styles from './CreateTournament.module.css';
 
 const CreateTournament = () => {
-  const {isLoading, showLoader, errorMessage, showErrorMessage} = useContext(NotificationContext);
+  const {isLoading, showLoader, errorMessage, showErrorMessage, resetNotification} = useContext(NotificationContext);
  
   const [player, setPlayer] = useState('');
   const [playersssss, setPlayersssss] = useState(''); // Массив id игроков в турнире
@@ -38,6 +38,8 @@ const CreateTournament = () => {
       }
     )
   }
+
+  useEffect(() => resetNotification(), [])
 
   return (
     <div className={styles.createTournamentPage}>

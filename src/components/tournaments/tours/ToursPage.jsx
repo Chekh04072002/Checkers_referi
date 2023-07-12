@@ -16,7 +16,7 @@ import { NotificationContext } from '../../../context/NotificationContext';
 
 const ToursPage = () => {
     const {tournament, games, setTournament, fetchTournament, fetchGames} = useContext(AppContext);
-    const {isLoading, showLoader, errorMessage, showErrorMessage} = useContext(NotificationContext);
+    const {isLoading, showLoader, errorMessage, showErrorMessage, resetNotification} = useContext(NotificationContext);
     const {tournamentSlug: tournamentID}= useParams();
     const [tour, setTour] = useState(0);
 
@@ -107,6 +107,7 @@ const ToursPage = () => {
     //TODO добавить заврешение турнира и тура
 
     useEffect(() => {
+        resetNotification();
         fetchTournament(tournamentID);
         fetchGames(tournamentID);
     }, [])
