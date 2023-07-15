@@ -7,6 +7,7 @@ const defaultValue = {
     players: [],
     games: [],
     playersStats: [],
+    sportsCategories: [],
     setTournament: (tournament) => null,
     setPlayers: (players) => null,
     fetchPlayers: () => [],
@@ -14,7 +15,8 @@ const defaultValue = {
     fetchGames: (tournamentID) => [],
     setGames: (games) => [],
     updateGame: (gameID, result, succesFunction) => null,
-    fetchPlayersStats: (tournamentID) => []
+    fetchPlayersStats: (tournamentID) => [],
+    fetchSportsCategories: () => []
 }
 
 export const AppContext = createContext(defaultValue);
@@ -24,6 +26,7 @@ const AppProvider = ({children}) => {
     const [players, setPlayers] = useState([]);
     const [games, setGames] = useState([]);
     const [playersStats, setPlayersStats] = useState([]);
+    const [sportsCategories, setSportsCategories] = useState([]);
     
     const fetchTournament = (id) => {
         fetchHandler(
@@ -76,6 +79,15 @@ const AppProvider = ({children}) => {
         );
     }
 
+    const fetchSportsCategories = () => {
+        fetchHandler(
+            'sports-categories',
+            setSportsCategories,
+            () => console.log("Подождите..."),
+            error => console.error(error)
+        )
+    }
+
     const updateGame = (gameID, result, succesFunction) => {
         fetchHandler(
             `games/${gameID}`,
@@ -98,13 +110,17 @@ const AppProvider = ({children}) => {
         )
     }
 
-    useEffect(fetchPlayers, []);
+    useEffect(() => {
+        fetchPlayers();
+        fetchSportsCategories();
+    }, []);
 
     const value = {
         tournament,
         players, 
         games,
         playersStats,
+        sportsCategories,
         setTournament,
         setPlayers,
         fetchTournament,
@@ -112,7 +128,8 @@ const AppProvider = ({children}) => {
         fetchGames,
         setGames,
         updateGame,
-        fetchPlayersStats
+        fetchPlayersStats,
+        fetchSportsCategories
     }
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>

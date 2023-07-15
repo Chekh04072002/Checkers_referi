@@ -10,11 +10,6 @@ import styles from './CreateTournament.module.css';
 
 const CreateTournament = () => {
   const {isLoading, showLoader, errorMessage, showErrorMessage, resetNotification} = useContext(NotificationContext);
- 
-  const [player, setPlayer] = useState('');
-  const [playersssss, setPlayersssss] = useState(''); // Массив id игроков в турнире
-  const [created, setCreated] = useState(false);
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
 
@@ -43,7 +38,7 @@ const CreateTournament = () => {
 
   return (
     <div className={styles.createTournamentPage}>
-      <h1>Создать турнир</h1>
+      <h1 className={styles.title}>Создать турнир</h1>
       <CreateTournamentForm 
         className={styles.createTournamentForm} 
         onSubmit={createTournamentHandler}

@@ -4,7 +4,6 @@ import AllTournaments from './components/tournaments/AllTournaments';
 import CreateTournament from './components/tournaments/tournamentCreate/CreateTournament';
 import AllPlayers from './components/allPlayers/AllPlayers';
 import ProfileOfPlayer from './components/profileOfPlayer/ProfileOfPlayer';
-import RegistrationPlayer from './components/RegistrationPlayer';
 import Tournament from './components/Tournament';
 import TournamentLayout from './components/layouts/TournamentLayout';
 import TournamentGames from './components/TournamentGames';
@@ -14,6 +13,8 @@ import TournamentTable from './components/tournaments/tournamentTable/Tournament
 import ToursPage from './components/tournaments/tours/ToursPage';
 import TournamentInfoPage from './components/tournaments/tournamentInfo/TournamentInfoPage';
 import TournamentPlayersPage from './components/tournaments/tournamentPlayers/TournamentPlayersPage';
+import CreatePlayerPage from './components/players/createPlayer/CreatePlayerPage';
+import AllPlayersPage from './components/players/allPlayers/AllPlayersPage';
 
 function App() {
   return (
@@ -41,7 +42,8 @@ function App() {
                 element={<TournamentTable />}
               ></Route>
             </Route>
-            <Route path="all-players" element={<AllPlayers />}></Route>
+            {/* <Route path="all-players" element={<AllPlayers />}></Route> */}
+            {<Route path="all-players" element={<AllPlayersPage />}></Route>}
             <Route
               path="all-players/:playerSlug"
               element={<ProfileOfPlayer />}
@@ -52,7 +54,7 @@ function App() {
             ></Route>
             <Route
               path="registration-player"
-              element={<RegistrationPlayer />}
+              element={<CreatePlayerPage />}
             ></Route>
           </Route>
         </Routes>

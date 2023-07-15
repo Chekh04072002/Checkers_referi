@@ -10,6 +10,7 @@ import { API_URL } from "../../config";
 import Button from '../UI/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import Pagination from '../UI/Pagination';
 
 
 const AllTournaments = () => {
@@ -41,7 +42,7 @@ const AllTournaments = () => {
     .catch((error) => console.error(error));
   }
 
-
+  //TODO переделать
   return (
     <div
       style={{
@@ -68,7 +69,12 @@ const AllTournaments = () => {
         </div>
       </div>
       <div>
-        {
+        <Pagination 
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          pages={totalPage}
+        />
+        {/* {
             currentPage > 1
             ?<Button 
               onClick={() => setCurrentPage(currentPage - 1)} 
@@ -83,43 +89,8 @@ const AllTournaments = () => {
               color="blue"
             ><FontAwesomeIcon icon={faChevronRight} /></Button>
             :null
-        }
-        {/* <button
-          className={styles.buttons}
-          onClick={() => {
-            return setCurrentPage(1);
-          }}
-        >
-          <MdOutlineArrowBackIos />
-        </button>
-        <button
-          className={styles.buttons}
-          onClick={() => {
-            if (currentPage - 1 > 0) {
-              return setCurrentPage(currentPage - 1);
-            }
-          }}
-        >
-          Предыдущая
-        </button>
-        <button
-          className={styles.buttons}
-          onClick={() => {
-            if (currentPage + 1 <= totalPage) {
-              return setCurrentPage(currentPage + 1);
-            }
-          }}
-        >
-          Следующая
-        </button>
-        <button
-          className={styles.buttons}
-          onClick={() => {
-            return setCurrentPage(totalPage);
-          }}
-        >
-          <MdOutlineArrowForwardIos />
-        </button> */}
+        } */}
+
       </div>
     </div>
   );

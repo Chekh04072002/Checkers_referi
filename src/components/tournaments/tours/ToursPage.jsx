@@ -42,6 +42,7 @@ const ToursPage = () => {
             (data) => {
                 setTournament(data);
                 fetchGames(tournamentID);
+                resetNotification();
             },
             showLoader,
             (error) => {
@@ -58,9 +59,13 @@ const ToursPage = () => {
             (data) => {
                 setTournament(data);
                 fetchGames(tournamentID);
+                resetNotification();
             },
-            () => console.log("Подождите..."),
-            (error) => console.error(error),
+            showLoader,
+            (error) => {
+                console.error(error);
+                showErrorMessage(error.message)
+            },
             {method: 'PUT'}
         );
     }
@@ -70,9 +75,13 @@ const ToursPage = () => {
             `tournaments/finish/${tournamentID}`,
             (data) => {
                 setTournament(data);
+                resetNotification();
             },
-            () => console.log("Подождите..."),
-            (error) => console.error(error),
+            showLoader,
+            (error) => {
+                console.error(error);
+                showErrorMessage(error.message);
+            },
             {method: 'PUT'}
         );
     }
@@ -122,12 +131,7 @@ const ToursPage = () => {
             {
                 tournament
                 ? !tournament.isStarted 
-                    ? (
-                        <div className={styles.startContainer}>
-                            <Button disabled={isLoading} color="green" className={styles.actionButton} onClick={startTournament}>Старт</Button>
-                            <State isLoading={isLoading} errorMessage={errorMessage} />
-                        </div>
-                    )
+                    ? <Button disabled={isLoading} color="green" className={styles.actionButton} onClick={startTournament}>Старт</Button>
                     : (
                         <div>
                             <Tour tour={tour} games={games[tour - 1] || []}/>
@@ -146,12 +150,12 @@ const ToursPage = () => {
                                     tournament.tournamentSystem === "Швейцарская" && 
                                     tour === tournament.currentTour && 
                                     tour !== tournament.toursCount
-                                    ?<Button color="green" className={styles.actionButton} onClick={finishTour}>Завершить тур</Button>
+                                    ? <Button disabled={isLoading} color="purple" className={styles.actionButton} onClick={finishTour}>Завершить тур</Button>
                                     : null
                                 }
                                 {
                                     tour === tournament.toursCount && tournament.isStarted && !tournament.isFinished
-                                    ? <Button color="red" onClick={finishTournament}>Завершить турнир</Button>
+                                    ? <Button disabled={isLoading} color="red" onClick={finishTournament}>Завершить турнир</Button>
                                     : null
                                 }
                                 {/* TODO удалить */}
@@ -162,7 +166,7 @@ const ToursPage = () => {
                     )
                 : null
             }
-            
+            <State className={styles.state} isLoading={isLoading} errorMessage={errorMessage} />
         </div>
     )
 }

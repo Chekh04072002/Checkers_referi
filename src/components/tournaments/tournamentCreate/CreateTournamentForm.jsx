@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import styles from './CreateTournamentForm.module.css';
 import LabeledInput from '../../UI/LabeledInput';
 import LabeledSelect from '../../UI/LabeledSelect';
-import SportsDesciplinesSelect from '../tournamentInfo/SportsDesciplinesSelect';
+import SportsDesciplinesSelect from '../selects/SportsDesciplinesSelect';
 import LabeledComponent from '../../UI/LabeledComponent';
 import Input from '../../UI/Input';
-import Select from '../../forms/Select';
-import TournamentSystemSelect from '../tournamentInfo/TournamentSystemSelect';
+import TournamentSystemSelect from '../selects/TournamentSystemSelect';
 import Button from '../../UI/Button';
 import State from '../../UI/State';
 

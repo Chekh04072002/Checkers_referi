@@ -32,3 +32,9 @@ export async function  fetchHandler(path, succesFunction, loadingFunction, error
         errorFunction(error);
     }
 }
+
+export function paginateData (array, limit, page){
+    const startInd = (page - 1) * limit;
+    const endInd = limit * page;
+    return array.slice(startInd, endInd)
+}

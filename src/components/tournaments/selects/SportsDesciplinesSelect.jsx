@@ -7,7 +7,7 @@ const SportsDesciplinesSelect = ({value="", onChange, className}) => {
         required
         className={className}
         onChange={onChange}
-        defaultValue={value}
+        value={value}
     >
         <option disabled value="">Название дисциплины</option>
         <option value="русские шашки">русские шашки</option>

@@ -1,0 +1,13 @@
+.page {
+    width: 900px;
+    margin: 0 auto;
+    margin-top: 48px;
+}
+
+.actionBtn {
+    cursor: pointer;
+}
+
+.pagination {
+    margin-top: 16px;
+}

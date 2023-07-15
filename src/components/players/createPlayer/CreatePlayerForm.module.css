@@ -1,0 +1,18 @@
+.form {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 24px;
+}
+
+.form input, .form select {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.sportsDesciplinesSelect {
+    width: 100%;
+}
+
+.submitBtn {
+    margin-top: 12px;
+}

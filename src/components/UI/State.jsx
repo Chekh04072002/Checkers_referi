@@ -4,16 +4,19 @@ import styles from './State.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
-const State = ({isLoading, succesMessage, errorMessage}) => {
-
+const State = ({isLoading, succesMessage, errorMessage, className}) => {
+  
   if(isLoading) {
-    return <FontAwesomeIcon className={styles.loader} icon={faCircleNotch} spin />
-    //return <img className={styles.loader} src={loader} alt='Подождите...'/>;
+    return (
+      <div className={className}>
+        <FontAwesomeIcon className={styles.loader} icon={faCircleNotch} spin />
+      </div>
+    )
   }
 
   if(succesMessage) {
     return (
-      <div className={`${styles.state} ${styles.success}`}>
+      <div className={`${styles.state} ${styles.success} ${className}`}>
           <h3>{succesMessage}</h3>
       </div>
     )
@@ -21,7 +24,7 @@ const State = ({isLoading, succesMessage, errorMessage}) => {
 
   if (errorMessage) {
     return (
-      <div className={`${styles.state} ${styles.error}`}>
+      <div className={`${styles.state} ${styles.error} ${className}`}>
           <h3>{errorMessage}</h3>
       </div>
     )

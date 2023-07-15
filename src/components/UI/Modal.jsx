@@ -11,9 +11,9 @@ const Modal = ({children, setIsShownModal}) => {
 
   return (
     <div className={styles.modal} onClick={onClose} data-component="modal">
-        <span className={styles.closeButton} onClick={onClose} data-component="close-btn">&times;</span>
         <div className={styles.contentContainer}>
-            {children}
+          <span className={styles.closeButton} onClick={onClose} data-component="close-btn">&times;</span>
+          {children}
         </div>
     </div>
   )

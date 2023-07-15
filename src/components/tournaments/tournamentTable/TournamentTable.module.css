@@ -84,6 +84,7 @@
 } */
 .tdTours {
     width: 20px;
+    min-width: 85px;
     padding: 0px !important;
 }
 

@@ -1,14 +1,17 @@
 .startContainer {
-    width: 300px;
+    /* max-width: 300px; */
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     row-gap: 12px;
 }
 
 .gamesContainer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    margin: 0 auto;
     margin-top: 32px;
 }
 
@@ -24,4 +27,8 @@
     font-size: 16px !important;
     font-weight: bold;
     width: 240px;
+}
+
+.state {
+    margin-top: 16px;
 }
