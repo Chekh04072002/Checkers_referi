@@ -1,16 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { AppContext } from '../../../context/AppContext';
-import Game from './Game';
 import styles from './ToursPage.module.css';
-import commonStyles from '../../styles/Common.module.css';
 import Tour from './Tour';
 import { API_URL } from '../../../config';
-import {BiLeftArrowAlt, BiRightArrowAlt} from 'react-icons/bi';
 import { fetchHandler } from '../../../utils/utils';
 import Button from '../../UI/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import State from '../../UI/State';
 import { NotificationContext } from '../../../context/NotificationContext';
 

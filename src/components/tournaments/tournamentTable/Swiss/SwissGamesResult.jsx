@@ -8,13 +8,6 @@ const SwissGamesResult = ({currentPlayer, allPlayers, tours}) => {
         let gameResult = getPlayerScore(tour[0], currentPlayer);
         let competitorNum = getCompetitorNumber(tour[0], currentPlayer, allPlayers);
 
-        /* return <div key={`${currentPlayer._id}:${tourNumber}`}>
-                    <td >{competitorNum}</td>
-                    <td>
-                        {gameResult}
-                    </td>
-                </div> */
-
         return <td key={`${currentPlayer._id}:${tourNumber}`} className={styles.tdTourData} colSpan={2}>
                     <table className={`${styles.fullWidthElement} ${styles.tdTourContainer}`}>
                         <tbody>

@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import styles from './TournamentMenu.module.css';
 import CustomNavLink from '../UI/CustomNavLink';
 

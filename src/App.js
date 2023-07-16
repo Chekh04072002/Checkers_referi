@@ -15,6 +15,8 @@ import TournamentInfoPage from './components/tournaments/tournamentInfo/Tourname
 import TournamentPlayersPage from './components/tournaments/tournamentPlayers/TournamentPlayersPage';
 import CreatePlayerPage from './components/players/createPlayer/CreatePlayerPage';
 import AllPlayersPage from './components/players/allPlayers/AllPlayersPage';
+import PlayerProfilePage from './components/players/profile/PlayerProfilePage';
+import AllTournamentsPage from './components/tournaments/allTournamentsPage/AllTournamentsPage';
 
 function App() {
   return (
@@ -22,7 +24,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<MainLayout />}>
-            <Route index={true} element={<AllTournaments />}>
+            <Route index={true} element={<AllTournamentsPage />}>
               {/* <Route path="/:tournamentSlug" element=""></Route> */}
             </Route>
             <Route // Я вообще не понимаю, как это работает
@@ -46,7 +48,7 @@ function App() {
             {<Route path="all-players" element={<AllPlayersPage />}></Route>}
             <Route
               path="all-players/:playerSlug"
-              element={<ProfileOfPlayer />}
+              element={<PlayerProfilePage />}
             ></Route>
             <Route
               path="create-tournament"

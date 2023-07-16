@@ -32,3 +32,12 @@ export function compareByPlayerName (player1, player2){
     if(player1.playerName < player2.playerName) return -1;
     return 0;
 }
+
+export function comparePlayerStatsByTournaments(tournaments, stat1, stat2) {
+    const tournament1 = tournaments.find(tournament => tournament._id === stat1.tournamentID);
+    const tournament2 = tournaments.find(tournament => tournament._id === stat2.tournamentID);
+    const tournament1Index = tournaments.indexOf(tournament1);
+    const tournament2Index = tournaments.indexOf(tournament2);
+
+    return tournament1Index - tournament2Index;
+}

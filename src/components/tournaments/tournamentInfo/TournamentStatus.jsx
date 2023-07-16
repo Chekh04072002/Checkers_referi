@@ -10,7 +10,6 @@ const TournamentStatus = ({tournament}) => {
         else setStatus("finished")
     }
 
-    console.log(tournament)
     useEffect(getStatus, [tournament]);
 
     return (

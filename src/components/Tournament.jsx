@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import picture from '../pictures/shashki.jpeg';
-import styles from './Tournament.module.css';
+import styles from './tournaments/Tournament.module.css';
 import TournamentPlayers from './TournamentPlayers';
 import { formatDate } from '../utils/utils';
 import { API_URL } from '../config';

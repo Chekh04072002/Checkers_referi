@@ -26,10 +26,11 @@ const Pagination = ({className, currentPage, setCurrentPage, pages}) => {
                 : null
             }
             {
-                pages > 2
+                pages > 1
                 ? (
                     Array(pages).fill(0).map((page, i) => {
                         return <Button 
+                                    key={i}
                                     onClick={() => toPage(i + 1)}
                                     color={currentPage === i + 1 ? "purple" : "blue"}
                                 >{i + 1}</Button>

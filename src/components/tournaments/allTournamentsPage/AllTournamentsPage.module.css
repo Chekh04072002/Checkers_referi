@@ -1,0 +1,11 @@
+.page {
+    padding-top: 48px;
+}
+
+.tournamentsContainer {
+    display: flex;
+    justify-content: center;
+    width: 900px;
+    margin: 0 auto;
+    margin-bottom: 24px;
+}

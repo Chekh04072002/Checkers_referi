@@ -1,11 +1,10 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useEffect, useContext} from 'react'
 import { useParams } from 'react-router-dom';
 import { AppContext } from '../../../context/AppContext';
 import { fetchHandler, formatDate } from '../../../utils/utils';
 import styles from './TournamentInfoPage.module.css';
 import EditableField from '../../fields/editables/EditableField';
 import LabeledField from '../../fields/simple/LabeledField';
-import Select from '../../forms/Select';
 import TournamentSystemSelect from '../selects/TournamentSystemSelect';
 import SportsDesciplinesSelect from '../selects/SportsDesciplinesSelect';
 import ListField from '../../fields/editables/ListField';
@@ -24,35 +23,22 @@ const TournamentInfoPage = () => {
         } = useContext(NotificationContext);
         
     const {tournamentSlug: tournamentID} = useParams();
-    /* const [error, setError] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
-    const [succesMessage, setSuccesMessage] = useState(''); */
 
     const succesUpdating = (data) => {
         setTournament(data);
         showSuccessMessage("Данные турнира успешно изменены");
-        /* setIsLoading(false);
-        setSuccesMessage("Данные турнира успешно изменены");
-        setTimeout(() => setSuccesMessage(""), 2000); */
     }
 
     const errorUpdating = (error) => {
         showErrorMessage(error.message);
-        /* setIsLoading(false);
-        setError(error) */
     }
 
 
     const save = () => {
-        /* setIsLoading(false);
-        setSuccesMessage("");
-        setError({}); */
-
         fetchHandler(
             `tournaments/${tournamentID}`,
             succesUpdating,
             showLoader,
-            /* () => setIsLoading(true), */
             errorUpdating,
             {
                 method: 'PUT',
@@ -206,11 +192,6 @@ const TournamentInfoPage = () => {
                         >
                         <LabeledField label="Спортивная десциплина">{tournament.sportsDescipline}</LabeledField>
                     </EditableField>
-                    {/* <ListField  
-                        label="Группы" 
-                        defaultItems={tournament.groups} 
-                        onChange={(groups) => setTournament({...tournament, groups})}
-                    /> */}
                     <ListField 
                         label="Судьи" 
                         defaultItems={tournament.referees} 

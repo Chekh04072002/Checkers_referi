@@ -2,16 +2,14 @@ import React, {useContext, useState, useEffect} from 'react'
 import Button from '../../UI/Button'
 import LabeledComponent from '../../UI/LabeledComponent';
 import Input from '../../UI/Input';
-import Select from '../../UI/Select';
 import SportsCategorySelect from '../selects/SportsCategorySelect';
-import { AppContext } from '../../../context/AppContext';
 import State from '../../UI/State';
 import { NotificationContext } from '../../../context/NotificationContext';
 import { fetchHandler } from '../../../utils/utils';
 import styles from './CreatePlayerForm.module.css';
+import GenderSelect from '../selects/GenderSelect';
 
 const CreatePlayerForm = () => {
-    const {sportsCategories} = useContext(AppContext);
     const defaultData = {
         lastName: '',
         firstName: '',
@@ -99,7 +97,11 @@ const CreatePlayerForm = () => {
             </LabeledComponent>
 
             <LabeledComponent label="Пол">
-                <Select 
+                <GenderSelect 
+                    value={data.gender}
+                    onChange={(e) => setData({...data, gender: e.target.value})}
+                />
+                {/* <Select 
                     required 
                     value={data.gender}
                     onChange={(e) => setData({...data, gender: e.target.value})}
@@ -107,7 +109,7 @@ const CreatePlayerForm = () => {
                     <option disabled value="">Выберите пол</option>
                     <option value="Мужской">Мужской</option>
                     <option value="Женский">Женский</option>
-                </Select>
+                </Select> */}
             </LabeledComponent>
 
             <LabeledComponent label="Город">
@@ -132,7 +134,6 @@ const CreatePlayerForm = () => {
                 <SportsCategorySelect
                     value={data.sportsCategoryID}
                     onChange={(e) => setData({ ...data, sportsCategoryID: e.target.value })}
-                    sportsCategories={sportsCategories}
                 />
             </LabeledComponent>
 

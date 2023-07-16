@@ -4,17 +4,26 @@ import { AppContext } from '../../../context/AppContext'
 import PlayersList from '../playersList/PlayersList';
 import { BiTrash } from 'react-icons/bi';
 import styles from './AllPlayersPage.module.css';
-import { fetchHandler, paginateData } from '../../../utils/utils';
+import { clamp, fetchHandler, paginateData } from '../../../utils/utils';
 import { compareByName } from '../../../utils/playerComparator';
 import Pagination from '../../UI/Pagination';
 
 const AllPlayersPage = () => {
     const {players, fetchPlayers, setPlayers} = useContext(AppContext);
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(12);
+    const [limit, setLimit] = useState(10);
     const [totalPages, setTotalPages] = useState(0);
     const [paginatedPlayers, setPaginatedPlayers] = useState([]);
 
+
+    const resetPagination = () => {
+        const pages = Math.ceil(players.length / limit);
+        const currentPage = clamp(page, 1, pages);
+
+        setTotalPages(pages);
+        setPage(currentPage);
+        
+    }
 
     const deletePlayer = (e) => {
         let playerID;
@@ -33,16 +42,14 @@ const AllPlayersPage = () => {
             {method: 'DELETE'}
         )
     }
+    
 
     useEffect(fetchPlayers, []);
-    
-    useEffect(() => {
-        setTotalPages(Math.ceil(players.length / limit));
-    }, [players]);
 
+    useEffect(resetPagination, [players]);
     useEffect(() => {
-        setPaginatedPlayers(paginateData(players.sort(compareByName), limit, page))
-    }, [players, totalPages, page])
+        setPaginatedPlayers(paginateData(players.sort(compareByName), limit, page));
+    }, [players, page, totalPages])
 
     return (
         <div className={styles.page}>

@@ -99,7 +99,6 @@ const TournamentPlayersPage = () => {
         fetchPlayers();
     }, []);
 
-    console.log(players);
 
   return (
     <div className={styles.playersListContainer}>

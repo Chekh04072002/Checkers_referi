@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Tournament.module.css';
+import styles from './tournaments/Tournament.module.css';
 import { API_URL } from '../config';
 
 function TournamentPlayers({ id }) {

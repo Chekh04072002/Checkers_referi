@@ -11,10 +11,6 @@ const SwissTournamentTable = ({playersStats, tours}) => {
     }))
   }
 
-  console.log(tours)
-  console.log(tours.length);
-  console.log(tours.length * 2);
-
   return (
       <div className={styles.tableContainer}>
         <table className={styles.table}>
@@ -62,43 +58,4 @@ const SwissTournamentTable = ({playersStats, tours}) => {
       
   )
 }
-
-{/* <div className={styles.tableContainer}>
-      <div className={styles.table}>
-        <header className={`${styles.tableHeader} ${styles.row}`}>
-          <div>Место</div>
-          <div>№ п/п</div>
-          <div>
-            Фамилия, имя, отчество
-          </div>
-          <div>Год рожд.</div>
-          <div>Спорт. разряд</div>
-          <div>Город</div>
-          <div>Спорт. организ.</div>
-          <div className={`${styles.tdCompetitors}`}>
-            <div>
-              Движение по турам
-            </div>
-            <div className={styles.toursNumberContainer} style={{gridTemplateColumns: `repeat(${tours.length * 2}, 0.5fr)`}}>
-              {tours.map((tour, i) => {
-                return <div key={i}>{i + 1}</div>
-              })}
-            </div>
-            
-          </div>
-          <div>Очки</div>
-          <div>КГ</div>
-          <div>РА</div>
-        </header>
-        {playersStats.map((playerStats, i) => {
-          return <SwissPlayerStats
-                    key={playerStats._id} 
-                    index={i}
-                    playerStats={playerStats}
-                    allPlayers={playersStats}
-                    playerGames={getPlayerTours(playerStats)}
-                  />
-        })}
-      </div> */}
-
 export default SwissTournamentTable

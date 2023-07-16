@@ -1,5 +1,4 @@
 import React from 'react'
-import draughts from '../../../../pictures/Draughts.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHockeyPuck } from '@fortawesome/free-solid-svg-icons';
 import styles from './RoundTable.module.css';
@@ -14,7 +13,7 @@ const RoundGamesResult = ({index, currentPlayer, allPlayers, games}) => {
 
     let gameResult = 0;
     const game = games.find((g) => player._id === g.player1StatsID || player._id === g.player2StatsID);
-    console.log(game);
+
     if(game) gameResult = getPlayerScore(game, currentPlayer);
 
     return <td key={i} className={`${styles.tdScore} ${styles.td40}`}>{gameResult}</td>;

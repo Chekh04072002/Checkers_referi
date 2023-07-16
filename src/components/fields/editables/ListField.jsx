@@ -29,8 +29,6 @@ const ListField = ({label, defaultItems, onChange}) => {
 
     useEffect(() => setItems(defaultItems || []),[defaultItems])
 
-    console.log(defaultItems);
-    console.log(items);
     return (
         <div className={styles.listBlock}>
             {

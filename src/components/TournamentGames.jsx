@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import picture from '../pictures/shashki.jpeg';
-import styles from './Tournament.module.css';
+import styles from './tournaments/Tournament.module.css';
 import Tour from './Tour';
 import stylesGame from './Game.module.css';
-import stylesT from './Tournament.module.css';
+import stylesT from './tournaments/Tournament.module.css';
 import { API_URL } from '../config';
 
 const TournamentGames = ({ data }) => {

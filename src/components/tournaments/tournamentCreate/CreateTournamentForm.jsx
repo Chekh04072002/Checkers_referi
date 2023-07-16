@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import styles from './CreateTournamentForm.module.css';
-import LabeledInput from '../../UI/LabeledInput';
-import LabeledSelect from '../../UI/LabeledSelect';
 import SportsDesciplinesSelect from '../selects/SportsDesciplinesSelect';
 import LabeledComponent from '../../UI/LabeledComponent';
 import Input from '../../UI/Input';

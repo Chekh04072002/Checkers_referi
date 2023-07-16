@@ -12,13 +12,11 @@ const SearchPlayersForm = ({className, players, onAddPlayer}) => {
     const [filteredPlayers, setFilteredPlayers] = useState(players);
 
     const filteringPlayers = () => {
-        console.log(tournament.playersIDs);
         setFilteredPlayers(players.filter(player => {
             return !tournament.playersIDs.includes(player._id) && (
                         `${player.lastName} ${player.firstName} ${player.middleName}`.includes(filter) ||
                         player.region.includes(filter)
                     );
-                   
         }));
     }
 

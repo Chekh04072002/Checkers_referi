@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Select from '../../UI/Select'
+import { AppContext } from '../../../context/AppContext'
 
 const SportsCategorySelect = ({
     onChange, 
     value='', 
     className, 
-    sportsCategories
 }) => {
+
+  const {sportsCategories} = useContext(AppContext);
+
   return (
     <Select 
         required

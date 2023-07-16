@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react'
 import { formatDate } from '../../../utils/utils'
-import { BiTrash, BiIdCard } from 'react-icons/bi';
+import { BiIdCard } from 'react-icons/bi';
 import styles from './PlayersList.module.css';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from '../../../config';
 
 
 const PlayersList = ({players, actionLabel, actionButton}) => {

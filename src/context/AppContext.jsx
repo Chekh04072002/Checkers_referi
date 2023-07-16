@@ -39,7 +39,7 @@ const AppProvider = ({children}) => {
 
     const fetchPlayers = () => {
         fetchHandler(
-            `players?limit=100000`,
+            `players?limit=1000000`,
             data => setPlayers(data),
             () => null,
             error => console.error(error),

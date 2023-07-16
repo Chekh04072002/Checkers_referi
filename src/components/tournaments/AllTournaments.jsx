@@ -4,7 +4,7 @@ import {
   MdOutlineArrowBackIos,
 } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import styles from '../Tournament.module.css';
+import styles from './Tournament.module.css';
 import MapTournament from '../MapTournament';
 import { API_URL } from "../../config";
 import Button from '../UI/Button';
@@ -42,7 +42,9 @@ const AllTournaments = () => {
     .catch((error) => console.error(error));
   }
 
-  //TODO переделать
+  useEffect(() => setTotalPage(Math.ceil(arrayTournaments.length / 9)), [arrayTournaments])
+
+  //TODO переделать, при удалении турнира обновлять пагинацию
   return (
     <div
       style={{
