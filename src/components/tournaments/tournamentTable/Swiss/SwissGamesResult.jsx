@@ -24,6 +24,8 @@ const SwissGamesResult = ({currentPlayer, allPlayers, tours}) => {
 
     const getPlayerScore = (game, player) => {
         if(!game) return;
+        if(game.player1Score === 0 && game.player2Score === 0) return '';
+
         if(player._id === game.player1StatsID){
             return game.player1Score;
         }

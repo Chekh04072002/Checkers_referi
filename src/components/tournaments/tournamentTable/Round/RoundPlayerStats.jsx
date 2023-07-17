@@ -9,7 +9,7 @@ const RoundPlayerStats = ({index, playerStats, allPlayers, playerGames}) => {
       <td>{new Date(playerStats.birthday).getFullYear()}</td>
       <td>{playerStats.sportsCategoryAbbr}</td>
       <td>{playerStats.region}</td>
-      <td>ФШ</td>
+      <td>{playerStats.sportsOrganization}</td>
       <RoundGamesResult
         key={playerStats._id} 
         index={index}
@@ -20,7 +20,6 @@ const RoundPlayerStats = ({index, playerStats, allPlayers, playerGames}) => {
       <td>{playerStats.score}</td>
       <td>{playerStats.gorinRank}</td>
       <td>{playerStats.lastAdamovichRank.toFixed(2)}</td>
-      <td>{playerStats.place}</td>
     </tr>
   )
 }

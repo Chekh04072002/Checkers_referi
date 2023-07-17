@@ -4,13 +4,12 @@ import SwissGamesResult from './SwissGamesResult'
 const SwissPlayerStats = ({index, playerStats, allPlayers, playerGames}) => {
   return (
     <tr>
-      <td>{playerStats.place}</td>
       <td>{index + 1}</td>
       <td>{playerStats.playerName}</td>
       <td>{new Date(playerStats.birthday).getFullYear()}</td>
       <td>{playerStats.sportsCategoryAbbr}</td>
       <td>{playerStats.region}</td>
-      <td>ФШ</td>
+      <td>{playerStats.sportsOrganization}</td>
       <SwissGamesResult
         currentPlayer={playerStats}
         allPlayers={allPlayers}

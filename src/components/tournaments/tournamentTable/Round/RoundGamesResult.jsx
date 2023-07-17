@@ -11,21 +11,24 @@ const RoundGamesResult = ({index, currentPlayer, allPlayers, games}) => {
                 </td>;
     }
 
-    let gameResult = 0;
     const game = games.find((g) => player._id === g.player1StatsID || player._id === g.player2StatsID);
+    let gameResult = getPlayerScore(game, currentPlayer);
 
-    if(game) gameResult = getPlayerScore(game, currentPlayer);
+    //if(game) gameResult = getPlayerScore(game, currentPlayer);
 
     return <td key={i} className={`${styles.tdScore} ${styles.td40}`}>{gameResult}</td>;
   }
 
   const getPlayerScore = (game, player) => {
-      if(player._id === game.player1StatsID){
-          return game.player1Score;
-      }
-      else {
-        return game.player2Score;
-      }
+    if(!game) return;
+    if(game.player1Score === 0 && game.player2Score === 0) return '';
+
+	if(player._id === game.player1StatsID){
+		return game.player1Score;
+	}
+	else if(player._id === game.player2StatsID) {
+		return game.player2Score;
+	}
   }
 
   return (

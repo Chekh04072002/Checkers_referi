@@ -16,15 +16,14 @@ const SwissTournamentTable = ({playersStats, tours}) => {
         <table className={styles.table}>
           <thead className={styles.tableHeader}>
             <tr>
-              <th className={styles.tdPlace}>Место</th>
               <th className={styles.tdNumber}>№ п/п</th>
               <th style={{ justifyContent: 'center' }} className={styles.tdName}>
                 Фамилия, имя, отчество
               </th>
               <th className={styles.tdBirthday}>Год рожд.</th>
               <th className={styles.tdSportsCategory}>Спорт. разряд</th>
-              <th className={styles.tdCity}>Город</th>
-              <th className={styles.tdSportsOrganization}>Спорт. организ.</th>
+              <th className={styles.tdCity}>Регион, Город</th>
+              <th className={styles.tdSportsOrganization}>Команда, Спорторганизация</th>
               <th className={`${styles.tdTours}`} colSpan={tours.length * 2}>
                 <table className={`${styles.table} ${styles.fullWidth}`}>
                   <tbody>

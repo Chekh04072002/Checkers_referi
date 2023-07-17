@@ -15,8 +15,8 @@ const RoundTournamentTable = ({playersStats, games}) => {
             </th>
             <th className={styles.tdBirthday}>Год рожд.</th>
             <th className={styles.tdSportsCategory}>Спорт. разряд</th>
-            <th className={styles.tdCity}>Город</th>
-            <th className={styles.tdSportsOrganization}>Спорт. организ.</th>
+            <th className={styles.tdCity}>Регион, Город</th>
+            <th className={styles.tdSportsOrganization}>Команда, Спорторганизация</th>
             <th className={styles.tdTours} colSpan={playersStats.length}>
               <table className={`${styles.table} ${styles.fullWidth}`}>
                 <tbody>
@@ -30,7 +30,6 @@ const RoundTournamentTable = ({playersStats, games}) => {
             <th className={styles.tdScore}>Очки</th>
             <th className={styles.tdGorinRank}>КГ</th>
             <th className={styles.tdAdamovichRank}>РА</th>
-            <th className={styles.tdPlace}>Место</th>
           </tr>
         </thead>
         <tbody>

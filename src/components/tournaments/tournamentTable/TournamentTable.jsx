@@ -5,6 +5,8 @@ import RoundTournamentTable from './Round/RoundTournamentTable';
 import SwissTournamentTable from './Swiss/SwissTournamentTable';
 import {AppContext} from '../../../context/AppContext';
 import {compareByPlace, compareByScore} from '../../../utils/playerStatsComparator';
+import { formatDate } from '../../../utils/utils';
+import styles from './TournamentTable.module.css';
 
 const TournamentTable = () => {
   const {tournament, 
@@ -29,9 +31,32 @@ const TournamentTable = () => {
 
   return (
       tournament?.isStarted && games.length > 0 && playersStats.length > 0
-      ? tournament?.tournamentSystem === "Круговая" 
-        ? <RoundTournamentTable  playersStats={sortingPlayersStats(playersStats)} games={games.reduce((allGames, tour) => [...allGames, ...tour])}/>
-        : <SwissTournamentTable playersStats={sortingPlayersStats(playersStats)} tours={games}/>
+      ? (
+        <div>
+          <div>
+            <h2>{tournament.title}</h2>
+            {
+              tournament?.tournamentSystem === "Швейцарская" 
+              ? <h3>Тур: №{tournament.currentTour}</h3>
+              : null
+            }
+            <div className={styles.subHeader}>
+              {
+                tournament.startDate || tournament.endDate
+                ? <span>{`C ${formatDate(tournament.startDate)} - По ${formatDate(tournament.endDate)}`}</span>
+                : null
+              }
+              <span>{`${tournament.country}, ${tournament.region}, ${tournament.city}`}</span>
+            </div>
+          </div>
+          {
+            tournament?.tournamentSystem === "Круговая" 
+            ? <RoundTournamentTable  playersStats={sortingPlayersStats(playersStats)} games={games.reduce((allGames, tour) => [...allGames, ...tour])}/>
+            : <SwissTournamentTable playersStats={sortingPlayersStats(playersStats)} tours={games}/>
+          }
+        </div>
+        
+      )
       : <h1>Турнир еще не стартовал</h1>
   );
 }
