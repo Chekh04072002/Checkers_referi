@@ -15,7 +15,7 @@ const SwissPlayerStats = ({index, playerStats, allPlayers, playerGames}) => {
         allPlayers={allPlayers}
         tours={playerGames}
       />
-      <td>{playerStats.score}</td>
+      <td>{playerStats.score} ({playerStats.normScore})</td>
       <td>{playerStats.gorinRank}</td>
       <td>{playerStats.lastAdamovichRank.toFixed(2)}</td>
     </tr>
