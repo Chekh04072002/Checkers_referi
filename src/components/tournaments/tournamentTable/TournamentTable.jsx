@@ -35,11 +35,13 @@ const TournamentTable = () => {
         <div>
           <div>
             <h2>{tournament.title}</h2>
-            {
-              tournament?.tournamentSystem === "Швейцарская" 
-              ? <h3>Тур: №{tournament.currentTour}</h3>
-              : null
-            }
+            <h3>
+              {
+                tournament.isFinished
+                ? "Турнир завершен"
+                : `Тур: №${tournament.currentTour}`
+              }
+            </h3>
             <div className={styles.subHeader}>
               {
                 tournament.startDate || tournament.endDate

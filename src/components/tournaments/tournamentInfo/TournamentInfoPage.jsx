@@ -50,6 +50,21 @@ const TournamentInfoPage = () => {
         );
     }
 
+    async function restart() {
+        fetchHandler(
+            `tournaments/restart/${tournamentID}`,
+            (data) => {
+                resetNotification();
+                setTournament(data);
+            },
+            showLoader,
+            (error) => {
+                console.error(error);
+                showErrorMessage(error.message);
+            },
+            {method: 'PUT'}
+        )
+    }
 
     useEffect(() => {
         resetNotification();
@@ -221,8 +236,13 @@ const TournamentInfoPage = () => {
                         </div>
 
                         <div className={styles.infoFooter}>
-                            <State isLoading={isLoading} errorMessage={errorMessage} succesMessage={succesMessage}/>
-                            <Button disabled={isLoading} className={styles.saveBtn} onClick={save} color="blue">Сохранить</Button>
+                            <div className={styles.left}>
+                                <Button disabled={isLoading} color="red" onClick={restart}>Перезапустить турнир</Button>
+                            </div>
+                            <div className={styles.right}>
+                                <State isLoading={isLoading} errorMessage={errorMessage} succesMessage={succesMessage}/>
+                                <Button disabled={isLoading} className={styles.saveBtn} onClick={save} color="blue">Сохранить</Button>
+                            </div>
                         </div>
                     </Fragment>
                 )

@@ -20,7 +20,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
         tournamentSystem: '',
         startDate: '',
         endDate: '',
-        sportsFaciliy: '',
+        sportsFacility: '',
     });
 
 
@@ -121,8 +121,8 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
         <LabeledComponent label="Спортивное сооружение:">
           <Input 
             placeholder="Спортивное сооружение"
-            value={data.sportsFaciliy}
-            onChange={(e) => setData({ ...data, sportsFaciliy: e.target.value })}
+            value={data.sportsFacility}
+            onChange={(e) => setData({ ...data, sportsFacility: e.target.value })}
           />
         </LabeledComponent>
         

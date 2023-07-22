@@ -38,7 +38,6 @@ const ToursPage = () => {
             `tournaments/start/${tournamentID}`,
             (data) => {
                 setTournament(data);
-                fetchGames(tournamentID);
                 resetNotification();
             },
             showLoader,
@@ -55,7 +54,6 @@ const ToursPage = () => {
             `tournaments/finish-tour/${tournamentID}`,
             (data) => {
                 setTournament(data);
-                fetchGames(tournamentID);
                 resetNotification();
             },
             showLoader,
@@ -83,8 +81,8 @@ const ToursPage = () => {
         );
     }
 
-    async function resetTournament() {
-        try {
+    async function restartTournament() {
+        /* try {
             await fetch(`${API_URL}games`, { method: 'DELETE' });
             await fetch(`${API_URL}player-stats`, {
                 method: 'DELETE',
@@ -107,7 +105,7 @@ const ToursPage = () => {
             fetchTournament(tournamentID);
         } catch (error) {
             console.log(error);
-        }
+        } */
     }
 
     //TODO добавить заврешение турнира и тура
@@ -120,6 +118,7 @@ const ToursPage = () => {
 
     useEffect(() => {
         showLastTour();
+        fetchGames(tournamentID);
     }, [tournament]);
 
 
@@ -139,16 +138,15 @@ const ToursPage = () => {
                                     : null
                                 }
                                 {
-                                    tour < tournament.toursCount && games[tour]
-                                    ?<Button onClick={nextTour} color="blue"><FontAwesomeIcon icon={faChevronRight} /></Button>
-                                    :null
-                                }
-                                {
-                                    tournament.tournamentSystem === "Швейцарская" && 
                                     tour === tournament.currentTour && 
                                     tour !== tournament.toursCount
                                     ? <Button disabled={isLoading} color="purple" className={styles.actionButton} onClick={finishTour}>Завершить тур</Button>
                                     : null
+                                }
+                                {
+                                    tour < tournament.toursCount && games[tour]
+                                    ?<Button onClick={nextTour} color="blue"><FontAwesomeIcon icon={faChevronRight} /></Button>
+                                    :null
                                 }
                                 {
                                     tour === tournament.toursCount && tournament.isStarted && !tournament.isFinished

@@ -10,20 +10,20 @@ import Pagination from '../../UI/Pagination';
 
 const AllPlayersPage = () => {
     const {players, fetchPlayers, setPlayers} = useContext(AppContext);
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(10);
-    const [totalPages, setTotalPages] = useState(0);
-    const [paginatedPlayers, setPaginatedPlayers] = useState([]);
+    //const [page, setPage] = useState(1);
+   // const [limit, setLimit] = useState(10);
+    //const [totalPages, setTotalPages] = useState(0);
+    //const [paginatedPlayers, setPaginatedPlayers] = useState([]);
 
 
-    const resetPagination = () => {
+    /* const resetPagination = () => {
         const pages = Math.ceil(players.length / limit);
         const currentPage = clamp(page, 1, pages);
 
         setTotalPages(pages);
         setPage(currentPage);
         
-    }
+    } */
 
     const deletePlayer = (e) => {
         let playerID;
@@ -46,23 +46,17 @@ const AllPlayersPage = () => {
 
     useEffect(fetchPlayers, []);
 
-    useEffect(resetPagination, [players]);
+    /* useEffect(resetPagination, [players]);
     useEffect(() => {
         setPaginatedPlayers(paginateData(players.sort(compareByName), limit, page));
-    }, [players, page, totalPages])
+    }, [players, page, totalPages]) */
 
     return (
         <div className={styles.page}>
             <PlayersList 
-                players={paginatedPlayers}
+                players={players.sort(compareByName)}
                 actionLabel="Удалить"
                 actionButton={<BiTrash className={styles.actionBtn} onClick={deletePlayer}/>}
-            />
-            <Pagination
-                className={styles.pagination} 
-                currentPage={page}
-                setCurrentPage={setPage}
-                pages={totalPages}
             />
         </div>
     )
