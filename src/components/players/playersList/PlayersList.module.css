@@ -10,7 +10,7 @@
 .row {
     display: grid;
     column-gap: 18px;
-    grid-template-columns: 4fr 2fr 1.5fr 1fr 1.5fr 1fr 1fr;   
+    grid-template-columns: 280px 2fr 1.5fr 1fr 1.5fr 1fr 1fr;   
     align-items: center;
     justify-items: center;
     color: rgb(54, 54, 54);
