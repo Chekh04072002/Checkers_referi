@@ -12,6 +12,7 @@ import PlayersList from '../../players/playersList/PlayersList';
 import SearchPlayersForm from '../../players/searchPlayers/SearchPlayersForm';
 import styles from './TournamentPlayersPage.module.css';
 import stylesCommon from '../../styles/Common.module.css';
+import { compareByName } from '../../../utils/playerComparator';
 
 const TournamentPlayersPage = () => {
     const {tournament, players, fetchPlayers, setTournament, fetchTournament} = useContext(AppContext);
@@ -113,7 +114,7 @@ const TournamentPlayersPage = () => {
             {
                 tournamentPlayers.length > 0
                 ?<PlayersList 
-                    players={tournamentPlayers} 
+                    players={tournamentPlayers.sort(compareByName)} 
                     actionLabel="Удалить" 
                     actionButton={<BiTrash className={stylesCommon.clickable} onClick={deletePlayer}/>}
                 />

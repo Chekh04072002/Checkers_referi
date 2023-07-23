@@ -14,7 +14,7 @@ const PlayersList = ({players, actionLabel, actionButton}) => {
                 ? (
                     <Fragment>
                         <div className={`${styles.row} ${styles.header}`}>
-                            <div>Имя</div>
+                            <div className={styles.left}>Имя</div>
                             <div>Дата рождения</div>
                             <div>Регион</div>
                             <div>Разряд</div>
@@ -31,7 +31,7 @@ const PlayersList = ({players, actionLabel, actionButton}) => {
                                             className={`${styles.row} ${styles.playerItem}`}
                                             data-id={player._id}
                                         >
-                                            <div className={styles.playerName}>
+                                            <div className={`${styles.playerName} ${styles.left}`}>
                                                 {player.lastName} {player.firstName} {player.middleName} 
                                             </div>
                                             <div>{formatDate(player.birthday)}</div>

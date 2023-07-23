@@ -196,7 +196,7 @@ const PlayerProfilePage = () => {
                                 onChange={(e) => setPlayer({...player, currentAdamovichRank: e.target.value.replace(',', '.')})}
                             />
                         }>
-                            <LabeledField label="Рейтинг Адамовича">{player.currentAdamovichRank.toFixed(2)}</LabeledField>
+                            <LabeledField label="Рейтинг Адамовича">{player.currentAdamovichRank?.toFixed(2)}</LabeledField>
                         </EditableField>
                     </div>
                 </main>
