@@ -16,7 +16,7 @@ const PlayersList = ({players, actionLabel, actionButton}) => {
                         <div className={`${styles.row} ${styles.header}`}>
                             <div className={styles.left}>Имя</div>
                             <div className={styles.birthday}>Дата рождения</div>
-                            <div className={`${styles.left} ${styles.region}`}>Регион</div>
+                            <div className={`${styles.region}`}>Регион</div>
                             <div className={styles.sportsCategoryAbbr}>Разряд</div>
                             <div>Рейтинг Адамовича</div>
                             <div>Профиль</div>
@@ -35,7 +35,7 @@ const PlayersList = ({players, actionLabel, actionButton}) => {
                                                 {player.lastName} {player.firstName} {player.middleName} 
                                             </div>
                                             <div>{formatDate(player.birthday)}</div>
-                                            <div className={`${styles.left}`}>{player.region}</div>
+                                            <div>{player.region}</div>
                                             <div>{player.sportsCategoryAbbr}</div>
                                             <div>{player.currentAdamovichRank.toFixed(2)}</div>
                                             <NavLink to={`/all-players/${player._id}`}>

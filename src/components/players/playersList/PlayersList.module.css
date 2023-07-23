@@ -10,7 +10,7 @@
 .row {
     display: grid;
     column-gap: 18px;
-    grid-template-columns: 280px 2fr 1.5fr 1fr 1.5fr 1fr 1fr;   
+    grid-template-columns: 280px 120px 120px 80px 80px 80px 80px;   
     align-items: center;
     justify-items: center;
     color: rgb(54, 54, 54);
@@ -42,14 +42,14 @@
     cursor: pointer;
 }
 
-.birthday {
+/* .birthday {
     padding-left: 20px;
-}
+} */
 
-.sportsCategoryAbbr {
+/* .sportsCategoryAbbr {
     padding-left: 20px;
-}
+} */
 
-.region {
+/* .region {
     padding-left: 14px;
-}
+} */
