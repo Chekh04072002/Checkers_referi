@@ -41,3 +41,15 @@
 .button {
     cursor: pointer;
 }
+
+.birthday {
+    padding-left: 20px;
+}
+
+.sportsCategoryAbbr {
+    padding-left: 20px;
+}
+
+.region {
+    padding-left: 14px;
+}

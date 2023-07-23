@@ -15,9 +15,9 @@ const PlayersList = ({players, actionLabel, actionButton}) => {
                     <Fragment>
                         <div className={`${styles.row} ${styles.header}`}>
                             <div className={styles.left}>Имя</div>
-                            <div>Дата рождения</div>
-                            <div>Регион</div>
-                            <div>Разряд</div>
+                            <div className={styles.birthday}>Дата рождения</div>
+                            <div className={`${styles.left} ${styles.region}`}>Регион</div>
+                            <div className={styles.sportsCategoryAbbr}>Разряд</div>
                             <div>Рейтинг Адамовича</div>
                             <div>Профиль</div>
                             {actionLabel ? <div>{actionLabel}</div> : null}
@@ -28,14 +28,14 @@ const PlayersList = ({players, actionLabel, actionButton}) => {
                                     return (
                                         <div 
                                             key={player._id} 
-                                            className={`${styles.row} ${styles.playerItem}`}
+                                            className={`${styles.row}`}
                                             data-id={player._id}
                                         >
                                             <div className={`${styles.playerName} ${styles.left}`}>
                                                 {player.lastName} {player.firstName} {player.middleName} 
                                             </div>
                                             <div>{formatDate(player.birthday)}</div>
-                                            <div>{player.region}</div>
+                                            <div className={`${styles.left}`}>{player.region}</div>
                                             <div>{player.sportsCategoryAbbr}</div>
                                             <div>{player.currentAdamovichRank.toFixed(2)}</div>
                                             <NavLink to={`/all-players/${player._id}`}>
