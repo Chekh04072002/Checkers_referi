@@ -25,9 +25,12 @@ const TournamentTable = () => {
 
   useEffect(() => {
     fetchTournament(params.tournamentSlug);
+  }, []);
+
+  useEffect(() => {
     fetchPlayersStats(params.tournamentSlug);
     fetchGames(params.tournamentSlug);
-  }, []);
+  }, [tournament])
 
   return (
       tournament?.isStarted && games.length > 0 && playersStats.length > 0
