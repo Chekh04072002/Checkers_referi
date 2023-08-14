@@ -5,6 +5,7 @@ import { AppContext } from '../../../context/AppContext';
 import { BiAddToQueue} from 'react-icons/bi';
 import styles from './SearchPlayersForm.module.css';
 import stylesCommon from '../../styles/Common.module.css';
+import { compareByName } from '../../../utils/playerComparator';
 
 const SearchPlayersForm = ({className, players, onAddPlayer}) => {
     const {tournament} = useContext(AppContext);
@@ -12,12 +13,17 @@ const SearchPlayersForm = ({className, players, onAddPlayer}) => {
     const [filteredPlayers, setFilteredPlayers] = useState(players);
 
     const filteringPlayers = () => {
-        setFilteredPlayers(players.filter(player => {
+        const fPlayers = players.filter(player => {
+            const lowerFilter = filter.toLowerCase();
+
             return !tournament.playersIDs.includes(player._id) && (
-                        `${player.lastName} ${player.firstName} ${player.middleName}`.includes(filter) ||
-                        player.region.includes(filter)
+                        `${player.lastName} ${player.firstName} ${player.middleName}`.toLowerCase().includes(lowerFilter) ||
+                        player.region.toLowerCase().includes(lowerFilter)
                     );
-        }));
+        });
+        const sortedPlayers = fPlayers.sort(compareByName);
+        
+        setFilteredPlayers(sortedPlayers);
     }
 
     useEffect(filteringPlayers, [filter, players, tournament]);

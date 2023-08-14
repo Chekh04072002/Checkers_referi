@@ -15,6 +15,7 @@ const Menu = () => {
         <NavLink to="all-players">Все игроки</NavLink>
         <NavLink to="create-tournament">Создать турнир</NavLink>
         <NavLink to="registration-player">Зарегистрировать игрока</NavLink>
+        {/* <NavLink to="auth">Войти</NavLink> */}
       </div>
     </nav>
   );

@@ -71,7 +71,6 @@ const TournamentInfoPage = () => {
         fetchTournament(tournamentID);
     }, []);
 
-
     //TODO разобраться где какое поле должно быть
 
     return (
@@ -197,6 +196,18 @@ const TournamentInfoPage = () => {
                                         />}
                                     >
                                         <LabeledField label="Система турнира">{tournament.tournamentSystem}</LabeledField>
+                                    </EditableField>
+                                    
+                                    <EditableField editComponent={
+                                        <Input 
+                                            type='number'
+                                            min={0}
+                                            className={styles.input} 
+                                            onChange={(e) => setTournament({...tournament, toursCount: Number(e.target.value)})} 
+                                            value={tournament.toursCount}
+                                        />}
+                                    >
+                                        <LabeledField label="Количество туров">{tournament.toursCount}</LabeledField>
                                     </EditableField>
 
                                     <EditableField editComponent={

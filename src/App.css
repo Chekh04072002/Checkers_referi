@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.scrollBlock {
+  overflow: hidden;
+}
+
 /* Навигация  */
 /* .active {
   font-weight: bold;

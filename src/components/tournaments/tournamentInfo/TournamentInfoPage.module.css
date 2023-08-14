@@ -68,3 +68,9 @@
     margin-top: 24px;
 }
 
+.infoFooter div {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    max-width: 500px;
+}

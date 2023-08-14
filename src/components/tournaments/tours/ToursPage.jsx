@@ -18,7 +18,7 @@ const ToursPage = () => {
     const [tour, setTour] = useState(0);
 
     const showLastTour = () => {
-        setTour(tournament.currentTour);
+        setTour(tournament?.currentTour);
     }
 
     const prevTour = () => {

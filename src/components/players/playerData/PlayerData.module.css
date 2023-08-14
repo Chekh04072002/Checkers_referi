@@ -1,0 +1,19 @@
+.left {
+    width: 100%;
+    text-align: left;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.link {
+    color:rgb(10, 82, 164);
+    /* text-underline-offset: 2px; */
+    text-decoration: none;
+}
+
+.link:hover {
+    font-weight: normal;
+    color:rgb(7, 60, 120);
+}

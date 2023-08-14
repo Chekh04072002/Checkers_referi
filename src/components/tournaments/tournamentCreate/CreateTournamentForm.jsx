@@ -20,6 +20,7 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
         tournamentSystem: '',
         startDate: '',
         endDate: '',
+        toursCount: 0,
         sportsFacility: '',
     });
 
@@ -115,6 +116,15 @@ const CreateTournamentForm = ({className, onSubmit, isLoading, succesMessage, er
             type='date'
             value={data.endDate}
             onChange={(e) =>  setData({ ...data, endDate: e.target.value })}
+          />
+        </LabeledComponent>
+        
+        <LabeledComponent label="Количество туров:">
+          <Input 
+            type='number'
+            min={0}
+            value={data.toursCount}
+            onChange={(e) =>  setData({ ...data, toursCount: e.target.value })}
           />
         </LabeledComponent>
 

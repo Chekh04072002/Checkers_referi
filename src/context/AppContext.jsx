@@ -3,11 +3,13 @@ import { API_URL } from "../config";
 import { fetchHandler } from "../utils/utils";
 
 const defaultValue = {
+    canScroll: true,
     tournament: null,
     players: [],
     games: [],
     playersStats: [],
     sportsCategories: [],
+    setCanScroll: (state) => null,
     setTournament: (tournament) => null,
     setPlayers: (players) => null,
     fetchPlayers: () => [],
@@ -22,6 +24,7 @@ const defaultValue = {
 export const AppContext = createContext(defaultValue);
 
 const AppProvider = ({children}) => {
+    const [canScroll, setCanScroll] = useState(true);
     const [tournament, setTournament] = useState({});
     const [players, setPlayers] = useState([]);
     const [games, setGames] = useState([]);
@@ -115,12 +118,19 @@ const AppProvider = ({children}) => {
         fetchSportsCategories();
     }, []);
 
+    useEffect(() => {
+        if(canScroll) document.body.style.overflow = "auto";
+        else document.body.style.overflow = "hidden";
+    }, [canScroll])
+
     const value = {
+        canScroll,
         tournament,
         players, 
         games,
         playersStats,
         sportsCategories,
+        setCanScroll,
         setTournament,
         setPlayers,
         fetchTournament,

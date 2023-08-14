@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { useContext } from 'react'
-import { AppContext } from '../../../context/AppContext'
+import React, { useEffect} from 'react'
 import PlayersList from '../playersList/PlayersList';
 import { BiTrash } from 'react-icons/bi';
 import styles from './AllPlayersPage.module.css';
-import { clamp, fetchHandler, paginateData } from '../../../utils/utils';
-import { compareByName } from '../../../utils/playerComparator';
-import Pagination from '../../UI/Pagination';
+import { useDeletePlayerMutation, useLazyGetPlayersQuery } from '../../../redux/api/Players.api';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAllPlayers } from '../../../redux/reducers/Players.selector';
+import useActions from '../../../hooks/useActions';
 
 const AllPlayersPage = () => {
-    const {players, fetchPlayers, setPlayers} = useContext(AppContext);
+    //const dispatch = useDispatch();
+    const {setPlayers} = useActions();
+    const [getPlayers, response] = useLazyGetPlayersQuery();
+    const [deletePlayerReq] = useDeletePlayerMutation();
+    const players = useSelector(selectAllPlayers);
+
+    //const {players, fetchPlayers, setPlayers} = useContext(AppContext);
     //const [page, setPage] = useState(1);
    // const [limit, setLimit] = useState(10);
     //const [totalPages, setTotalPages] = useState(0);
@@ -25,7 +30,7 @@ const AllPlayersPage = () => {
         
     } */
 
-    const deletePlayer = (e) => {
+    const deletePlayer = async (e) => {
         let playerID;
 
         if(e.target.tagName === "path") {
@@ -34,27 +39,32 @@ const AllPlayersPage = () => {
             playerID = e.target.parentElement.dataset.id;
         }
 
-        fetchHandler(
-            `players/${playerID}`,
-            () => setPlayers(players.filter(p => p._id !== playerID)),
-            () => null,
-            (error) => console.error(error),
-            {method: 'DELETE'}
-        )
+        await deletePlayerReq(playerID);
+        getPlayers();
     }
     
+    useEffect(() => {
+        getPlayers();
+    }, []);
 
-    useEffect(fetchPlayers, []);
+    useEffect(() => {
+        if(response.data && response.data.length > 0) {
+            //dispatch(setPlayers(response.data));
+            setPlayers(response.data);
+        }
+    }, [response]);
+
+
+    //useEffect(fetchPlayers, []);
 
     /* useEffect(resetPagination, [players]);
     useEffect(() => {
         setPaginatedPlayers(paginateData(players.sort(compareByName), limit, page));
     }, [players, page, totalPages]) */
-
     return (
         <div className={styles.page}>
             <PlayersList 
-                players={players.sort(compareByName)}
+                players={players}
                 actionLabel="Удалить"
                 actionButton={<BiTrash className={styles.actionBtn} onClick={deletePlayer}/>}
             />

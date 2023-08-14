@@ -2,6 +2,10 @@
     padding: 0px !important;
 }
 
+.tdName {
+    text-align: left;
+}
+
 .tdTourNumber {
     min-width: 30px;
     max-width: 30px;

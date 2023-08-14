@@ -17,6 +17,7 @@ import CreatePlayerPage from './components/players/createPlayer/CreatePlayerPage
 import AllPlayersPage from './components/players/allPlayers/AllPlayersPage';
 import PlayerProfilePage from './components/players/profile/PlayerProfilePage';
 import AllTournamentsPage from './components/tournaments/allTournamentsPage/AllTournamentsPage';
+import AuthorizationPage from './components/authorization/page/AuthorizationPage';
 
 function App() {
   return (
@@ -24,9 +25,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<MainLayout />}>
-            <Route index={true} element={<AllTournamentsPage />}>
-              {/* <Route path="/:tournamentSlug" element=""></Route> */}
-            </Route>
+            <Route index={true} element={<AllTournamentsPage />} />
             <Route // Я вообще не понимаю, как это работает
               path="Tournament/:tournamentSlug"
               element={<TournamentLayout />}
@@ -44,8 +43,7 @@ function App() {
                 element={<TournamentTable />}
               ></Route>
             </Route>
-            {/* <Route path="all-players" element={<AllPlayers />}></Route> */}
-            {<Route path="all-players" element={<AllPlayersPage />}></Route>}
+            <Route path="all-players" element={<AllPlayersPage />} />
             <Route
               path="all-players/:playerSlug"
               element={<PlayerProfilePage />}
@@ -58,6 +56,7 @@ function App() {
               path="registration-player"
               element={<CreatePlayerPage />}
             ></Route>
+            <Route path="auth" element={<AuthorizationPage />}/>
           </Route>
         </Routes>
       </div>

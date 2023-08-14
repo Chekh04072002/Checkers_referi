@@ -8,6 +8,7 @@ import { NotificationContext } from '../../../context/NotificationContext';
 import { fetchHandler } from '../../../utils/utils';
 import styles from './CreatePlayerForm.module.css';
 import GenderSelect from '../selects/GenderSelect';
+import { useDispatch } from 'react-redux';
 
 const CreatePlayerForm = () => {
     const defaultData = {
@@ -23,6 +24,7 @@ const CreatePlayerForm = () => {
     }
 
     const [data, setData] = useState(defaultData);
+    //const dispatch = useDispatch();
 
     const {
         isLoading, 
@@ -101,15 +103,6 @@ const CreatePlayerForm = () => {
                     value={data.gender}
                     onChange={(e) => setData({...data, gender: e.target.value})}
                 />
-                {/* <Select 
-                    required 
-                    value={data.gender}
-                    onChange={(e) => setData({...data, gender: e.target.value})}
-                >
-                    <option disabled value="">Выберите пол</option>
-                    <option value="Мужской">Мужской</option>
-                    <option value="Женский">Женский</option>
-                </Select> */}
             </LabeledComponent>
 
             <LabeledComponent label="Город">

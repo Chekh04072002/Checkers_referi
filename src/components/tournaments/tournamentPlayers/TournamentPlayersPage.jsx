@@ -114,7 +114,7 @@ const TournamentPlayersPage = () => {
             {
                 tournamentPlayers.length > 0
                 ?<PlayersList 
-                    players={tournamentPlayers.sort(compareByName)} 
+                    players={tournamentPlayers} 
                     actionLabel="Удалить" 
                     actionButton={<BiTrash className={stylesCommon.clickable} onClick={deletePlayer}/>}
                 />
