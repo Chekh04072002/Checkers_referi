@@ -44,7 +44,7 @@ const SwissGamesResult = ({currentPlayer, allPlayers, tours}) => {
             return players.indexOf(competitor) + 1;
         }
 
-        return "-";
+        return "+";
     }
     return (
         

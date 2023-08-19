@@ -23,12 +23,12 @@ const RoundGamesResult = ({index, currentPlayer, allPlayers, games}) => {
     if(!game) return;
     if(game.player1Score === 0 && game.player2Score === 0) return '';
 
-	if(player._id === game.player1StatsID){
-		return game.player1Score;
-	}
-	else if(player._id === game.player2StatsID) {
-		return game.player2Score;
-	}
+    if(player._id === game.player1StatsID){
+      return game.player1Score;
+    }
+    else if(player._id === game.player2StatsID) {
+      return game.player2Score;
+    }
   }
 
   return (
