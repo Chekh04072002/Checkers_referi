@@ -38,13 +38,12 @@ const CreatePlayerForm = () => {
     
     const createPlayerHandler = (event) => {
         event.preventDefault();
-        const playerData = {...data};
 
-        if(!playerData.currentAdamovichRank) {
-            playerData.currentAdamovichRank = undefined;
-        }
-        else {
-            playerData.currentAdamovichRank = +playerData.currentAdamovichRank;
+        const playerData = {...data};
+        let currentAdamovichRank = undefined;
+
+        if (playerData.currentAdamovichRank){
+            currentAdamovichRank = +playerData.currentAdamovichRank.replaceAll(",", ".");
         }
 
         fetchHandler(
@@ -63,10 +62,16 @@ const CreatePlayerForm = () => {
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8',
                 },
-                body: JSON.stringify(playerData),
+                body: JSON.stringify({...playerData, currentAdamovichRank}),
             }
         )
     }
+
+    /* const setAdamovichRank = (rank) => {
+        const parsedRank = rank.replace(",", ".");
+
+        setData({...data, currentAdamovichRank: +parsedRank});
+    } */
     
     useEffect(resetNotification, []);
 
@@ -142,7 +147,7 @@ const CreatePlayerForm = () => {
                 <Input 
                     placeholder="982"
                     value={data.currentAdamovichRank}
-                    onChange={(e) => setData({ ...data, currentAdamovichRank: e.target.value})}
+                    onChange={(e) => setData({ ...data,  currentAdamovichRank: e.target.value})}
                 />
             </LabeledComponent>
 
