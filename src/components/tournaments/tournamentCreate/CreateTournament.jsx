@@ -13,6 +13,12 @@ const CreateTournament = () => {
   function createTournamentHandler(event, tournamentData) {
     event.preventDefault();
 
+    const tData = {...tournamentData};
+
+    if(tData.toursCount) {
+      tData.toursCount = Number(tData.toursCount);
+    }
+    console.log(tData);
     fetchHandler(
       'tournaments',
       (data) => navigate(`../Tournament/${data._id}`),
@@ -26,7 +32,7 @@ const CreateTournament = () => {
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
         },
-        body: JSON.stringify(tournamentData),
+        body: JSON.stringify(tData),
       }
     )
   }
